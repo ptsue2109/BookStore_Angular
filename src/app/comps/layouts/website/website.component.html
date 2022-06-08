@@ -1,0 +1,38 @@
+<app-header [userInfo]="userInfo"></app-header>
+<p-scrollTop [threshold]="20"></p-scrollTop>
+<div class="dropdowm">
+  <div mdbDropdown class="dropdown">
+    <button
+      class="dropdown-toggle custom__dropdown btn p-button-raised"
+      id="dropdownMenuOffset"
+      mdbDropdownToggle
+      aria-expanded="false"
+    >
+      <i class="pi pi-align-justify mx-3"></i>
+      <span class="mx-3">Danh mục sản phẩm</span>
+    </button>
+    <ul
+      mdbDropdownMenu
+      class="dropdown-menu"
+      aria-labelledby="dropdownMenuOffset"
+    >
+      <li>
+        <a class="dropdown-item text_danger" [routerLink]="'/collection'"
+          >Tất cả Sản Phẩm</a
+        >
+      </li>
+      <div *ngFor="let item of categories" class="d-flex align-items-center">
+        <a class="dropdown-item" routerLink="collection/{{ item.slug }}"
+          ><i class="pi pi-book mx-3"></i>{{ item.cateName }}</a
+        >
+      </div>
+    </ul>
+  </div>
+</div>
+<div class="mt-5">
+   <router-outlet></router-outlet> 
+</div>
+
+<p-divider></p-divider>
+<app-footer></app-footer>
+

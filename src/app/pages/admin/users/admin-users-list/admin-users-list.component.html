@@ -1,0 +1,91 @@
+<p-toast></p-toast>
+<div class="card">
+  <p-toolbar styleClass="mb-4">
+    <a [routerLink]="'/admin/users/add'" class="btn p-button-icon">Add new</a>
+  </p-toolbar>
+
+  <p-table
+    #dt
+    [value]="users"
+    [rows]="5"
+    [paginator]="true"
+    [globalFilterFields]="['name_product']"
+    responsiveLayout="scroll"
+    [rowHover]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">
+          Name <p-sortIcon field="name_product"></p-sortIcon>
+        </th>
+        <th>Image</th>
+        <th pSortableColumn="phoneNumber">
+          phoneNumber <p-sortIcon field="phoneNumber"></p-sortIcon>
+        </th>
+        <th pSortableColumn="role">
+          Role <p-sortIcon field="role"></p-sortIcon>
+        </th>
+        <th pSortableColumn="status">
+          status <p-sortIcon field="status"></p-sortIcon>
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td>{{ item.username }}</td>
+        <td>
+          <img
+            *ngIf="item.image !== null"
+            [src]="item.image"
+            [alt]="item.name"
+            width="50"
+            height="50"
+            class="shadow-4"
+          />
+          <p-avatar
+            *ngIf="item.image === null"
+            image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+            size="large"
+          ></p-avatar>
+        </td>
+        <td>{{ item.phoneNumber }}</td>
+        <td>
+          <p-tag *ngIf="item.role === 'admin'">{{ item.role }}</p-tag>
+          <p-tag *ngIf="item.role === 'user'" severity="warning">{{
+            item.role
+          }}</p-tag>
+        </td>
+        <td>
+          <p-tag *ngIf="item.status === 'active'">{{ item.status }}</p-tag>
+          <p-tag *ngIf="item.status === 'hidden'" severity="warning">{{
+            item.status
+          }}</p-tag>
+        </td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success mr-2"
+            [routerLink]="[item._id]"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning"
+            (click)="deleteItem(item._id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ users ? users.length : 0 }}
+      </div>
+    </ng-template>
+  </p-table>
+</div>

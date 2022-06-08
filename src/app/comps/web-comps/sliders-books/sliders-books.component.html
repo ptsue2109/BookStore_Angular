@@ -1,0 +1,24 @@
+<p-carousel [value]="books" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1" [circular]="true"
+    [showIndicators]="false" [autoPlay]="true" [autoplayInterval]="4000">
+    <ng-template let-product pTemplate="item">
+        <div class="product-item">
+            <p-card [style]="{ width: '250px', height: '360px', margin: '20px 0px' }" styleClass="p-card-shadow">
+                <ng-template pTemplate="header">
+                    <a routerLink="products/{{product.slug}}">
+                        <p-image src="{{ product.image }}" alt="Image" height="250px"></p-image>
+                    </a>
+                    <div class="product-info">
+                        <a routerLink="products/{{product.slug}}" class="product-info--name">
+                            {{product.name}}
+                        </a>
+                        <p class="text-danger product-info--cost ">{{product.cost | currency}}</p>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </ng-template>
+</p-carousel>
+<div class="d-flex justify-content-end mx-2 mb-10">
+    <a routerLink="/categories/{{slug}}" class="text-danger">Xem thêm<i
+            class="pi pi-angle-double-right mx-2 py-1"></i></a>
+</div>

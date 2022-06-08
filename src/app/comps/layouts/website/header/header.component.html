@@ -1,0 +1,79 @@
+<div class="header">
+  <div class="header-top">
+    <div class="header-top__wrapper container">
+      <div class=" social">
+        <a href="https://www.facebook.com/nxbkimdong" target="_blank" class="fb-icon"><i class="pi pi-facebook"
+            aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/kimdongbooks/" target="_blank" class="ins-icon"><i class="pi pi-instagram"
+            aria-hidden="true"></i></a>
+        <a href="https://www.youtube.com/user/KimDongPublishingHou" target="_blank" class="yt-icon"><i
+            class="pi pi-youtube" aria-hidden="true"></i></a>
+      </div>
+      <div class="content">
+       <div class="content_left">
+        <i class="pi pi-wifi custom-icon"
+          aria-hidden="true"></i>
+       </div>
+       <div class="content_right">
+        <marquee behavior="scroll" direction="left">
+          Chào mừng bạn đến với Kim Đồng Book. Nếu bạn cần giúp đỡ, hãy liên hệ với chúng tôi qua hotline: (+84) 1900571595 hoặc email: cskh_online@nxbkimdong.com.vn.
+        </marquee>
+       </div>
+      </div>
+      <div class="aside">
+        <a href="tel:(+84) 1900571595"><i class="fa fa-phone" aria-hidden="true"></i>  (+84) 1900571595</a>
+        <a href="mailto:cskh_online@nxbkimdong.com.vn "><i class="fa fa-envelope" aria-hidden="true"></i>  cskh_online@nxbkimdong.com.vn </a>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Just an image -->
+  <nav class="navbar">
+    <div class="navbar__content container">
+        <div class="navbar__content--searchbar">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText placeholder="Search" />
+        </span>
+        </div>
+
+        <div class="navbar__content--logo">
+          <a class="navbar-brand" [routerLink]="'/'">
+          <img
+            src="https://theme.hstatic.net/200000343865/1000796725/14/logo.png?v=418"
+            height="91"
+            width="70"
+            alt=""
+            loading="lazy"
+          />
+        </a>
+        </div>
+        <div class="navbar__content--button-group">
+            <div class="navbar__content--button-group account-button">
+              <div  mdbDropdown class="dropdown">
+                <p-avatar *ngIf="!userInfo.image" image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton"aria-expanded="false" mdbDropdownToggle ></p-avatar>
+                <p-avatar *ngIf="userInfo.image" image="{{userInfo.image}}" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton"aria-expanded="false"mdbDropdownToggle ></p-avatar>
+
+                <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                  <li *ngIf="userInfo.username"><a class="dropdown-item" [routerLink]="'/infomation'">Infomation</a></li>
+                  <li *ngIf="userInfo.role === 'admin'"><a class="dropdown-item" [routerLink]="'/admin'">Dashboard</a></li>
+                  <li *ngIf="userInfo.username" ><a class="dropdown-item" (click)="logoutUser()">Logout</a></li>
+                  <li *ngIf="!userInfo.username"><a class="dropdown-item" [routerLink]="'/register'">Register</a></li>
+                  <li *ngIf="!userInfo.username"><a class="dropdown-item" [routerLink]="'/login'">Login</a></li>
+                </ul>
+              </div>
+
+            </div>
+
+            <div class="navbar__content--button-group right-button">
+              <i class="pi pi-heart mr-4 p-text-secondary" pBadge style="font-size: 1.3rem" value="2" styleClass="mr-2"></i>
+              <i class="pi pi-shopping-bag mr-4 p-text-secondary" pBadge style="font-size: 1.3rem" value="2" styleClass="mr-2"></i>
+            </div>
+        </div>
+    </div>
+      <!-- <div class="container">
+        
+      </div> -->
+    </nav>
+</div>

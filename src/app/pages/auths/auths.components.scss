@@ -1,0 +1,90 @@
+$FBcolor: #3b5998;
+$googleColor: #dd4b39;
+$primaryColor: #fff;
+
+.content__auth {
+  background-color: #dc660d !important;
+  background-image: url("https://res.cloudinary.com/asm-ph13269/image/upload/v1651505730/shopp_xo8buy.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  object-fit: fill;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-position: left;
+}
+.auth__form {
+  width: 250px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  top: 15%;
+  left: 55%;
+  border: 1px solid rgb(172, 172, 172);
+  border-radius: 5px;
+  width: 550px;
+  &--item {
+    padding: 15px;
+    &__social {
+      text-align: center;
+      &--icon {
+        display: flex;
+        justify-content: space-between;
+        a {
+          width: 30%;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          opacity: 0.8;
+          display: inline-block;
+          text-align: center;
+          font-size: 1.2rem;
+          color: $primaryColor;
+
+          i {
+            margin-top: 12px;
+            padding: 3px;
+          }
+          &:hover {
+            opacity: 1;
+            svg {
+              opacity: 0;
+            }
+            &:after {
+              opacity: 1;
+            }
+          }
+          &:after {
+            content: "";
+            font-size: 7px;
+            letter-spacing: 2px;
+            position: relative;
+            bottom: 10;
+            display: block;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            -webkit-transition: all 0.3s ease-out;
+            transition: all 0.5s ease-out;
+          }
+          &:first-child {
+            background-color: $googleColor;
+            &:after {
+              content: "Google";
+            }
+          }
+          &:nth-child(2) {
+            background-color: $FBcolor;
+            &:after {
+              content: "Facebook";
+            }
+          }
+          &:last-child {
+            background-color: #000;
+            &:after {
+              content: "Github";
+            }
+          }
+        }
+      }
+    }
+  }
+}

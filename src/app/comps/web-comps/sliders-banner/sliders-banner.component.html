@@ -1,0 +1,8 @@
+<div class="container-fluid pt-3">
+  <p-carousel [value]="sliders" [autoplayInterval]="3000" [circular]="true" [showIndicators]="false"
+    [showNavigators]="true" [responsiveOptions]="responsiveOptions">
+    <ng-template let-item pTemplate="item">
+      <img src="{{item.image}}" class="slider__image" />
+    </ng-template>
+  </p-carousel>
+</div>

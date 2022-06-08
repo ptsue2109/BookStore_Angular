@@ -1,0 +1,53 @@
+.header-top{
+    background: rgb(169, 23, 29);
+    padding: 2px 0px;
+    height: 28px;
+    color: #ffff;
+  &__wrapper{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 2fr;
+    grid-gap: 20px;
+    gap: 20px;
+    padding: 2px 0px;
+  }
+  i,a{
+    color: #ffff;
+}
+}
+.social{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.content{
+    display: flex;
+    gap: 1rem;
+    font-size: 14px;
+    &_left{
+        padding-left: 5rem;
+    }
+}
+.aside{
+    display: flex;
+    gap: 1rem;
+    font-size: 14px;
+    padding-left: 5rem;
+}
+
+.navbar{
+    height: 120px;
+    i,a{
+        color: rgb(50, 49, 49);
+    }
+    &__content{
+        align-items: center;
+        &--button-group{
+            display: flex;
+            gap: 1.5rem;
+        }
+    }
+}
+.custom-icon{
+    transform: rotate(45deg);
+    font-weight: bold   ;
+}

@@ -1,0 +1,74 @@
+
+
+<app-sliders-banner [sliders]="sliders"></app-sliders-banner>
+<div class="content">
+  <div class="container">
+    <div class="new-books">
+      <p-divider align="center" type="solid">
+        <h3 class="comp-title">Sách MỚI</h3>
+      </p-divider>
+      <app-sliders-books [books]="books" link="/prododucts"></app-sliders-books>
+    </div>
+  </div>
+
+  <div class="">
+    <div class="children-books">
+      <div class="children-books background">
+        <img
+          src="https://theme.hstatic.net/200000343865/1000796725/14/banner_home_pro_3.jpg?v=418"
+          alt=""
+          style="width: 100%"
+        />
+      </div>
+      <div class="container">
+        <div class="children-books content">
+          <p-divider align="center" type="solid">
+            <h3 class="comp-title">từ nhỏ đến lớn</h3>
+          </p-divider>
+          <app-sliders-books [books]="books" slug=""></app-sliders-books>
+        </div>
+      </div>
+      <div class="manga-books">
+        <div class="manga-books background">
+          <img
+            src="https://theme.hstatic.net/200000343865/1000796725/14/banner_home_pro_4.jpg?v=418"
+            alt=""
+            style="width: 100%"
+          />
+        </div>
+        <div class="container">
+          <div class="manga-books content">
+            <p-divider align="center" type="solid">
+              <h3 class="comp-title">MANGA - COMIC</h3>
+            </p-divider>
+            <app-sliders-books
+              [books]="books"
+              slug="manga-comic"
+            ></app-sliders-books>
+          </div>
+        </div>
+      </div>
+
+      <div class="wings-books">
+        <div class="wings-books background">
+          <img
+            src="https://theme.hstatic.net/200000343865/1000796725/14/banner_home_pro_6.jpg?v=418"
+            alt=""
+            style="width: 100%"
+          />
+        </div>
+        <div class="container">
+          <div class="wings-books content">
+            <p-divider align="center" type="solid">
+              <h3 class="comp-title">WINGS BOOKS</h3>
+            </p-divider>
+            <app-sliders-books
+              [books]="books"
+              slug="wings-books"
+            ></app-sliders-books>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

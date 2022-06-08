@@ -1,0 +1,8 @@
+<div class="d-flex gap-3 flex-wrap">
+    <p-card header="{{item.name}}" subheader="quantity: {{item.quantity}}" [style]="{width: '160px', height: '160px'}" styleClass="p-card-shadow" *ngFor="let item of cardData">
+      <ng-template pTemplate="header">
+          <br><a routerLink="{{item.view}}"  class="btn p-button-icon" >view</a>
+      </ng-template>
+
+  </p-card>
+  </div>
