@@ -16,9 +16,12 @@ import { AdminUsersEditComponent } from './pages/admin/users/admin-users-edit/ad
 import { AdminUsersListComponent } from './pages/admin/users/admin-users-list/admin-users-list.component';
 import { LoginComponent } from './pages/auths/login/login.component';
 import { RegisterComponent } from './pages/auths/register/register.component';
+import { CartComponent } from './pages/website/cart/cart.component';
 import { HomeComponent } from './pages/website/home/home.component';
 import { DetailProductsComponent } from './pages/website/products/detail-products/detail-products.component';
-
+import { HomeProductsComponent } from './pages/website/products/home-products/home-products.component';
+import { ProductByCateComponent } from './pages/website/products/product-by-cate/product-by-cate.component';
+import { AuthGuard } from './shared/helpers/auth.guard';
 const routes: Routes = [
   {
     path: "login",
@@ -37,8 +40,20 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
+        path: "categories/:slug",
+        component: ProductByCateComponent
+      },
+      {
+        path: "carts",
+        component: CartComponent
+      },
+      {
         path: 'products',
         children:[
+          {
+            path: "",
+            component: HomeProductsComponent
+          },
           {
             path: ':slug',
             component: DetailProductsComponent
@@ -50,7 +65,7 @@ const routes: Routes = [
   { 
     path: "admin",
     component: AdminComponent,
-    
+    canActivate:[AuthGuard],
     children:[
       {
         path : "",
@@ -119,5 +134,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}

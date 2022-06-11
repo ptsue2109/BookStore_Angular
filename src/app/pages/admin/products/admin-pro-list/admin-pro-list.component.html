@@ -13,7 +13,7 @@
                 <th pSortableColumn="name">Name <p-sortIcon field="name_product"></p-sortIcon></th>
                 <th>Image</th>
                 <th pSortableColumn="cost">Price <p-sortIcon field="cost"></p-sortIcon></th>
-                <th pSortableColumn="authorName">authorName <p-sortIcon field="authorName"></p-sortIcon></th>
+                <th pSortableColumn="authorId">authorName <p-sortIcon field="authorId"></p-sortIcon></th>
                 <th pSortableColumn="bookType">bookType <p-sortIcon field="bookTypeId"></p-sortIcon></th>
                 <th pSortableColumn="categoryId">category <p-sortIcon field="categoryId"></p-sortIcon></th>
                 <th pSortableColumn="stock">stock <p-sortIcon field="stock"></p-sortIcon></th>
@@ -25,8 +25,8 @@
             <tr>
                 <td>{{product.name}}</td>
                 <td><img [src]="product.image" [alt]="product.name" width="50" height="50" class="shadow-4" /></td>
-                <td>{{product.cost | currency}}</td>
-                <td>{{product.authorName}}</td>
+                <td>{{product.cost | currency : "VND"}}</td>
+                <td>{{product.authorId.authorName}}</td>
                 <td>{{product.bookTypeId.bookTypeName}}</td>
                 <td>{{product.categoryId.cateName}}</td>
                 <td>

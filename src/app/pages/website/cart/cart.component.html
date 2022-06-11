@@ -1,0 +1,24 @@
+<p-orderList [value]="carts" [listStyle]="{'max-height':'30rem'}" header="List of Cart Item" filterBy="name" filterPlaceholder="Filter by name" [dragdrop]="true">
+    <ng-template let-product pTemplate="item">
+        <div class="product-item">
+            <div class="image-container">
+                    <img src="{{product.image}}" [alt]="product.name" width="" class="product-image" />
+            </div>
+            <div class="product-list-detail">
+                <h5 class="mb-2">{{product.name}}</h5>
+                <i class="pi pi-shopping-cart product-category-icon">{{product.quantity}}</i><br>
+                <i class="pi pi-wallet product-category-icon py-2">{{product.cost | currency}}</i>
+                
+            </div>
+            <div class="product-list-action">
+                <h6 class="mb-2">{{product.price | currency:"VND"}}</h6>
+            </div>
+            <div class="product-action--btn">
+           
+            </div>
+  
+        </div>
+    </ng-template>
+</p-orderList>
+
+<button class="btn btn-primary" style="font-size:14px;float:right;margin:0 5px 50px  0">TOTAL: {{cartItemValues | currency : "VND"}}</button>

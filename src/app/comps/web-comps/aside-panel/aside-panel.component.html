@@ -1,0 +1,29 @@
+<div class="panel">
+  <p-panel header="DANH MỤC SẢN PHẨM" [toggleable]="true">
+    <ng-template pTemplate="icons">
+      <p-menu id="config_menu" [popup]="true"></p-menu>
+    </ng-template>
+
+    <div
+      mdbDropdownMenu
+      class="dropdown-menu"
+      aria-labelledby="dropdownMenuOffset"
+    >
+      <div *ngFor="let item of categories" class="d-flex align-items-center">
+        <a class="dropdown-item" routerLink="{{item.slug}}"
+          ><i class="pi pi-book mx-3"></i>{{ item.cateName }}</a
+        >
+      </div>
+    </div>
+  </p-panel>
+
+  <p-panel header="KHOẢNG GIÁ" [toggleable]="true">
+  </p-panel>
+
+  <p-panel header="TÁC GIẢ" [toggleable]="true">
+  </p-panel>
+
+  <p-panel header="THỂ LOẠI" [toggleable]="true">
+
+  </p-panel>
+</div>

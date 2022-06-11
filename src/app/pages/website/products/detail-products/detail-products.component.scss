@@ -1,0 +1,18 @@
+.rating_span {
+  &::after {
+    content: "|";
+    padding: 0px 1rem;
+  }
+}
+.books-end {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 28px;
+}
+.books-descprition {
+  border: 1px solid red;
+}
+.books-aside {
+  height: auto;
+  border: 1px solid #ccc;
+}

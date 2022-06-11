@@ -1,22 +1,13 @@
-<!-- Content -->
+
 <div id="content">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a [routerLink]="'/'"><i class="zmdi zmdi-notifications text-danger"></i>
-                    </a>
-                </li>
-                <li><a [routerLink]="'/admin/users'">Users</a></li>
-                <li><a [routerLink]="'/admin/products'">Products</a></li>
-                <li><a [routerLink]="'/admin/sliders'">sliders</a></li>
-                <li><a [routerLink]="'/admin/orders'">Orders</a></li>
-                <li><a [routerLink]="'/admin/targets'">Target</a></li>
-                <li><a [routerLink]="'/admin/books-type'">Book Type</a></li>
-                <li><a [routerLink]="'/admin/book-size'">Book Size</a></li>
+  <ul class="list-group">
+    <li class="list-group-item"><a [routerLink]="'/admin'"><i class="pi pi-th-large px-2"></i>Dashboard</a> </li>
+    <li class="list-group-item"><a [routerLink]="'/admin/users'"><i class="pi pi-users px-2"></i>Users</a> </li>
+    <li class="list-group-item"><a [routerLink]="'/admin/products'"><i class="pi pi-th-large px-2"></i>Products</a> </li>
+    <li class="list-group-item"><a [routerLink]="'/admin/sliders'"><i class="pi pi-users px-2"></i>Sliders</a> </li>
+    <li class="list-group-item"><a [routerLink]="'/admin/categories'"><i class="pi pi-users px-2"></i>categories</a> </li>
+    <li class="list-group-item"><a [routerLink]="'/admin/authors'"><i class="pi pi-users px-2"></i>Authors</a> </li>
+    <li class="list-group-item"><a [routerLink]="'/admin/orders'"><i class="pi pi-users px-2"></i>Orders</a> </li>
 
-            </ul>
-        </div>
-    </nav>
-
+  </ul>
 </div>

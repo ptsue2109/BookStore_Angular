@@ -21,6 +21,12 @@ import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {RatingModule} from 'primeng/rating';
+import {VirtualScrollerModule} from 'primeng/virtualscroller';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {OrderListModule} from 'primeng/orderlist';
+import {PanelModule} from 'primeng/panel';
+import {DataViewModule} from 'primeng/dataview';
 const PrimeComponent = [
   PasswordModule,
   DividerModule,
@@ -37,13 +43,19 @@ const PrimeComponent = [
   TieredMenuModule,
   ScrollTopModule,
   InputTextModule,
+  VirtualScrollerModule,
   MessagesModule,
   MessageModule,
+  PanelModule,
   ToastModule,
   AvatarModule,
   TagModule,
   CardModule,
-  BreadcrumbModule
+  BreadcrumbModule,
+  RatingModule,
+  InputNumberModule,
+  OrderListModule,
+  DataViewModule
 ];
 
 @NgModule({

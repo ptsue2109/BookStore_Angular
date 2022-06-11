@@ -11,14 +11,14 @@ export class CategoryService {
   getAll(): Observable<any> {
     return this.http.get<any>(`${environment.categoryApi}`);
   }
-  getOneCate(id: string):Observable<any> {
-    return this.http.get<any>(`${environment.categoryApi}/${id}/edit`);
+  getCateBySlug(slug: string):Observable<any> {
+    return this.http.get<any>(`${environment.categoryApi}/get-detail-by-slug/${slug}`);
   }
   removeCate(id: string):Observable<any>{
     return this.http.delete<any>(`${environment.categoryApi}/${id}`);
   }
   addCate(item: any):Observable<any> {
-    return this.http.post<any>(`${environment.categoryApi}`,item);
+    return this.http.post<any>(`${environment.categoryApi}/create`,item);
   }
   editCate(item:any, id: any):Observable<any>{
     return this.http.patch<any>(`${environment.categoryApi}/${id}`,item)

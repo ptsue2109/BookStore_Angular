@@ -1,0 +1,44 @@
+.categories-detail {
+    display: grid;
+    grid-template-columns: 1.2fr 4fr;
+    gap: 10px;
+}
+
+.cate-aside {
+    padding: 2px;
+}
+
+.form-horizontal {
+    select {
+        padding: 2px;
+        border: 1px solid #ccc;
+        outline: none
+    }
+}
+.item{
+    height: 350px;
+    &--price{
+        align-items: flex-end;
+        
+    }
+}
+.cate-content__breacrumb-overlay{
+    background-image: url('https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg');
+    background-position: center;
+    height: 300px;
+    inset: 0;
+    position: relative;
+    top: -3rem;
+    opacity: 0.9;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+   
+    &--inner{
+        position: absolute;
+       left: 5rem;
+       top: 5rem;
+       color: #000;
+       font-size: 24px;
+       font-weight: bolder;
+    }
+}

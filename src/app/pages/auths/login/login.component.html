@@ -11,8 +11,10 @@
             </mdb-form-control>
           </div>
           <div class="mb-4">
-            <label mdbLabel for="">Password</label>
-            <p-password  formControlName="password" [toggleMask]="true"></p-password>
+            <mdb-form-control>
+              <input mdbInput type="password" class="form-control" formControlName="password" />
+              <label mdbLabel for="password" class="form-label">Password</label>
+            </mdb-form-control>
           </div>
           <div class="d-flex justify-content-between">
             <button class="btn btn-primary btn-sm">

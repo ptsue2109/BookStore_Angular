@@ -22,6 +22,7 @@ export class AdminProEditComponent implements OnInit {
   AddForm: FormGroup;
   categories: any;
   targets: any;
+  authors:any;
   dataPro: any = [];
   listImgDetail: any;
   OldImage:any;
@@ -31,6 +32,7 @@ export class AdminProEditComponent implements OnInit {
   bookSizeSelected : string = '';
   newThumb : any;
   newList:any;
+  authorSelected:any
   constructor(
     private productService: ProductsService,
     private homeService: HomeService,
@@ -51,7 +53,7 @@ export class AdminProEditComponent implements OnInit {
       categoryId: new FormControl('', []),
       targetId: new FormControl('', []),
       desc: new FormControl('', []),
-      authorName: new FormControl('', []),
+      authorId: new FormControl('', []),
       pageNumber: new FormControl('', []),
       bookWeight: new FormControl('', []),
       bookTypeId: new FormControl('', []),
@@ -65,19 +67,22 @@ export class AdminProEditComponent implements OnInit {
     this.id = this.ActivatedRouter.snapshot.params['id'];
     this.productService.getOneById(this.id).subscribe(data => {
       this.dataPro = data;
+      console.log(data);
+      
       this.listImgDetail = data.imageMutiple;
       this.cateSelected = data.categoryId._id;
       this.bookTypesSelected = data.bookTypeId._id;
       this.targetSelected = data.targetId._id;
       this.bookSizeSelected = data.bookSizeId._id
       this.OldImage = data.image;
-      
+      this.authorSelected = data.authorId._id
     });
 
     this.homeService.getAllData().subscribe(homedata => {
       this.bookTypes = homedata.bookType;
       this.targets = homedata.target;
       this.bookSizes = homedata.bookSize;
+      this.authors = homedata.author
     })
     this.CategoryService.getAll().subscribe(data => {
       this.categories = data.categories;
@@ -103,6 +108,9 @@ export class AdminProEditComponent implements OnInit {
   changeType(event: any) {
     this.bookTypesSelected = event.target.value
   }
+  changeAuthor(event: any) {
+    this.bookTypesSelected = event.target.value
+  }
   onsubmit() {
     this.messageService.add({
       severity: 'info',
@@ -118,7 +126,7 @@ export class AdminProEditComponent implements OnInit {
       categoryId: this.AddForm.value.categoryId,
       targetId: this.targetSelected,
       desc: this.AddForm.value.desc,
-      authorName: this.AddForm.value.authorName,
+      authorId: this.authorSelected,
       pageNumber: this.AddForm.value.pageNumber,
       bookWeight: this.AddForm.value.bookWeight,
       bookTypeId: this.bookTypesSelected,

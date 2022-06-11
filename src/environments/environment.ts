@@ -11,6 +11,8 @@ export const environment = {
   categoryApi: `${BASE_API}/categories`,
   userApi: `${BASE_API}/users`,
   sliderApi: `${BASE_API}/sliders`,
+  authorApi: `${BASE_API}/authors`,
+  orderApi:  `${BASE_API}/orders`,
   firebase: {
     apiKey: 'AIzaSyCUdof8BHr8LfDIZIYDCvDv1e8mjmIpgGY',
     authDomain: 'my-app-7bb3f.firebaseapp.com',

@@ -20,6 +20,7 @@ export class AdminProAddComponent implements OnInit {
   bookTypes: any;
   file: any = [];
   files: any = [];
+  authors:any = [];
   constructor(
     private productService: ProductsService,
     private homeService: HomeService,
@@ -38,7 +39,7 @@ export class AdminProAddComponent implements OnInit {
       categoryId: new FormControl('', []),
       targetId: new FormControl('', []),
       desc: new FormControl('', []),
-      authorName: new FormControl('', []),
+      authorId: new FormControl('', []),
       pageNumber: new FormControl('', []),
       bookWeight: new FormControl('', []),
       bookTypeId: new FormControl('', []),
@@ -53,6 +54,7 @@ export class AdminProAddComponent implements OnInit {
       this.targets = data.target;
       this.bookSizes = data.bookSize;
       this.bookTypes = data.bookType;
+      this.authors = data.author
     });
     this.CategoryService.getAll().subscribe((data) => {
       this.categories = data.categories;
@@ -85,7 +87,7 @@ export class AdminProAddComponent implements OnInit {
       categoryId: this.AddForm.value.categoryId,
       targetId: this.AddForm.value.targetId,
       desc: this.AddForm.value.desc,
-      authorName: this.AddForm.value.authorName,
+      authorId: this.AddForm.value.authorId,
       pageNumber: this.AddForm.value.pageNumber,
       bookWeight: this.AddForm.value.bookWeight,
       bookTypeId: this.AddForm.value.bookTypeId,
@@ -102,6 +104,7 @@ export class AdminProAddComponent implements OnInit {
           setTimeout(() => {
             this.router.navigate(['/admin/products']);
             localStorage.removeItem('imgThum');
+            localStorage.removeItem('imgList');
           }, 2000);
         },
         error: ({ error }) => {

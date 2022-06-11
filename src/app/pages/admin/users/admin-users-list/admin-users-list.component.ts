@@ -30,7 +30,7 @@ export class AdminUsersListComponent implements OnInit {
       if (result.isConfirmed) {
         this.UserService.removeUSer(_id).subscribe((data) => {
           swal('delete skill', 'You add skill successfully !', 'success');
-          this.users = this.users.filter((item: any) => item._id !== item);
+          this.users = this.users.filter((item: any) => item._id !== _id);
         });
       }
     });

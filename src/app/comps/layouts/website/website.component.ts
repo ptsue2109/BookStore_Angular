@@ -15,10 +15,11 @@ export class WebsiteComponent implements OnInit {
   ngOnInit(): void {
     this.userInfo =  JSON.parse(localStorage.getItem('userInfo') || '{}');
     if(this.userInfo){
-      console.log('having aday',this.userInfo);
     };
     this.CategoryService.getAll().subscribe((data) => {
       this.categories = data.categories;
+      console.log('cate',this.categories);
+      
     });
   }
 

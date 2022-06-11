@@ -25,7 +25,7 @@ export class SlidersListComponent implements OnInit {
       if (result.isConfirmed) {
         this.SlidersService.remove(_id).subscribe((data) => {
           swal('delete skill', 'You add skill successfully !', 'success');
-          this.sliders = this.sliders.filter((item: any) => item._id !== item);
+          this.sliders = this.sliders.filter((item: any) => item._id !== _id);
         });
       }
     });

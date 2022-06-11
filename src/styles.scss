@@ -6,31 +6,30 @@
 
 @import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
 
-// .p-inputtext{
-//     padding : 0.3rem !important;
-//     padding-right: 20.5rem !important;
-//   }
-// .p-input-icon-right > .p-inputtext {
-//     padding-right: 20.5rem !important;
-// }
+$defaultColor: #ad0c0c;
+$tabColor: #bc3030;
 
 .p-inputtext {
   padding: -31.25rem 0.75rem !important;
 }
+
 .p-menubar {
-  // background-color:rgb(169, 23, 29) !important;
   padding: 0 !important;
   border-radius: 0 !important;
 }
+
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
   border-radius: 0 !important;
 }
+
 .pi-angle-down:before {
   content: none !important;
 }
+
 .dropdown-toggle::after {
   content: none !important;
 }
+
 .btn {
   border-radius: none !important;
 }
@@ -38,21 +37,67 @@
 .p-scrolltop.p-link {
   background: #3b82f6 !important;
 }
+
 .p-card .p-card-title {
-  font-size: .8rem !important;
+  font-size: 0.8rem !important;
   font-weight: 700 !important;
-  margin-bottom: 0.5rem !important;  
+  margin-bottom: 0.5rem !important;
 }
+
 .p-card .p-card-title {
   height: 2.5rem;
-  font-size: .8rem !important;
+  font-size: 0.8rem !important;
   text-transform: capitalize;
-
 }
+
 .p-card .p-card-subtitle {
-  color: #ad0c0c !important;
+  color: $defaultColor !important;
   margin-bottom: 0.1rem !important;
 }
-.container-fluid{
+
+.container-fluid {
   width: 100%;
+}
+
+.btn-danger {
+  background-color: $defaultColor !important;
+  padding: 0.3rem;
+}
+
+.nav-tabs {
+  a {
+    color: #ffff !important;
+  }
+
+  background: $tabColor !important;
+
+  .nav-link {
+    background-color: $tabColor !important;
+
+    &.active {
+      background-color: $defaultColor !important;
+    }
+
+    &.custom {
+      background-color: $defaultColor !important;
+    }
+  }
+}
+
+.form-outline .form-control {
+  border: 1px solid #ccc !important;
+  width: 10rem !important;
+}
+
+.p-panel {
+  margin: 10px 0px !important;
+}
+.p-panel.p-panel-toggleable .p-panel-header {
+  background: red !important;
+  color: #ffff !important;
+  font-size: 0.8rem !important;
+}
+.p-breadcrumb {
+  padding: 0.4rem !important;
+  color: #000;
 }

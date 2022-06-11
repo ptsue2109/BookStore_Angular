@@ -38,7 +38,7 @@ export class AdminProListComponent implements OnInit {
             detail: 'Delete success',
           });
           this.products = this.products.filter(
-            (item: any) => item._id !== item
+            (item: any) => item._id !== _id
           );
         });
       }

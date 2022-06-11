@@ -48,7 +48,12 @@ import { SlidersBooksComponent } from './comps/web-comps/sliders-books/sliders-b
 import { BreadcrumbComponent } from './comps/breadcrumb/breadcrumb.component';
 import {CarouselModule} from 'primeng/carousel';
 import { CardDetailComponent } from './comps/web-comps/card-detail/card-detail.component';
-
+import {DetailProductsComponent} from "./pages/website/products/detail-products/detail-products.component";
+import { HomeProductsComponent } from './pages/website/products/home-products/home-products.component';
+import { CartComponent } from './pages/website/cart/cart.component';
+import { ValidateMessComponent } from './comps/validate-mess/validate-mess.component';
+import {ProductByCateComponent} from "./pages/website/products/product-by-cate/product-by-cate.component";
+import { AsidePanelComponent } from './comps/web-comps/aside-panel/aside-panel.component'
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -79,9 +84,15 @@ registerLocaleData(localeFr);
     SlidersBooksComponent,
     BreadcrumbComponent,
     CardDetailComponent,
+    DetailProductsComponent,
+    HomeProductsComponent,
+    CartComponent,
+    ValidateMessComponent,
+    ProductByCateComponent,
+    AsidePanelComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

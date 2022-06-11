@@ -13,16 +13,16 @@ export class UserService {
     return this.http.get<any>(`${environment.userApi}`);
   }
   getOneUser(id: string):Observable<any> {
-    return this.http.get<any>(`${environment.userApi}/${id}`);
+    return this.http.get<any>(`${environment.userApi}/get-user-by-id/${id}`);
   }
   removeUSer(id: string):Observable<any>{
-    return this.http.delete<any>(`${environment.userApi}/${id}`);
+    return this.http.delete<any>(`${environment.userApi}/remove-user/${id}`);
   }
   addUsers(item: any):Observable<any> {
-    return this.http.post<any>(`${environment.userApi}`,item);
+    return this.http.post<any>(`${environment.userApi}/create-user`,item);
   }
   editUser(item:any, id: any):Observable<any>{
-    return this.http.patch<any>(`${environment.userApi}/${id}`,item)
+    return this.http.patch<any>(`${environment.userApi}/update-user/${id}`,item)
   }
  
 }

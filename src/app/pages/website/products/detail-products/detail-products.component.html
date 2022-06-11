@@ -1,0 +1,80 @@
+<p-toast></p-toast>
+
+<div class="container d-flex gap-3 justify-content-around">
+    <app-card-detail [imageThumb]="imageThumb" [imageMutiple]="imageMutiple"></app-card-detail>
+    <div class="detail-pro mt-4">
+        <div class="detail-pro pro-title">
+            <h3 class="text-uppercase">
+                {{namePro}}
+            </h3>
+            <div class="right-side d-flex">
+                <p-rating [(ngModel)]="val2" [cancel]="false"></p-rating>
+                <span class="mx-2 rating_span">{{val2}} đánh giá</span>
+                <span>Đã bán : {{orderCount}}</span>
+            </div>
+            <hr>
+        </div>
+        <div class="detail-pro pro-price">
+            <h3 class="text-danger">{{bookDetail.cost | currency}}</h3>
+            <hr>
+        </div>
+
+        <div class="detail-pro pro-info">
+            <div class="d-flex justify-content-between gap-8">
+                <div class="col">
+                    <ul>
+                        <li>Mã sách: {{bookDetail._id}}</li>
+                        <li>Tác giả : <a [routerLink]="'/'">{{bookDetail.authorId.authorName}}</a></li>
+                        <li>Đối Tượng : <a [routerLink]="'/'" class="text-danger">{{bookDetail.targetId.targetName}}</a>
+                        </li>
+                        <li>Khuôn khổ: {{bookDetail.bookSizeId.bookSizeName}}</li>
+                        <li>Số Trang :{{bookDetail.pageNumber}}</li>
+                        <li>Định dạng: {{bookDetail.bookTypeId.bookTypeName}}</li>
+                        <li>Trọng lượng: {{bookDetail.bookWeight}} gram</li>
+                        <li>Danh mục: <a [routerLink]="'/'">{{bookDetail.categoryId.cateName}}</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <label class="mb-2"><b>Số lượng</b></label>
+                        <input type="number" min="1" class="form-control cart-value mt-3" [value]="cartValue"
+                            (input)="onChangeCartValue($event)" />
+                        <button class="btn btn-danger mt-3 w-50 p-2" (click)="onAddToCart()">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-divider></p-divider>
+<div class="container books-end ">
+    <div class="books-descprition">
+        <div class="books-descprition__wrapper">
+            <div class="books-descprition__wrapper tab">
+                <mdb-tabs [justified]="false">
+                    <mdb-tab title="MÔ TẢ - ĐÁNH GIÁ">
+                        <p-editor [(ngModel)]="bookDetail.desc" [readonly]="true" [style]="{'height':'320px'}">
+                        </p-editor>
+                    </mdb-tab>
+                    <mdb-tab title="BÌNH LUẬN">BÌNH LUẬN</mdb-tab>
+                </mdb-tabs>
+            </div>
+        </div>
+    </div>
+
+    <div class="books-aside">
+        <div class="book-aside header">
+            <mdb-tabs [justified]="false">
+                <mdb-tab title="Sách cùng tác giả" class="custom"></mdb-tab>
+            </mdb-tabs>
+        </div>
+        <div class="book-aside content">
+            <div class="card">
+
+            </div>
+        </div>
+
+    </div>
+</div>
