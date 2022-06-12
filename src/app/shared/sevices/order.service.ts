@@ -11,6 +11,5 @@ export class OrderService {
   constructor(private http : HttpClient) { }
   createOrderByUser(order:any):Observable<any>{
     return this.http.post<any>(`${environment.orderApi}/creat-by-custom`,order);
-
   }
 }

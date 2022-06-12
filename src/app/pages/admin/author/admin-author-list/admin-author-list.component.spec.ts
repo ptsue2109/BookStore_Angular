@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeProductsComponent } from './home-products.component';
+import { AdminAuthorListComponent } from './admin-author-list.component';
 
-describe('HomeProductsComponent', () => {
-  let component: HomeProductsComponent;
-  let fixture: ComponentFixture<HomeProductsComponent>;
+describe('AdminAuthorListComponent', () => {
+  let component: AdminAuthorListComponent;
+  let fixture: ComponentFixture<AdminAuthorListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeProductsComponent ]
+      declarations: [ AdminAuthorListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeProductsComponent);
+    fixture = TestBed.createComponent(AdminAuthorListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

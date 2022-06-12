@@ -3,24 +3,17 @@
   <p-toolbar styleClass="mb-4">
     <a [routerLink]="'/admin/sliders/add'" class="btn p-button-icon">Add new</a>
   </p-toolbar>
-  <p-table
-    #dt
-    [value]="sliders"
-    [rows]="5"
-    [paginator]="true"
-    [globalFilterFields]="['slideName']"
-    responsiveLayout="scroll"
-    [rowHover]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [showCurrentPageReport]="true"
-  >
+  <p-table #dt [value]="sliders" [rows]="5" [paginator]="true" [globalFilterFields]="['slideName']"
+    responsiveLayout="scroll" [rowHover]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="name">
+        <th pSortableColumn="slideName">
           Name <p-sortIcon field="slideName"></p-sortIcon>
         </th>
         <th>Image</th>
-        <th pSortableColumn="URL">URL <p-sortIcon field="URL"></p-sortIcon></th>
+        <th pSortableColumn="URL">URL <p-sortIcon field="URL"></p-sortIcon>
+        </th>
 
         <th>Action</th>
       </tr>
@@ -29,36 +22,18 @@
       <tr>
         <td>{{ item.slideName }}</td>
         <td>
-          <img
-            *ngIf="item.image !== null"
-            [src]="item.image"
-            width="50"
-            height="50"
-            class="shadow-4"
-          />
-          <p-avatar
-            *ngIf="item.image === null"
-            image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
-            size="large"
-          ></p-avatar>
+          <img *ngIf="item.image !== null" [src]="item.image" width="50" height="50" class="shadow-4" />
+          <p-avatar *ngIf="item.image === null"
+            image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg" size="large">
+          </p-avatar>
         </td>
         <td>{{ item.URL }}</td>
 
         <td>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success mr-2"
-            [routerLink]="[item._id]"
-          ></button>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
-            (click)="deleteItem(item._id)"
-          ></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+            [routerLink]="[item._id]"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deleteItem(item._id)"></button>
         </td>
       </tr>
     </ng-template>

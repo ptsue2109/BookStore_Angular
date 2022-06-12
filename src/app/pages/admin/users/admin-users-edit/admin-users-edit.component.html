@@ -2,7 +2,10 @@
 <p-toast position="top-right"></p-toast>
 <p-card>
     <form action="" [formGroup]="userForm" (ngSubmit)="editUser()">
-        <p-avatar image="{{ dataUser.image }}" size="xlarge"></p-avatar>
+        <div class="info__info userInfo_image mt-3">
+            <img *ngIf="dataUser.image" class="avatar" src="{{ dataUser.image }}">
+            <img *ngIf="dataUser.image == null" class="avatar" [src]="newThumb" alt="">
+        </div>
         <div class="mb-4">
             <input type="file" name="image" (change)="saveFileThumail($event)" formControlName="image"
                 class="form-control" />

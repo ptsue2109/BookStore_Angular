@@ -1,0 +1,9 @@
+.author_desc{
+    white-space: nowrap; 
+    width: 200px; 
+    border: 1px solid #000000;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+
+}

@@ -1,0 +1,31 @@
+<p-toolbar styleClass="mb-4">
+  <a [routerLink]="'/admin/sliders'" class="btn p-button-icon">LIST</a>
+</p-toolbar>
+<p-card>
+  <form action="" [formGroup]="AddForm" (ngSubmit)="addNew()">
+    <p-toast position="top-right"></p-toast>
+    <div class="d-flex gap-3">
+      <div class="col col-lg-6">
+        <div class="mb-4">
+          <label for="">Chọn ảnh </label>
+          <input type="file" name="image" (change)="saveFileThumail($event)" formControlName="image"
+            class="form-control" />
+        </div>
+
+        <div class="mb-4">
+          <mdb-form-control>
+            <input mdbInput type="text" formControlName="authorName" class="form-control" />
+            <label mdbLabel class="form-label" for="authorName">Author Name</label>
+          </mdb-form-control>
+        </div>
+
+        <div class="mb-3">
+          <p-editor formControlName="desc" [style]="{ height: '230px' }"></p-editor>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-primary btn-sm">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-card>

@@ -17,14 +17,15 @@
       aria-labelledby="dropdownMenuOffset"
     >
       <li>
-        <a class="dropdown-item text_danger" [routerLink]="'/collection'"
+        <a class="dropdown-item text_danger" [routerLink]="'/products'"
           >Tất cả Sản Phẩm</a
         >
       </li>
       <div *ngFor="let item of categories" class="d-flex align-items-center">
-        <a class="dropdown-item" routerLink="categories/{{ item.slug }}"
+        <a class="dropdown-item"  routerLink="categories/{{ item.slug }}"
           ><i class="pi pi-book mx-3"></i>{{ item.cateName }}</a
         >
+       
       </div>
     </ul>
   </div>

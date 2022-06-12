@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class LoginGuardGuard implements CanActivate {
   constructor(private router: Router, private toastr: ToastrService) { }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -16,12 +17,7 @@ export class AuthGuard implements CanActivate {
           this.router.navigate(['/login']);
           return false;
       }
-      if (loggedInUsers.role === 'user') {
-          this.toastr.error('Không có quyền truy cập');
-          this.router.navigate(['/']);
-          return false;
-      }
-      return true;
+    return true;
   }
   
 }

@@ -46,8 +46,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userInfo', JSON.stringify(res.data));
       },
       error: ({ error }) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error.message}` })
-        console.log(`${error.message}`);
+        console.log(error);
+        
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}` })
+        console.log(`${error}`);
       },
     });
   }

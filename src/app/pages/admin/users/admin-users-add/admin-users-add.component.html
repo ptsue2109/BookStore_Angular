@@ -1,73 +1,41 @@
+<p-toast position="top-right"></p-toast>
 <p-toolbar styleClass="mb-4">
   <a [routerLink]="'/admin/users'" class="btn p-button-raised">List users</a>
 </p-toolbar>
 <p-card>
   <form action="" [formGroup]="userForm" (ngSubmit)="addUser()">
-    <p-toast position="top-right"></p-toast>
+      <img *ngIf="imgPreview" [src]="imgPreview" class="avatar">
     <div class="mb-4">
-      <input
-        type="file"
-        name="image"
-        (change)="saveFileThumail($event)"
-        formControlName="image"
-        class="form-control"
-      />
+      <input type="file" name="image" (change)="saveFileThumail($event)" formControlName="image" class="form-control" />
     </div>
     <div class="mb-4">
       <mdb-form-control>
-        <input
-          mdbInput
-          type="email"
-          formControlName="email"
-          class="form-control"
-        />
+        <input mdbInput type="email" formControlName="email" class="form-control" />
         <label mdbLabel class="form-label" for="email">Email Address</label>
       </mdb-form-control>
     </div>
     <div class="mb-4">
       <mdb-form-control>
         <label mdbLabel class="form-label" for="password">Password</label>
-        <input
-          mdbInput
-          type="password"
-          formControlName="password"
-          class="form-control"
-        />
+        <input mdbInput type="password" formControlName="password" class="form-control" />
       </mdb-form-control>
     </div>
 
     <div class="mb-4">
       <mdb-form-control>
-        <input
-          mdbInput
-          type="email"
-          formControlName="username"
-          class="form-control"
-        />
+        <input mdbInput type="email" formControlName="username" class="form-control" />
         <label mdbLabel class="form-label" for="username">username</label>
       </mdb-form-control>
     </div>
     <div class="mb-4">
       <mdb-form-control>
-        <input
-          mdbInput
-          type="email"
-          formControlName="phoneNumber"
-          class="form-control"
-        />
-        <label mdbLabel class="form-label" for="phoneNumber"
-          >phoneNumbers</label
-        >
+        <input mdbInput type="email" formControlName="phoneNumber" class="form-control" />
+        <label mdbLabel class="form-label" for="phoneNumber">phoneNumbers</label>
       </mdb-form-control>
     </div>
     <div class="mb-4">
       <mdb-form-control>
-        <input
-          mdbInput
-          type="email"
-          formControlName="address"
-          class="form-control"
-        />
+        <input mdbInput type="email" formControlName="address" class="form-control" />
         <label mdbLabel class="form-label" for="address">Address</label>
       </mdb-form-control>
     </div>

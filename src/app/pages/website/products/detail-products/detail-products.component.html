@@ -24,14 +24,16 @@
                 <div class="col">
                     <ul>
                         <li>Mã sách: {{bookDetail._id}}</li>
-                        <li>Tác giả : <a [routerLink]="'/'">{{bookDetail.authorId.authorName}}</a></li>
+                        <li>Tác giả : <a routerLink="/collections/authors/{{bookDetail.authorId.slug}}">{{bookDetail.authorId.authorName}}</a></li>
                         <li>Đối Tượng : <a [routerLink]="'/'" class="text-danger">{{bookDetail.targetId.targetName}}</a>
                         </li>
                         <li>Khuôn khổ: {{bookDetail.bookSizeId.bookSizeName}}</li>
                         <li>Số Trang :{{bookDetail.pageNumber}}</li>
                         <li>Định dạng: {{bookDetail.bookTypeId.bookTypeName}}</li>
                         <li>Trọng lượng: {{bookDetail.bookWeight}} gram</li>
-                        <li>Danh mục: <a [routerLink]="'/'">{{bookDetail.categoryId.cateName}}</a></li>
+                        <li>Danh mục: <a
+                                routerLink="/categories/{{bookDetail.categoryId.slug}}">{{bookDetail.categoryId.cateName}}</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col">

@@ -37,7 +37,6 @@ export class AdminUsersEditComponent implements OnInit {
     this.userForm = new FormGroup({
     email: new FormControl(),
     desc: new FormControl(),
-    password: new FormControl(),
     username: new FormControl(),
     phoneNumber: new FormControl(),
     address: new FormControl(),
@@ -49,6 +48,8 @@ export class AdminUsersEditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.ActivatedRouter.snapshot.params['id'];
     this.UserService.getOneUser(this.id).subscribe((dataUser) => {
+      console.log('detail User',dataUser);
+      
       this.dataUser = dataUser;
       this.selected=  dataUser.role
       this.OldImage = dataUser.image;
@@ -67,7 +68,6 @@ export class AdminUsersEditComponent implements OnInit {
     this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Loading...'})
       let userData: any = {
         email: this.userForm.value.email,
-        password: this.userForm.value.password,
         username: this.userForm.value.username,
         phoneNumber: this.userForm.value.phoneNumber,
         address: this.userForm.value.address,

@@ -3,6 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from './comps/error-page/error-page.component';
 import { AdminComponent } from './comps/layouts/admin/admin.component';
 import { WebsiteComponent } from './comps/layouts/website/website.component';
+import { AdminAuthorAddComponent } from './pages/admin/author/admin-author-add/admin-author-add.component';
+import { AdminAuthorEditComponent } from './pages/admin/author/admin-author-edit/admin-author-edit.component';
+import { AdminAuthorListComponent } from './pages/admin/author/admin-author-list/admin-author-list.component';
+import { AdminCateAddComponent } from './pages/admin/category/admin-cate-add/admin-cate-add.component';
+import { AdminCateEditComponent } from './pages/admin/category/admin-cate-edit/admin-cate-edit.component';
+import { AdminCateListComponent } from './pages/admin/category/admin-cate-list/admin-cate-list.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { AdminProAddComponent } from './pages/admin/products/admin-pro-add/admin-pro-add.component';
 import { AdminProEditComponent } from './pages/admin/products/admin-pro-edit/admin-pro-edit.component';
@@ -14,14 +20,16 @@ import { SlidersListComponent } from './pages/admin/sliders/sliders-list/sliders
 import { AdminUsersAddComponent } from './pages/admin/users/admin-users-add/admin-users-add.component';
 import { AdminUsersEditComponent } from './pages/admin/users/admin-users-edit/admin-users-edit.component';
 import { AdminUsersListComponent } from './pages/admin/users/admin-users-list/admin-users-list.component';
+import { InfoComponent } from './pages/auths/info/info.component';
 import { LoginComponent } from './pages/auths/login/login.component';
 import { RegisterComponent } from './pages/auths/register/register.component';
 import { CartComponent } from './pages/website/cart/cart.component';
 import { HomeComponent } from './pages/website/home/home.component';
+import { AuthorBookComponent } from './pages/website/products/author-book/author-book.component';
 import { DetailProductsComponent } from './pages/website/products/detail-products/detail-products.component';
-import { HomeProductsComponent } from './pages/website/products/home-products/home-products.component';
 import { ProductByCateComponent } from './pages/website/products/product-by-cate/product-by-cate.component';
-import { AuthGuard } from './shared/helpers/auth.guard';
+import { AuthGuard } from './shared/helpers/guard/auth.guard';
+import {LoginGuardGuard} from "./shared/helpers/guard/login-guard.guard"
 const routes: Routes = [
   {
     path: "login",
@@ -40,11 +48,20 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
+        path: "infomation",
+        component: InfoComponent
+      },
+      {
+        path: "collections/authors/:slug",
+        component: AuthorBookComponent
+      },
+      {
         path: "categories/:slug",
         component: ProductByCateComponent
       },
       {
         path: "carts",
+        canActivate:[LoginGuardGuard],
         component: CartComponent
       },
       {
@@ -52,7 +69,7 @@ const routes: Routes = [
         children:[
           {
             path: "",
-            component: HomeProductsComponent
+            component: ProductByCateComponent
           },
           {
             path: ':slug',
@@ -65,7 +82,7 @@ const routes: Routes = [
   { 
     path: "admin",
     component: AdminComponent,
-    canActivate:[AuthGuard],
+    canActivate:[LoginGuardGuard,AuthGuard],
     children:[
       {
         path : "",
@@ -122,6 +139,42 @@ const routes: Routes = [
             component : SlidersEditComponent
           }
         ]
+      },
+      {
+        path: "categories",
+        children:[
+          {
+            path: "",
+            component: AdminCateListComponent
+          },
+          {
+            path: "add",
+            component: AdminCateAddComponent
+          },
+          {
+            path: ":id",
+            component: AdminCateEditComponent
+          },
+          
+        ]
+      },
+      {
+        path: "authors",
+        children:[
+          {
+            path: "",
+            component: AdminAuthorListComponent,
+          },
+          {
+            path: "add",
+            component: AdminAuthorAddComponent
+          },
+          {
+            path: ":id",
+            component: AdminAuthorEditComponent
+          },
+          
+        ]
       }
     ]
   },
@@ -134,6 +187,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard,LoginGuardGuard]
 })
 export class AppRoutingModule {}

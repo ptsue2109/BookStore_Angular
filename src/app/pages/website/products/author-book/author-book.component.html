@@ -1,0 +1,90 @@
+<div class="cate-content__breacrumb-overlay">
+  <img
+    src="https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg"
+    class="imgCategory"
+  />
+  <div class="cate-content__breacrumb-overlay--inner inner">HELLO</div>
+</div>
+<div class="container categories-detail">
+  <div class="cate-aside">
+    <app-aside-panel></app-aside-panel>
+  </div>
+  <div class="author__info">
+    <div class="author__info image">
+      <img  src="https://file.hstatic.net/200000343865/collection/fujiko-f-fujio-1_9d5b2327e20e4f1f8e642f89738a40bb.jpg"class="author__Image"/>
+    </div>
+    <div class="auth__info infomation">
+      <div class="auth__info--top">
+        <div class="infomation__top--name">
+          <h5>{{author.authorName | uppercase}}</h5>
+          <p-divider></p-divider>
+        </div>
+        <div class="infomation__top--desc">
+          <div class="" *ngIf="author.desc">
+            <p-editor
+            [(ngModel)]="author.desc"
+            [readonly]="true"
+            [style]="{ height: '320px' }"
+          >
+          </p-editor>
+          </div>
+          <div class="" *ngIf="author.desc == null">Chưa có thông tin</div>
+          <p-divider></p-divider>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear-fix"></div>
+  <div class="auth__books">
+    <div class="container authBooks">
+      <div class="cate-content">
+        <div class="cate-content__header">
+          <div class="">
+            <div
+              class="cate-content__header--top d-flex justify-content-between"
+            >
+              <h4>Tác phẩm của {{author.authorName | uppercase}} ({{books.length}})</h4>
+              <div class="sort__panel d-flex">
+                <div class="form-horizontal text-right">
+                  <label for="SortBy">Sắp xếp</label>
+                  <select name="SortBy" id="SortBy">
+                    <option value="manual">Tùy chọn</option>
+                    <option value="best-selling">Bán chạy nhất</option>
+                    <option value="title-ascending">Tên A-Z</option>
+                    <option value="title-descending">Tên Z-A</option>
+                    <option value="price-ascending">Giá tăng dần</option>
+                    <option value="price-descending">Giá giảm dần</option>
+                    <option value="created-descending">Mới nhất</option>
+                    <option value="created-ascending">Cũ nhất</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5">
+              <div class="d-grid container cate-content__main gap-5">
+                <div class="item" *ngFor="let item of books">
+                  <a routerLink="/products/{{ item.slug }}">
+                    <img
+                      [src]="item.image"
+                      [alt]="item.name"
+                      width="190"
+                      height="263"
+                  /></a>
+                  <div class="item--price">
+                    <a routerLink="/products/{{ item.slug }}">{{
+                      item.name
+                    }}</a>
+                    <p>{{ item.cost | currency }}</p>
+                  </div>
+                </div>
+                <div class="text-center" *ngIf="books.length == 0">
+                  <p>No result found</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<p-toast></p-toast>
+<div class="card">
+    <p-toolbar styleClass="mb-4">
+        <a [routerLink]="'/admin/authors/add'" class="btn p-button-icon">Add new</a>
+    </p-toolbar>
+    <p-table #dt [value]="authors" [rows]="5" [paginator]="true" [globalFilterFields]="['authorName']"
+        responsiveLayout="scroll" [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="authorName">
+                    Name <p-sortIcon field="authorName"></p-sortIcon>
+                </th>
+                <th>Image</th>
+                <th>Description </th>
+
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item class="author-flex">
+            <tr>
+                <td>{{ item.authorName }}</td>
+                <td>
+                    <img *ngIf="item.image" [src]="item.image" width="50" height="50" class="shadow-4" />
+                    <p-avatar *ngIf="item.image == null"
+                        image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+                        size="large">
+                    </p-avatar>
+                </td>
+                <td class="author_desc">Read in detail...</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        [routerLink]="[item._id]"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteItem(item._id)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{ authors ? authors.length : 0 }}
+            </div>
+        </ng-template>
+    </p-table>
+</div>

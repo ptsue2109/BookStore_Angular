@@ -1,24 +1,24 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ɵDEFAULT_LOCALE_ID } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { PrimeModule } from './shared/uiHelpers/prime/Prime.module';
- import { MdbModule  } from './shared/uiHelpers/mdb/Mdb.module';
+import { MdbModule } from './shared/uiHelpers/mdb/Mdb.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CurrencyPipe } from './shared/pipes/currency.pipe';
+import { CurrencyPipe } from './shared/helpers/pipes/currency.pipe';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { ToastrModule } from 'ngx-toastr'
+import { ToastrModule } from 'ngx-toastr';
 import { GalleriaModule } from 'primeng/galleria';
 import { ProductsComponent } from './pages/admin/products/products.component';
 import { AdminProListComponent } from './pages/admin/products/admin-pro-list/admin-pro-list.component';
@@ -46,14 +46,21 @@ import { SlidersBannerComponent } from './comps/web-comps/sliders-banner/sliders
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SlidersBooksComponent } from './comps/web-comps/sliders-books/sliders-books.component';
 import { BreadcrumbComponent } from './comps/breadcrumb/breadcrumb.component';
-import {CarouselModule} from 'primeng/carousel';
+import { CarouselModule } from 'primeng/carousel';
 import { CardDetailComponent } from './comps/web-comps/card-detail/card-detail.component';
-import {DetailProductsComponent} from "./pages/website/products/detail-products/detail-products.component";
-import { HomeProductsComponent } from './pages/website/products/home-products/home-products.component';
+import { DetailProductsComponent } from './pages/website/products/detail-products/detail-products.component';
 import { CartComponent } from './pages/website/cart/cart.component';
 import { ValidateMessComponent } from './comps/validate-mess/validate-mess.component';
-import {ProductByCateComponent} from "./pages/website/products/product-by-cate/product-by-cate.component";
-import { AsidePanelComponent } from './comps/web-comps/aside-panel/aside-panel.component'
+import { ProductByCateComponent } from './pages/website/products/product-by-cate/product-by-cate.component';
+import { AsidePanelComponent } from './comps/web-comps/aside-panel/aside-panel.component';
+import { InfoComponent } from './pages/auths/info/info.component';
+import { AdminCateListComponent } from './pages/admin/category/admin-cate-list/admin-cate-list.component';
+import { AdminCateAddComponent } from './pages/admin/category/admin-cate-add/admin-cate-add.component';
+import { AdminCateEditComponent } from './pages/admin/category/admin-cate-edit/admin-cate-edit.component';
+import { AdminAuthorListComponent } from './pages/admin/author/admin-author-list/admin-author-list.component';
+import { AdminAuthorAddComponent } from './pages/admin/author/admin-author-add/admin-author-add.component';
+import { AdminAuthorEditComponent } from './pages/admin/author/admin-author-edit/admin-author-edit.component';
+import { AuthorBookComponent } from './pages/website/products/author-book/author-book.component';
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -85,14 +92,21 @@ registerLocaleData(localeFr);
     BreadcrumbComponent,
     CardDetailComponent,
     DetailProductsComponent,
-    HomeProductsComponent,
     CartComponent,
     ValidateMessComponent,
     ProductByCateComponent,
-    AsidePanelComponent
+    AsidePanelComponent,
+    InfoComponent,
+    AdminCateListComponent,
+    AdminCateAddComponent,
+    AdminCateEditComponent,
+    AdminAuthorListComponent,
+    AdminAuthorAddComponent,
+    AdminAuthorEditComponent,
+    AuthorBookComponent,
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -106,11 +120,10 @@ registerLocaleData(localeFr);
     ToastrModule.forRoot(),
     ScrollTopModule,
     GalleriaModule,
-    CarouselModule
-    
+    CarouselModule,
   ],
-  providers: [PrimeModule,MessageService, CarouselModule],
+  providers: [PrimeModule, MessageService, CarouselModule,ConfirmationService],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

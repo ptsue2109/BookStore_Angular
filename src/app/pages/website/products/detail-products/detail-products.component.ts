@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from './../../../../shared/sevices/products.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { LazyLoadEvent } from 'primeng/api';
-import { OrderService } from 'src/app/shared/sevices/order.service';
 import { LocalStorageService } from './../../../../shared/sevices/local-storage.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { OrderService } from './../../../../shared/sevices/order.service';
 @Component({
   selector: 'app-detail-products',
   templateUrl: './detail-products.component.html',
@@ -22,15 +21,19 @@ export class DetailProductsComponent implements OnInit {
   carts: any[] = [];
   cartValue: number;
   price: number;
-  orderCount:string = 'loading..'
+  orderCount: string = 'loading..';
+  currentUser: any;
+
+  cart!: any
+  book!: any;
   constructor(
     private ProductsService: ProductsService,
     private ActivatedRouter: ActivatedRoute,
     private title: Title,
     private lcService: LocalStorageService,
-    private MessageService:MessageService,
-    private OrderService: OrderService,
-    private route:Router
+    private MessageService: MessageService,
+    private route: Router,
+    private OrderService: OrderService
   ) {
     this.slug = '';
     this.namePro = '';
@@ -45,34 +48,125 @@ export class DetailProductsComponent implements OnInit {
       this.namePro = data.name;
       this.imageThumb = Array.of(data.image);
       this.imageMutiple = JSON.parse(JSON.stringify(data.imageMutiple));
-      console.log(this.bookDetail);
       this.title.setTitle(this.namePro);
     });
+    this.currentUser = JSON.parse(localStorage.getItem('userInfo')!);
+    console.log('this.currentUser', this.currentUser);
+
   }
-  loadCarsLazy(event: LazyLoadEvent) {}
   onChangeCartValue(event: any) {
     this.cartValue = event.target.value;
-    console.log('cart-quantity', this.cartValue);
   }
 
+  // onAddToCart() {
+  // const { name, cost, _id, image } = this.bookDetail;
+  // const carts = { name, cost, _id, image };
+
+  // const addItem = {
+  //   ...carts,
+  //   userId: localStorage.getItem('userInfo'),
+  //   price: cost * this.cartValue,
+  //   quantity: +this.cartValue,
+  // };
+  // this.lcService.setItem(addItem);
+
+  //    this.MessageService.add({
+  //   severity: 'success',
+  //   summary: 'Cart Item',
+  //   detail: 'Add item in your cart',
+  // });
+  // this.cartValue = 1; 
+
+  // }
   onAddToCart() {
-    const { name, cost, _id, image } = this.bookDetail;
-    const carts = { name, cost, _id, image };
+    if (this.currentUser) {
+      console.log('ok');
+      let booksCart: any[] = [];
+      if (this.cart?.books) {
+        booksCart = booksCart.concat(this.cart?.books);
+      }
+      const checkExist = booksCart.find((x) => x.bookDetail._id == this.bookDetail._id);
+      if (checkExist) {
+        booksCart = booksCart.map((x) => {
+          if (x.bookDetail._id == this.bookDetail._id) {
+            x.quantity = x.quantity + this.cartValue;
+          }
+          return x;
+        });
+      } else {
+        booksCart.push({
+          book: this.bookDetail,
+          quantity: this.cartValue,
+        });
+      }
+      
+      const total = booksCart.reduce((total: any, current: any) => {
+        return total + current.cost;
+      }, 0);
+      this.OrderService.createOrderByUser({
+        user: this.currentUser?._id,
+        books: booksCart,
+        total: total,
+      }).subscribe({
+        next:(data)=>{
+          console.log('success',data);
+          this.MessageService.add({
+              severity: 'success',
+              summary: 'Cart Item',
+              detail: 'Add item in your cart',
+            });
+          
+        },
+        error:(error) =>{
+          console.log(error);
+          
+        }
+      })
+          
+      
+    } else {
+      console.log('dang nhap di');
 
-    const addItem = {
-      ...carts,
-      userId: localStorage.getItem('userInfo'),
-      price: cost * this.cartValue,
-      quantity: +this.cartValue,
-    };
-    this.lcService.setItem(addItem);
+    }
+    // if (this.currentUser) {
+    //   let booksCart: any[] = [];
 
-       this.MessageService.add({
-      severity: 'success',
-      summary: 'Cart Item',
-      detail: 'Add item in your cart',
-    });
-    this.cartValue = 1; 
+    //   if (this.cart?.books) {
+    //     booksCart = booksCart.concat(this.cart?.books);
+    //   }
 
+    //   const checkExist = booksCart.find((x) => x.book._id == this.book._id);
+
+    //   if (checkExist) {
+    //     booksCart = booksCart.map((x) => {
+    //       if (x.book._id == this.book._id) {
+    //         x.quantity = x.quantity + quantity;
+    //       }
+    //       return x;
+    //     });
+    //   } else {
+    //     booksCart.push({
+    //       book: this.book,
+    //       quantity: quantity,
+    //     });
+    //   }
+
+    //   const total = booksCart.reduce((total: any, current: any) => {
+    //     return total + current.price;
+    //   }, 0);
+
+    //   this.authService
+    //     .add_cart({
+    //       user: this.currentUser?._id,
+    //       books: booksCart,
+    //       total: total,
+    //     })
+    //     .subscribe((response) => {
+    //       this.getCartData();
+    //       this.message.success('Thêm vào giỏ hàng thành công');
+    //     });
+    // } else {
+    //   this.message.error('Vui lòng đăng nhập');
+    // }
   }
 }

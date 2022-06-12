@@ -1,6 +1,6 @@
 .categories-detail {
     display: grid;
-    grid-template-columns: 1.2fr 4fr;
+    grid-template-columns: 1fr 4fr;
     gap: 10px;
 }
 
@@ -22,23 +22,33 @@
         
     }
 }
-.cate-content__breacrumb-overlay{
-    background-image: url('https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg');
-    background-position: center;
+.imgCategory{
     height: 300px;
-    inset: 0;
+    width: 100%;
+    opacity: 0.7;
+    background-color: black;
     position: relative;
     top: -3rem;
-    opacity: 0.9;
-    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
-   
+}
+
+.cate-content__breacrumb-overlay{
     &--inner{
         position: absolute;
+        z-index: 9;
        left: 5rem;
-       top: 5rem;
+       top: 15rem;
        color: #000;
        font-size: 24px;
        font-weight: bolder;
+    }
+}
+.cate-content__main{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.item--price{
+    p{
+        color: crimson;
     }
 }

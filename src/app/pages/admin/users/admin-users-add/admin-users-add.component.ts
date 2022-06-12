@@ -18,7 +18,8 @@ export class AdminUsersAddComponent implements OnInit {
   ];
   file: any = [];
   selected: string = '';
-  userForm: FormGroup
+  userForm: FormGroup;
+  imgPreview: any
   constructor(
     private UserService: UserService,
     private messageService: MessageService,
@@ -48,11 +49,11 @@ export class AdminUsersAddComponent implements OnInit {
   saveFileThumail(event: any) {
     this.file = event.target.files[0];
     this.uploadFile.uploadImg(this.file);
-  }
+  }   
   addUser() {
     let img = localStorage.getItem('imgThum');
     this.messageService.add({ severity: 'info', summary: 'Loading', detail: 'Loading...' });
-
+   
     let userData: any = {
       email: this.userForm.value.email,
       password: this.userForm.value.password,
@@ -63,6 +64,8 @@ export class AdminUsersAddComponent implements OnInit {
       image: img,
       role: this.selected,
     };
+    console.log('userData',userData);
+    
     setTimeout(() => {
       this.UserService.addUsers(userData).subscribe({
         next: (data: any) => {

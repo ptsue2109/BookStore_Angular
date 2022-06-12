@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/shared/sevices/category.service';
 import { ActivatedRoute } from '@angular/router';
 import {MenuItem} from 'primeng/api';
-
+import { Title } from '@angular/platform-browser';
+import { ProductsService } from 'src/app/shared/sevices/products.service';
 @Component({
   selector: 'app-product-by-cate',
   templateUrl: './product-by-cate.component.html',
@@ -10,35 +11,38 @@ import {MenuItem} from 'primeng/api';
 })
 export class ProductByCateComponent implements OnInit {
   products: any[] = [];
-  categories: any;
+  allProducts: any[] = [];
+  categoriesImg: any;
   slug: string;
   cateName: string;
   items: MenuItem[] = [];
   constructor(
     private cateS: CategoryService,
-    private ActivatedRouter: ActivatedRoute
+    private ActivatedRouter: ActivatedRoute,
+    private title: Title,
+    private ProductsService:ProductsService
   ) {
     this.slug = '';
-    this.cateName = ''
+    this.cateName = '';
+
   }
 
   ngOnInit(): void {
     this.slug = this.ActivatedRouter.snapshot.params['slug'];
     this.cateS.getCateBySlug(this.slug).subscribe((data) => {
-      console.log('data',data);
-      this.cateName = data.category.cateName
-      
+  
+      this.categoriesImg = data.category.image
+      this.cateName = data.category.cateName;
       this.products = data.books;
-      console.log(' this.products', this.products);
-      
+      this.title.setTitle('Category: ' + this.cateName);
     });
+    this.ProductsService.getAll().subscribe(data =>{
+         this.allProducts = data.items;
+         console.log('this.allProducts', this.allProducts);
+         
+    })
 
-    this.cateS.getAll().subscribe((data) => {
-      this.categories = data.categories;
-      console.log('cate',this.categories);
-      
-    });
-    
-   
+
+
   }
 }

@@ -27,6 +27,8 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {OrderListModule} from 'primeng/orderlist';
 import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
+import {FieldsetModule} from 'primeng/fieldset';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
 const PrimeComponent = [
   PasswordModule,
   DividerModule,
@@ -55,7 +57,9 @@ const PrimeComponent = [
   RatingModule,
   InputNumberModule,
   OrderListModule,
-  DataViewModule
+  DataViewModule,
+  FieldsetModule,
+  ConfirmPopupModule
 ];
 
 @NgModule({

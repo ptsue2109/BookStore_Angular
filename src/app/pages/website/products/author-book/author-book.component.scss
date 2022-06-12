@@ -1,0 +1,30 @@
+.categories-detail{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 1.5rem;
+}
+.author__info{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 5px 0px;
+    gap: 1.5rem;
+}
+.author__Image{
+    width: 201px;
+    height: 163px;
+}
+.infomation__top--name{
+    p{
+        font-size: bold;
+        font-size: 16px;
+    }
+}
+.cate-content__main{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.item--price{
+    p{
+        color: crimson;
+    }
+}
