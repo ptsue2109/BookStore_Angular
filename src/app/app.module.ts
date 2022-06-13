@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, MenuItem } from 'primeng/api';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -30,7 +30,7 @@ import { AdminUsersEditComponent } from './pages/admin/users/admin-users-edit/ad
 
 import { LoginComponent } from './pages/auths/login/login.component';
 import { RegisterComponent } from './pages/auths/register/register.component';
-import { ErrorPageComponent } from './comps/error-page/error-page.component';
+import { ErrorPageComponent } from './comps/web-comps/error-page/error-page.component';
 import { WebsiteComponent } from './comps/layouts/website/website.component';
 import { AdminComponent } from './comps/layouts/admin/admin.component';
 import { HeaderComponent } from './comps/layouts/website/header/header.component';
@@ -45,12 +45,12 @@ import { SlidersEditComponent } from './pages/admin/sliders/sliders-edit/sliders
 import { SlidersBannerComponent } from './comps/web-comps/sliders-banner/sliders-banner.component';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SlidersBooksComponent } from './comps/web-comps/sliders-books/sliders-books.component';
-import { BreadcrumbComponent } from './comps/breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from './comps/web-comps/breadcrumb/breadcrumb.component';
 import { CarouselModule } from 'primeng/carousel';
 import { CardDetailComponent } from './comps/web-comps/card-detail/card-detail.component';
 import { DetailProductsComponent } from './pages/website/products/detail-products/detail-products.component';
 import { CartComponent } from './pages/website/cart/cart.component';
-import { ValidateMessComponent } from './comps/validate-mess/validate-mess.component';
+import { ValidateMessComponent } from './comps/web-comps/card-detail/validate-mess/validate-mess.component';
 import { ProductByCateComponent } from './pages/website/products/product-by-cate/product-by-cate.component';
 import { AsidePanelComponent } from './comps/web-comps/aside-panel/aside-panel.component';
 import { InfoComponent } from './pages/auths/info/info.component';
@@ -61,6 +61,9 @@ import { AdminAuthorListComponent } from './pages/admin/author/admin-author-list
 import { AdminAuthorAddComponent } from './pages/admin/author/admin-author-add/admin-author-add.component';
 import { AdminAuthorEditComponent } from './pages/admin/author/admin-author-edit/admin-author-edit.component';
 import { AuthorBookComponent } from './pages/website/products/author-book/author-book.component';
+import { SearchbarComponent } from './comps/web-comps/searchbar/searchbar.component';
+import { CartOrdersComponent } from './pages/website/cart/cart-orders/cart-orders.component';
+
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -104,6 +107,8 @@ registerLocaleData(localeFr);
     AdminAuthorAddComponent,
     AdminAuthorEditComponent,
     AuthorBookComponent,
+    SearchbarComponent,
+    CartOrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,6 +129,5 @@ registerLocaleData(localeFr);
   ],
   providers: [PrimeModule, MessageService, CarouselModule,ConfirmationService],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -22,10 +22,20 @@ export class RegisterComponent implements OnInit {
     this.password = '';
 
     this.authForm = new FormGroup({
-      email: new FormControl('', Validators.email),
-      password: new FormControl('', []),
-      username: new FormControl('', []),
-      phoneNumber: new FormControl('', []),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/\S+@\S+\.\S+/),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(32),
+      ]),
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      phoneNumber: new FormControl('', [Validators.required]),
     });
   }
 
@@ -34,7 +44,7 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     console.log('123');
-    
+
     this.authService.authRegister(this.authForm.value).subscribe({
       next: (data) => {
         const res = { data: data.user };

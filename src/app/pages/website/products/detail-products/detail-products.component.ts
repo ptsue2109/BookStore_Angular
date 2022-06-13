@@ -24,7 +24,7 @@ export class DetailProductsComponent implements OnInit {
   orderCount: string = 'loading..';
   currentUser: any;
 
-  cart!: any
+  cart!: any;
   book!: any;
   constructor(
     private ProductsService: ProductsService,
@@ -52,121 +52,31 @@ export class DetailProductsComponent implements OnInit {
     });
     this.currentUser = JSON.parse(localStorage.getItem('userInfo')!);
     console.log('this.currentUser', this.currentUser);
-
   }
   onChangeCartValue(event: any) {
     this.cartValue = event.target.value;
   }
 
-  // onAddToCart() {
-  // const { name, cost, _id, image } = this.bookDetail;
-  // const carts = { name, cost, _id, image };
-
-  // const addItem = {
-  //   ...carts,
-  //   userId: localStorage.getItem('userInfo'),
-  //   price: cost * this.cartValue,
-  //   quantity: +this.cartValue,
-  // };
-  // this.lcService.setItem(addItem);
-
-  //    this.MessageService.add({
-  //   severity: 'success',
-  //   summary: 'Cart Item',
-  //   detail: 'Add item in your cart',
-  // });
-  // this.cartValue = 1; 
-
-  // }
   onAddToCart() {
-    if (this.currentUser) {
-      console.log('ok');
-      let booksCart: any[] = [];
-      if (this.cart?.books) {
-        booksCart = booksCart.concat(this.cart?.books);
-      }
-      const checkExist = booksCart.find((x) => x.bookDetail._id == this.bookDetail._id);
-      if (checkExist) {
-        booksCart = booksCart.map((x) => {
-          if (x.bookDetail._id == this.bookDetail._id) {
-            x.quantity = x.quantity + this.cartValue;
-          }
-          return x;
-        });
-      } else {
-        booksCart.push({
-          book: this.bookDetail,
-          quantity: this.cartValue,
-        });
-      }
-      
-      const total = booksCart.reduce((total: any, current: any) => {
-        return total + current.cost;
-      }, 0);
-      this.OrderService.createOrderByUser({
-        user: this.currentUser?._id,
-        books: booksCart,
-        total: total,
-      }).subscribe({
-        next:(data)=>{
-          console.log('success',data);
-          this.MessageService.add({
-              severity: 'success',
-              summary: 'Cart Item',
-              detail: 'Add item in your cart',
-            });
-          
-        },
-        error:(error) =>{
-          console.log(error);
-          
-        }
-      })
-          
-      
-    } else {
-      console.log('dang nhap di');
+    const { name, cost, _id, image } = this.bookDetail;
+    const carts = { name, cost, _id, image };
+    const newCart = [];
 
-    }
-    // if (this.currentUser) {
-    //   let booksCart: any[] = [];
-
-    //   if (this.cart?.books) {
-    //     booksCart = booksCart.concat(this.cart?.books);
-    //   }
-
-    //   const checkExist = booksCart.find((x) => x.book._id == this.book._id);
-
-    //   if (checkExist) {
-    //     booksCart = booksCart.map((x) => {
-    //       if (x.book._id == this.book._id) {
-    //         x.quantity = x.quantity + quantity;
-    //       }
-    //       return x;
-    //     });
-    //   } else {
-    //     booksCart.push({
-    //       book: this.book,
-    //       quantity: quantity,
-    //     });
-    //   }
-
-    //   const total = booksCart.reduce((total: any, current: any) => {
-    //     return total + current.price;
-    //   }, 0);
-
-    //   this.authService
-    //     .add_cart({
-    //       user: this.currentUser?._id,
-    //       books: booksCart,
-    //       total: total,
-    //     })
-    //     .subscribe((response) => {
-    //       this.getCartData();
-    //       this.message.success('Thêm vào giỏ hàng thành công');
-    //     });
-    // } else {
-    //   this.message.error('Vui lòng đăng nhập');
-    // }
+    const addItem = {
+      ...carts,
+      userId: this.currentUser,
+      price: cost * this.cartValue,
+      quantity: +this.cartValue,
+    };
+    this.lcService.setItem(addItem);
+    this.MessageService.add({
+      severity: 'success',
+      summary: 'Cart Item',
+      detail: 'Add item in your cart',
+    });
+    this.cartValue = 1;
+  }
+  onAddToCart22() {
+    const cartItem = [];
   }
 }

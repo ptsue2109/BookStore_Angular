@@ -15,7 +15,7 @@
             <hr>
         </div>
         <div class="detail-pro pro-price">
-            <h3 class="text-danger">{{bookDetail.cost | currency}}</h3>
+            <h3 class="text-danger">{{bookDetail.cost | currency }}</h3>
             <hr>
         </div>
 
@@ -24,7 +24,9 @@
                 <div class="col">
                     <ul>
                         <li>Mã sách: {{bookDetail._id}}</li>
-                        <li>Tác giả : <a routerLink="/collections/authors/{{bookDetail.authorId.slug}}">{{bookDetail.authorId.authorName}}</a></li>
+                        <li>Tác giả : <a
+                                routerLink="/collections/authors/{{bookDetail.authorId.slug}}">{{bookDetail.authorId.authorName}}</a>
+                        </li>
                         <li>Đối Tượng : <a [routerLink]="'/'" class="text-danger">{{bookDetail.targetId.targetName}}</a>
                         </li>
                         <li>Khuôn khổ: {{bookDetail.bookSizeId.bookSizeName}}</li>
@@ -57,8 +59,9 @@
             <div class="books-descprition__wrapper tab">
                 <mdb-tabs [justified]="false">
                     <mdb-tab title="MÔ TẢ - ĐÁNH GIÁ">
-                        <p-editor [(ngModel)]="bookDetail.desc" [readonly]="true" [style]="{'height':'320px'}">
-                        </p-editor>
+                        <div class="editor__show" [innerHTML]="bookDetail?.desc"></div>
+                        <!-- <p-editor [(ngModel)]="bookDetail.desc" [readonly]="true" [style]="{'height':'320px'}"> -->
+                        <!-- </p-editor> -->
                     </mdb-tab>
                     <mdb-tab title="BÌNH LUẬN">BÌNH LUẬN</mdb-tab>
                 </mdb-tabs>

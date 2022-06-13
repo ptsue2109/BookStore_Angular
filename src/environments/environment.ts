@@ -13,6 +13,8 @@ export const environment = {
   sliderApi: `${BASE_API}/sliders`,
   authorApi: `${BASE_API}/authors`,
   orderApi:  `${BASE_API}/orders`,
+  searchApi:  `${BASE_API}/search`,
+  targetApi:  `${BASE_API}/targets`,
   firebase: {
     apiKey: 'AIzaSyCUdof8BHr8LfDIZIYDCvDv1e8mjmIpgGY',
     authDomain: 'my-app-7bb3f.firebaseapp.com',

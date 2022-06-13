@@ -20,17 +20,17 @@ export class LocalStorageService {
     console.log(cartItems);
 
     const existItem = cartItems.find((item: any) => item._id === addItem._id);
-
-    const countOrder = cartItems.length;
-    if (!existItem) {
-      cartItems.push(addItem);
-    } else {
+    if (existItem) {
       existItem.quantity += addItem.quantity;
-      existItem.price += addItem.price;
+      existItem.price =  existItem.quantity *  existItem.price
     }
-
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-    localStorage.setItem('cartCount', countOrder);
+    else {
+      cartItems.push(addItem);
+    }
+      this.setCart(cartItems)
+  }
+  setCart(cartData: any) {
+    localStorage.setItem("cart", JSON.stringify(cartData));
     this.storageSubject.next('');
   }
 }

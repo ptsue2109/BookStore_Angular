@@ -42,7 +42,9 @@ export class InfoComponent implements OnInit {
   ngOnInit(): void {
     this.dataUser = JSON.parse(localStorage.getItem('userInfo')!);
     this.id = this.dataUser._id;
-    this.OldImage = this.dataUser.image
+    this.OldImage = this.dataUser.image;
+    console.log(this.dataUser);
+    
   }
   saveFileThumail(event: any) {
     this.file = event.target.files[0];

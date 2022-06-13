@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,6 +28,10 @@ export class ProductsService {
   editProduct(item:any, id: any):Observable<any>{
     return this.http.patch<any>(`${environment.productApi}/update-book/${id}`,item)
   }
+  searchProduct(text: string): Observable<any> {
+    return this.http.get<any>(`${environment.searchApi}?q=${text}`)
+  }
+  
 
 
 }

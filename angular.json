@@ -115,5 +115,8 @@
       }
     }
   },
-  "defaultProject": "FE-BOOKSHOP"
+  "defaultProject": "FE-BOOKSHOP",
+  "cli": {
+    "analytics": false
+  }
 }

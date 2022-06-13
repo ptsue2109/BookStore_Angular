@@ -22,9 +22,9 @@ export class SlidersAddComponent implements OnInit {
     private title: Title
   ) {
     this.AddForm = new FormGroup({
-      slideName: new FormControl(),
-      image: new FormControl(),
-      URL: new FormControl()
+      slideName: new FormControl('',[Validators.required, Validators.minLength(4)]),
+      image: new FormControl('', [Validators.required]),
+      URL: new FormControl('', [Validators.required])
     });
     this.title.setTitle('Admin | Sliders - Add');
   }

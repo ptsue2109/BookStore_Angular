@@ -11,6 +11,9 @@ export class CategoryService {
   getAll(): Observable<any> {
     return this.http.get<any>(`${environment.categoryApi}`);
   }
+  getAllActive():Observable<any> {
+    return this.http.get<any>(`${environment.categoryApi}/list-active`);
+  }
   getCateBySlug(slug: string):Observable<any> {
     return this.http.get<any>(`${environment.categoryApi}/get-detail-by-slug/${slug}`);
   }

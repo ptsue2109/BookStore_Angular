@@ -1,5 +1,5 @@
 <div class="cart_page container">
-  <p-orderList [value]="carts" filterBy="name" filterPlaceholder="tìm sản phẩm theo tên" [dragdrop]="true">
+  <p-orderList [value]="cartData" filterBy="name" filterPlaceholder="tìm sản phẩm theo tên" [dragdrop]="true">
     <ng-template let-product pTemplate="item">
       <div class="product-item">
         <div class="image-container">
@@ -8,25 +8,55 @@
         <div class="product-list-detail">
           <h5 class="mb-2">{{ product.name }}</h5>
           <div class="form-outline d-flex">
-            <input type="number" min="1" class="form-control cart-value mt-3" value="{{ product.quantity }}"
+            <!-- <input type="number" min="1" class="form-control cart-value mt-3" value="{{ product.quantity }}"
               style="height: 30px;" />
-           <button class="btn btn-light" style="height: 33px;margin-top: 15px;margin-left: 10px;" (click)="removeCartItem(product._id)">Xóa</button>
+           <button class="btn btn-light" style="height: 33px;margin-top: 15px;margin-left: 10px;" (click)="removeCartItem(product._id)">Xóa</button> -->
+            <!-- <li class="list-inline-item text-right">
+              <input id="form1" min="1" name="quantity" value="{{product.quantity}}" type="number"
+              class="form-control form-control-sm" />
+            </li>
+            <li class="list-inline-item"><button type="button" (click)="decreaseQuantity(product._id)"
+                class="btn btn-success" id="btn-minus"><i class="fa fa-minus" aria-hidden="true"></i></button></li>
+            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">{{product.quantity}}</span>
+            </li>
+            <li class="list-inline-item"><button type="button" (click)="increaseQuantity(product._id)"
+                class="btn btn-success" id="btn-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </li>
+            <button class="btn p-button-raised" (click)="removeCartItem(product._id)"><i
+              class="fas fa-times"></i></button> -->
+
+
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                <button class="btn btn-link px-2" (click)="decreaseQuantity(product._id)">
+                  <i class="fas fa-minus" aria-hidden="true"></i>
+                </button>
+
+                <input id="form1" min="1" name="quantity" value="{{product.quantity}}" type="number"
+                  class="form-control form-control-sm" />
+
+                <button class="btn btn-link px-2" (click)="increaseQuantity(product._id)">
+                  <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+              </div>
+              <button class="btn p-button-raised" (click)="removeCartItem(product._id)"><i
+                class="fas fa-times"></i></button> 
+  
           </div>
           <p>Giá gốc : {{ product.cost | currency }}</p>
         </div>
         <div class="product-list-action">
-          <h6 class="mb-2">{{ product.price | currency: "VND" }}</h6>
+          <h6 class="mb-2" id="cart_price">{{ product.price | currency}}</h6>
         </div>
       </div>
     </ng-template>
-  
+
   </p-orderList>
 
   <div class="cart-total-price">
     <ul class="list-group cart__order">
       <li class="list-group-item d-flex justify-content-between align-items-center">
         Tổng tiền
-        <span class="rounded-pill">{{cartItemValues | currency}}</span>
+        <span class="rounded-pill"> {{cartTotal | currency}}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         Giảm giá
@@ -34,10 +64,10 @@
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center list__total">
         Thành tiền
-        <span class="rounded-pill">{{cartItemValues | currency}}</span>
+        <span class="rounded-pill">{{cartTotal | currency}}</span>
       </li>
     </ul>
-    <button class="btn btn-primary mt-3 w-100">Thanh toán</button>
+    <button class="btn btn-primary mt-3 w-100" (click)="thanhToan()">Thanh toán</button>
     <a [routerLink]="'/'" class="btn p-button-raised mt-3 w-100 back_btn">Tiếp tục mua hàng</a>
   </div>
 </div>

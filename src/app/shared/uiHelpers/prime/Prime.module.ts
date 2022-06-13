@@ -29,6 +29,7 @@ import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
 import {FieldsetModule} from 'primeng/fieldset';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {MenuItem} from 'primeng/api'; 
 const PrimeComponent = [
   PasswordModule,
   DividerModule,

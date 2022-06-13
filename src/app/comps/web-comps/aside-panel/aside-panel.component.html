@@ -4,26 +4,61 @@
       <p-menu id="config_menu" [popup]="true"></p-menu>
     </ng-template>
 
-    <div
-      mdbDropdownMenu
-      class="dropdown-menu"
-      aria-labelledby="dropdownMenuOffset"
-    >
+    <div mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
       <div *ngFor="let item of categories" class="d-flex align-items-center">
-        <a class="dropdown-item" routerLink="{{item.slug}}"
-          ><i class="pi pi-book mx-3"></i>{{ item.cateName }}</a
-        >
+        <a class="dropdown-item" routerLink="/categories/{{ item.slug }}"><i class="pi pi-book mx-3"></i>{{
+          item.cateName }}</a>
       </div>
     </div>
   </p-panel>
 
   <p-panel header="KHOẢNG GIÁ" [toggleable]="true">
+    <div class="form-check">
+      <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+      <label class="form-check-label" for="flexCheckDefault">
+        Tất cả
+      </label>
+    </div>
+    <div class="form-check">
+      <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+      <label class="form-check-label" for="flexCheckChecked">
+        Nhỏ hơn 100,000đ
+      </label>
+    </div>
+    <div class="form-check">
+      <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+      <label class="form-check-label" for="flexCheckChecked">
+        Từ 100,000đ - 200,000đ
+      </label>
+    </div>
+    <div class="form-check">
+      <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+      <label class="form-check-label" for="flexCheckChecked">
+        Từ 200,000đ trở lên
+      </label>
+    </div>
   </p-panel>
 
   <p-panel header="TÁC GIẢ" [toggleable]="true">
+    <div class="form-check">
+      <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+      <label class="form-check-label" for="flexCheckChecked">
+        Tất cả
+      </label>
+    </div>
   </p-panel>
 
-  <p-panel header="THỂ LOẠI" [toggleable]="true">
+  <p-panel header="TARGET" [toggleable]="true">
+    <ng-template pTemplate="icons">
+      <p-menu id="config_menu" [popup]="true"></p-menu>
+    </ng-template>
 
+    <div mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+      <div *ngFor="let item of targets" class="d-flex align-items-center">
+        <a class="dropdown-item" routerLink="/categories/by-target/{{ item._id }}"><i class="pi pi-book mx-3"></i>{{
+          item.targetName }}</a>
+      </div>
+    </div>
   </p-panel>
+
 </div>

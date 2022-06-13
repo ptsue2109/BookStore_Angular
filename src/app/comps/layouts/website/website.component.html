@@ -21,18 +21,17 @@
           >Tất cả Sản Phẩm</a
         >
       </li>
+
       <div *ngFor="let item of categories" class="d-flex align-items-center">
-        <a class="dropdown-item"  routerLink="categories/{{ item.slug }}"
+        <a class="dropdown-item" routerLink="categories/{{ item.slug }}"
           ><i class="pi pi-book mx-3"></i>{{ item.cateName }}</a
         >
-       
       </div>
     </ul>
   </div>
 </div>
 <div class="mt-5">
-   <router-outlet></router-outlet> 
+  <router-outlet></router-outlet>
 </div>
 <p-divider></p-divider>
 <app-footer></app-footer>
-

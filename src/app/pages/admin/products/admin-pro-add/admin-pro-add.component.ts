@@ -31,19 +31,19 @@ export class AdminProAddComponent implements OnInit {
     private messageService: MessageService
   ) {
     this.AddForm = new FormGroup({
-      image: new FormControl('', []),
+      image: new FormControl('', [Validators.required]),
       imageMutiple: new FormControl([]),
-      name: new FormControl('', []),
-      cost: new FormControl('', []),
-      stock: new FormControl('', []),
-      categoryId: new FormControl('', []),
-      targetId: new FormControl('', []),
+      name: new FormControl('', [Validators.required,Validators.minLength(4)]),
+      cost: new FormControl('', [Validators.required,Validators.min(1)]),
+      stock: new FormControl('', [Validators.required,Validators.min(1)]),
+      categoryId: new FormControl('', [Validators.required]),
+      targetId: new FormControl('', [Validators.required]),
       desc: new FormControl('', []),
-      authorId: new FormControl('', []),
-      pageNumber: new FormControl('', []),
-      bookWeight: new FormControl('', []),
-      bookTypeId: new FormControl('', []),
-      bookSizeId: new FormControl('', []),
+      authorId: new FormControl('', [Validators.required]),
+      pageNumber: new FormControl('', [Validators.required]),
+      bookWeight: new FormControl('', [Validators.required]),
+      bookTypeId: new FormControl('', [Validators.required]),
+      bookSizeId: new FormControl('', [Validators.required]),
     });
 
     this.title.setTitle('Products - Add ');
@@ -56,7 +56,7 @@ export class AdminProAddComponent implements OnInit {
       this.bookTypes = data.bookType;
       this.authors = data.author
     });
-    this.CategoryService.getAll().subscribe((data) => {
+    this.CategoryService.getAllActive().subscribe((data) => {
       this.categories = data.categories;
     });
   }

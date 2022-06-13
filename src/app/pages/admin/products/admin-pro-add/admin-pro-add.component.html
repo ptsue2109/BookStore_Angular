@@ -12,23 +12,30 @@
           <input type="file" name="image" (change)="saveFileThumail($event)" formControlName="image"
             class="form-control" />
         </div>
+        <app-validate-mess [field]="AddForm.get('image')"></app-validate-mess>
+
         <div class="mb-3">
           <label for="">Chọn ảnh chi tiết (chọn nhiều) </label>
           <input type="file" name="image" (change)="saveDetailImg($event)" multiple formControlName="imageMutiple"
             class="form-control" />
         </div>
+        <app-validate-mess [field]="AddForm.get('imageMutiple')"></app-validate-mess>
+
         <div class="mb-3">
           <mdb-form-control>
             <input mdbInput type="text" formControlName="name" class="form-control" />
             <label mdbLabel class="form-label" for="name">Name</label>
           </mdb-form-control>
         </div>
+        <app-validate-mess [field]="AddForm.get('name')"></app-validate-mess>
+
         <div class="mb-3">
           <mdb-form-control>
             <input mdbInput type="number" formControlName="cost" class="form-control" />
             <label mdbLabel class="form-label" for="cost">cost</label>
           </mdb-form-control>
-        </div>
+        </div>        
+        <app-validate-mess [field]="AddForm.get('cost')"></app-validate-mess>
 
         <div class="mb-3">
           <mdb-form-control>
@@ -36,6 +43,8 @@
             <label mdbLabel class="form-label" for="stock">stocks</label>
           </mdb-form-control>
         </div>
+        <app-validate-mess [field]="AddForm.get('stock')"></app-validate-mess>
+
         <div class="mb-3">
           <div class="form-group">
             <label for="">Choose Category</label>
@@ -105,7 +114,7 @@
         </div>
 
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-sm">Submit</button>
+          <button class="btn btn-primary btn-sm" [disabled]="!AddForm.valid">Submit</button>
         </div>
       </div>
     </div>

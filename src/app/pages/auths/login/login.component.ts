@@ -9,7 +9,7 @@ import { AuthService } from './../../../shared/sevices/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['../auths.components.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
   authLoginForm: FormGroup;
@@ -19,15 +19,21 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private title: Title,
     private messageService: MessageService
-
   ) {
     this.password = '';
 
     this.authLoginForm = new FormGroup({
-      email: new FormControl('', Validators.email),
-      password: new FormControl('', []),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/\S+@\S+\.\S+/),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(32),
+      ]),
     });
-   }
+  }
 
   ngOnInit(): void {
     this.title.setTitle('Login');
@@ -38,7 +44,11 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         const res = { data: data.user };
         if (res) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login success' })
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Login success',
+          });
           setTimeout(() => {
             this.router.navigate(['']);
           }, 3000);
@@ -47,8 +57,12 @@ export class LoginComponent implements OnInit {
       },
       error: ({ error }) => {
         console.log(error);
-        
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: `${error}` })
+
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `${error}`,
+        });
         console.log(`${error}`);
       },
     });

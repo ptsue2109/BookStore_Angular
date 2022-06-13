@@ -13,6 +13,7 @@
           <input type="file" name="image" (change)="saveFileThumail($event)" formControlName="image"
             class="form-control" />
         </div>
+        <app-validate-mess [field]="AddForm.get('image')"></app-validate-mess>
         <div class="mb-4">
           <p-avatar *ngFor="let i of listImgDetail" size="xlarge" image="{{ i.name }}" class="px-1"></p-avatar>
           <br />
@@ -20,18 +21,23 @@
           <input type="file" name="image" (change)="saveDetailImg($event)" multiple formControlName="imageMutiple"
             class="form-control" />
         </div>
+        <app-validate-mess [field]="AddForm.get('imageMutiple')"></app-validate-mess>
+
         <div class="mb-4">
           <mdb-form-control>
             <input mdbInput type="text" [(ngModel)]="dataPro.name" formControlName="name" class="form-control" />
             <label mdbLabel class="form-label" for="name">Name</label>
           </mdb-form-control>
         </div>
+        <app-validate-mess [field]="AddForm.get('name')"></app-validate-mess>
+
         <div class="mb-4">
           <mdb-form-control>
             <input mdbInput type="number" [(ngModel)]="dataPro.cost" formControlName="cost" class="form-control" />
             <label mdbLabel class="form-label" for="cost">cost</label>
           </mdb-form-control>
         </div>
+        <app-validate-mess [field]="AddForm.get('cost')"></app-validate-mess>
 
         <div class="mb-4">
           <mdb-form-control>
@@ -39,6 +45,8 @@
             <label mdbLabel class="form-label" for="stock">stocks</label>
           </mdb-form-control>
         </div>
+        <app-validate-mess [field]="AddForm.get('stocks')"></app-validate-mess>
+
         <div class="mb-4">
           <div class="form-group">
             <label for="">Choose Category</label>
@@ -48,6 +56,8 @@
               </option>
             </select>
           </div>
+          <app-validate-mess [field]="AddForm.get('categoryId')"></app-validate-mess>
+
         </div>
         <div class="mb-4">
           <div class="form-group">
@@ -59,6 +69,8 @@
               </option>
             </select>
           </div>
+          <app-validate-mess [field]="AddForm.get('targets')"></app-validate-mess>
+
         </div>
       </div>
 
@@ -73,6 +85,8 @@
               </option>
             </select>
           </div>
+          <app-validate-mess [field]="AddForm.get('bookSizes')"></app-validate-mess>
+
         </div>
         <div class="mb-4">
           <div class="form-group">
@@ -84,6 +98,8 @@
               </option>
             </select>
           </div>
+          <app-validate-mess [field]="AddForm.get('bookTypeId')"></app-validate-mess>
+
         </div>
 
         <div class="mb-4">
@@ -92,6 +108,8 @@
               class="form-control" />
             <label mdbLabel class="form-label" for="bookWeight">bookWeight</label>
           </mdb-form-control>
+          <app-validate-mess [field]="AddForm.get('bookWeight')"></app-validate-mess>
+
         </div>
         <div class="mb-4">
           <mdb-form-control>
@@ -99,6 +117,8 @@
               class="form-control" />
             <label mdbLabel class="form-label" for="pageNumber">pageNumber</label>
           </mdb-form-control>
+          <app-validate-mess [field]="AddForm.get('pageNumber')"></app-validate-mess>
+
         </div>
         <div class="mb-4">
           <div class="form-group">
@@ -109,6 +129,8 @@
                 {{ item.authorName }}
               </option>
             </select>
+            <app-validate-mess [field]="AddForm.get('authorId')"></app-validate-mess>
+
           </div>
         </div>
 
@@ -117,9 +139,10 @@
         <div class="mb-4">
           <p-editor formControlName="desc" [(ngModel)]="dataPro.desc" [style]="{ height: '230px' }"></p-editor>
         </div>
+        <app-validate-mess [field]="AddForm.get('desc')"></app-validate-mess>
 
         <div class="d-flex justify-content-between">
-          <button class="btn btn-primary btn-sm">Submit</button>
+          <button class="btn btn-primary btn-sm" >Submit</button>
           <a [routerLink]="'/admin/products'" class="btn btn-info btn-sm">Back to list</a>
         </div>
       </div>

@@ -84,18 +84,19 @@ $tabColor: #bc3030;
   }
 }
 
-// .form-outline .form-control {
-//   border: 1px solid #ccc !important;
-//   width: 10rem !important;
-// }
+.form-outline .form-control {
+  border: 1px solid #ccc !important;
+  // width: 10rem !important;
+}
 
 .p-panel {
   margin: 10px 0px !important;
 }
 .p-panel.p-panel-toggleable .p-panel-header {
-  background:#ad0c0c !important;
+  background:#d51c24 !important;
   color: #ffff !important;
   font-size: 0.8rem !important;
+  
 }
 .p-breadcrumb {
   padding: 0.4rem !important;

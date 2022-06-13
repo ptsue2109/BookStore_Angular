@@ -1,3 +1,5 @@
+<p-toast ></p-toast>
+
 <div class="header">
   <div class="header-top">
     <div class="header-top__wrapper container">
@@ -32,10 +34,24 @@
   <nav class="navbar">
     <div class="navbar__content container">
         <div class="navbar__content--searchbar">
-          <span class="p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input type="text" pInputText placeholder="Search" />
-        </span>
+    
+        <form
+          #search="ngForm"
+          (ngSubmit)="onSearch(search)"
+          class="d-flex"
+        >
+          <input
+            type="text"
+            name="keyword"
+            ngModel
+            required
+            class="form-control"
+            placeholder="Nhập tên sách cần tìm kiếm..."
+          />
+          <button  class="btn btn-outline-primary">
+             <i class="fas fa-search"></i>
+          </button> 
+        </form>
         </div>
 
         <div class="navbar__content--logo">
@@ -52,8 +68,8 @@
         <div class="navbar__content--button-group">
             <div class="navbar__content--button-group account-button">
               <div  mdbDropdown class="dropdown">
-                <p-avatar *ngIf="!userInfo.image" image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton"aria-expanded="false" mdbDropdownToggle ></p-avatar>
-                <p-avatar *ngIf="userInfo.image" image="{{userInfo.image}}" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton"aria-expanded="false"mdbDropdownToggle ></p-avatar>
+                <p-avatar *ngIf="userInfo && !userInfo?.image" image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton"aria-expanded="false" mdbDropdownToggle ></p-avatar>
+                <p-avatar *ngIf="userInfo && userInfo?.image" image="{{userInfo.image}}" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton"aria-expanded="false"mdbDropdownToggle ></p-avatar>
 
                 <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                   <li *ngIf="userInfo.username"><a class="dropdown-item" [routerLink]="'/infomation'">Infomation</a></li>

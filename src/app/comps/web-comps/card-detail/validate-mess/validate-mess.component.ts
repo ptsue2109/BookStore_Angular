@@ -9,9 +9,7 @@ interface IValidator {
   selector: 'app-validate-mess',
   template: `
   <div class="app-validator" *ngFor="let validate of validators">
-      <span
-        nz-typography
-        nzType="danger"
+      <span class="text-danger"
         *ngIf="
           (field?.dirty || field?.touched) && field?.hasError(validate.key)
         "
@@ -33,17 +31,17 @@ export class ValidateMessComponent implements OnInit {
   @Input() field: AbstractControl | null;
   @Input() patternMessage: string;
   validators: IValidator[];
-  constructor() { 
+  constructor() {
     this.field = null;
     this.validators = [];
     this.patternMessage = '';
   }
-  
+
   ngOnInit(): void {
     this.validators = [
       {
         key: 'required',
-        message: 'Vui lòng điền thông tin',
+        message: 'Vui lòng không để trống',
       },
       {
         key: 'minlength',

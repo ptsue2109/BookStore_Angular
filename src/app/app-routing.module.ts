@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './comps/error-page/error-page.component';
+import { ErrorPageComponent } from './comps/web-comps/error-page/error-page.component';
 import { AdminComponent } from './comps/layouts/admin/admin.component';
 import { WebsiteComponent } from './comps/layouts/website/website.component';
+import { SearchbarComponent } from './comps/web-comps/searchbar/searchbar.component';
 import { AdminAuthorAddComponent } from './pages/admin/author/admin-author-add/admin-author-add.component';
 import { AdminAuthorEditComponent } from './pages/admin/author/admin-author-edit/admin-author-edit.component';
 import { AdminAuthorListComponent } from './pages/admin/author/admin-author-list/admin-author-list.component';
@@ -23,21 +24,22 @@ import { AdminUsersListComponent } from './pages/admin/users/admin-users-list/ad
 import { InfoComponent } from './pages/auths/info/info.component';
 import { LoginComponent } from './pages/auths/login/login.component';
 import { RegisterComponent } from './pages/auths/register/register.component';
+import { CartOrdersComponent } from './pages/website/cart/cart-orders/cart-orders.component';
 import { CartComponent } from './pages/website/cart/cart.component';
 import { HomeComponent } from './pages/website/home/home.component';
 import { AuthorBookComponent } from './pages/website/products/author-book/author-book.component';
 import { DetailProductsComponent } from './pages/website/products/detail-products/detail-products.component';
 import { ProductByCateComponent } from './pages/website/products/product-by-cate/product-by-cate.component';
 import { AuthGuard } from './shared/helpers/guard/auth.guard';
-import {LoginGuardGuard} from "./shared/helpers/guard/login-guard.guard"
+import { LoginGuardGuard } from './shared/helpers/guard/login-guard.guard';
 const routes: Routes = [
   {
-    path: "login",
-    component: LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path: "register",
-    component: RegisterComponent
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: '',
@@ -48,145 +50,156 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: "infomation",
-        component: InfoComponent
+        path: 'infomation',
+        component: InfoComponent,
       },
       {
-        path: "collections/authors/:slug",
-        component: AuthorBookComponent
+        path: 'collections/authors/:slug',
+        component: AuthorBookComponent,
       },
       {
-        path: "categories/:slug",
-        component: ProductByCateComponent
+        path: 'categories/:slug',
+        component: ProductByCateComponent,
       },
       {
-        path: "carts",
-        canActivate:[LoginGuardGuard],
-        component: CartComponent
+        path: 'categories/by-target/:id',
+        component: ProductByCateComponent,
+      },
+      {
+        path: 'carts',
+        canActivate: [LoginGuardGuard],
+        component: CartComponent,
+      },
+      {
+        path: 'orders',
+        component: CartOrdersComponent,
       },
       {
         path: 'products',
-        children:[
+        children: [
           {
-            path: "",
-            component: ProductByCateComponent
+            path: '',
+            component: ProductByCateComponent,
           },
           {
             path: ':slug',
-            component: DetailProductsComponent
-          }
-        ]
-      }
-    ],
-  },  
-  { 
-    path: "admin",
-    component: AdminComponent,
-    canActivate:[LoginGuardGuard,AuthGuard],
-    children:[
+            component: DetailProductsComponent,
+          },
+        ],
+      },
+
       {
-        path : "",
-        component: DashboardComponent
+        path: 'search',
+        component: SearchbarComponent,
+      },
+    ],
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [LoginGuardGuard, AuthGuard],
+    children: [
+      {
+        path: '',
+        component: DashboardComponent,
       },
       {
-        path: "products",
+        path: 'products',
         component: ProductsComponent,
         children: [
           {
             path: '',
-            component: AdminProListComponent
+            component: AdminProListComponent,
           },
           {
-            path: "add",
-            component: AdminProAddComponent
+            path: 'add',
+            component: AdminProAddComponent,
           },
           {
-            path: ":id",
-            component: AdminProEditComponent
-          }
-        ]
+            path: ':id',
+            component: AdminProEditComponent,
+          },
+        ],
       },
       {
-        path: "users",
-        children:[
+        path: 'users',
+        children: [
           {
-            path: "",
-            component: AdminUsersListComponent
+            path: '',
+            component: AdminUsersListComponent,
           },
           {
-            path: "add",
-            component : AdminUsersAddComponent
+            path: 'add',
+            component: AdminUsersAddComponent,
           },
           {
-            path: ":id",
-            component : AdminUsersEditComponent
-          }
-        ]
+            path: ':id',
+            component: AdminUsersEditComponent,
+          },
+        ],
       },
       {
-        path: "sliders",
-        children:[
+        path: 'sliders',
+        children: [
           {
-            path: "",
-            component: SlidersListComponent
+            path: '',
+            component: SlidersListComponent,
           },
           {
-            path: "add",
-            component : SlidersAddComponent
+            path: 'add',
+            component: SlidersAddComponent,
           },
           {
-            path: ":id",
-            component : SlidersEditComponent
-          }
-        ]
+            path: ':id',
+            component: SlidersEditComponent,
+          },
+        ],
       },
       {
-        path: "categories",
-        children:[
+        path: 'categories',
+        children: [
           {
-            path: "",
-            component: AdminCateListComponent
+            path: '',
+            component: AdminCateListComponent,
           },
           {
-            path: "add",
-            component: AdminCateAddComponent
+            path: 'add',
+            component: AdminCateAddComponent,
           },
           {
-            path: ":id",
-            component: AdminCateEditComponent
+            path: ':id',
+            component: AdminCateEditComponent,
           },
-          
-        ]
+        ],
       },
       {
-        path: "authors",
-        children:[
+        path: 'authors',
+        children: [
           {
-            path: "",
+            path: '',
             component: AdminAuthorListComponent,
           },
           {
-            path: "add",
-            component: AdminAuthorAddComponent
+            path: 'add',
+            component: AdminAuthorAddComponent,
           },
           {
-            path: ":id",
-            component: AdminAuthorEditComponent
+            path: ':id',
+            component: AdminAuthorEditComponent,
           },
-          
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   {
-    path: "**",
-    component: ErrorPageComponent
-  }
+    path: '**',
+    component: ErrorPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard,LoginGuardGuard]
+  providers: [AuthGuard, LoginGuardGuard],
 })
 export class AppRoutingModule {}

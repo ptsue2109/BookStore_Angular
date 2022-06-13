@@ -30,15 +30,16 @@ export class ProductByCateComponent implements OnInit {
   ngOnInit(): void {
     this.slug = this.ActivatedRouter.snapshot.params['slug'];
     this.cateS.getCateBySlug(this.slug).subscribe((data) => {
-  
+      // console.log("data",data);
+      
       this.categoriesImg = data.category.image
-      this.cateName = data.category.cateName;
+      this.cateName = data.category!.cateName;
       this.products = data.books;
       this.title.setTitle('Category: ' + this.cateName);
     });
     this.ProductsService.getAll().subscribe(data =>{
          this.allProducts = data.items;
-         console.log('this.allProducts', this.allProducts);
+        //  console.log('this.allProducts', this.allProducts);
          
     })
 

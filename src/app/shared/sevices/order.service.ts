@@ -12,4 +12,7 @@ export class OrderService {
   createOrderByUser(order:any):Observable<any>{
     return this.http.post<any>(`${environment.orderApi}/creat-by-custom`,order);
   }
+  getCartData(id:any):Observable<any>{
+    return this.http.get<any>(`${environment.orderApi}/list-cart/${id}`);
+  }
 }
