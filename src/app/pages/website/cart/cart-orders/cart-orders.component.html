@@ -1,1 +1,79 @@
-<p>cart-orders works!</p>
+<p-toast></p-toast>
+
+<div class="order__page container">
+    <div class="order__page--userForm">
+        <p-panel header="Thông tin thanh toán" [toggleable]="false">
+            <form action="" [formGroup]="userForm">
+                <div class="info__info userInfo_image mb-3">
+                    <p-avatar image="{{ currentUser.image }} " size="xlarge"></p-avatar>
+                    <p-avatar *ngIf="currentUser.image == null" label="P"></p-avatar>
+                </div>
+
+                <div class="mb-4">
+                    <mdb-form-control>
+                        <input mdbInput type="text" [(ngModel)]="currentUser.username" formControlName="username"
+                            class="form-control" />
+                        <label mdbLabel class="form-label" for="username">username</label>
+                    </mdb-form-control>
+                </div>
+
+                <div class="mb-4">
+                    <mdb-form-control>
+                        <input mdbInput [(ngModel)]="currentUser.phoneNumber" formControlName="phoneNumber"
+                            class="form-control" />
+                        <label mdbLabel class="form-label" for="phoneNumber">phoneNumber</label>
+                    </mdb-form-control>
+                </div>
+
+                <div class="mb-4">
+                    <mdb-form-control>
+                        <input mdbInput type="email" [(ngModel)]="currentUser.address" formControlName="address"
+                            class="form-control" />
+                        <label mdbLabel class="form-label" for="address">Address</label>
+                    </mdb-form-control>
+                </div>
+                <div class="mb-4">
+                    <mdb-form-control>
+                        <input mdbInput type="text" formControlName="note"
+                            class="form-control" />
+                        <label mdbLabel class="form-label" for="note">note</label>
+                    </mdb-form-control>
+                </div>
+            </form>
+        </p-panel>
+    </div>
+
+    <div class="order__page--products">
+        <div class="product_info">
+            <div class="card_products" *ngFor="let cartItem of orderData">
+                <p-avatar image="{{cartItem.image}}" pBadge value="{{cartItem.quantity}}" severity="danger"
+                    styleClass="mr-2" size="xlarge"></p-avatar>
+
+                <div class="product_name">
+                    {{cartItem.name}}
+                </div>
+                <div class="product_price">
+                    {{cartItem.price | currency}}
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-total-price mt-5">
+            <ul class="list-group cart__order">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Tạm tính
+                    <span class="rounded-pill"> {{cartTotal | currency}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Giảm giá
+                    <span class="rounded-pill"> 0 đ</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center list__total">
+                    Thành tiền
+                    <span class="rounded-pill">{{cartTotal | currency}}</span>
+                </li>
+            </ul>
+            <button class="btn btn-primary mt-3 w-100" (click)="addOrder()">Order</button>
+        </div>
+    </div>
+</div>

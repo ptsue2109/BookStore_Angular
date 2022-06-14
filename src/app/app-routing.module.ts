@@ -33,6 +33,8 @@ import { ProductByCateComponent } from './pages/website/products/product-by-cate
 import { AuthGuard } from './shared/helpers/guard/auth.guard';
 import { LoginGuardGuard } from './shared/helpers/guard/login-guard.guard';
 import { TargetBookComponent } from './pages/website/products/target-book/target-book.component';
+import { AdminOrdersListComponent } from './pages/admin/orders/admin-orders-list/admin-orders-list.component';
+import { OrderDetailComponent } from './pages/website/cart/order-detail/order-detail.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -73,7 +75,17 @@ const routes: Routes = [
       },
       {
         path: 'orders',
-        component: CartOrdersComponent,
+        children:[
+          {
+            path : "",
+            component: CartOrdersComponent,
+          },
+          {
+            path: "get-by-ordercode/:orderCode",
+            component: OrderDetailComponent
+          }
+        ]
+        
       },
       {
         path: 'products',
@@ -190,6 +202,10 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: "orders",
+        component: AdminOrdersListComponent
+      }
     ],
   },
   {

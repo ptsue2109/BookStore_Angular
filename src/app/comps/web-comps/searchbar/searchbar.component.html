@@ -1,16 +1,11 @@
-<div class="container">
-    <p>Từ khóa: {{ keyword | uppercase }}</p>
-    <span>Có {{books.length}} kết quả tìm kiếm</span>
-    <div class="d-grid container cate-content__main mt-5">
-        <div class="item" *ngFor="let item of books">
-            <a routerLink="/products/{{item.slug}}"> <img [src]="item.image" [alt]="item.name" width="190" height="263" /></a> 
-            <div class="item--price">
-            <a routerLink="/products/{{item.slug}}">{{ item.name }}</a> 
-                <p>{{ item.cost | currency }}</p>
-            </div>
-        </div>
-        <div class="text-center" *ngIf="books.length == 0">
-            <p>No result found</p>
-        </div>
+
+
+<div class="cate-content__breacrumb-overlay">
+    <img src="https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg"
+        class="imgCategory" />
+
+    <div class="cate-content__breacrumb-overlay--inner inner">
+       search  :  {{keyword}}
     </div>
 </div>
+<app-book-cover [data] = "books" [searchResult] = "books?.length" [keyword]="keyword"></app-book-cover>

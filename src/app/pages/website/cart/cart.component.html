@@ -8,30 +8,12 @@
         <div class="product-list-detail">
           <h5 class="mb-2">{{ product.name }}</h5>
           <div class="form-outline d-flex">
-            <!-- <input type="number" min="1" class="form-control cart-value mt-3" value="{{ product.quantity }}"
-              style="height: 30px;" />
-           <button class="btn btn-light" style="height: 33px;margin-top: 15px;margin-left: 10px;" (click)="removeCartItem(product._id)">Xóa</button> -->
-            <!-- <li class="list-inline-item text-right">
-              <input id="form1" min="1" name="quantity" value="{{product.quantity}}" type="number"
-              class="form-control form-control-sm" />
-            </li>
-            <li class="list-inline-item"><button type="button" (click)="decreaseQuantity(product._id)"
-                class="btn btn-success" id="btn-minus"><i class="fa fa-minus" aria-hidden="true"></i></button></li>
-            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">{{product.quantity}}</span>
-            </li>
-            <li class="list-inline-item"><button type="button" (click)="increaseQuantity(product._id)"
-                class="btn btn-success" id="btn-plus"><i class="fa fa-plus" aria-hidden="true"></i></button>
-            </li>
-            <button class="btn p-button-raised" (click)="removeCartItem(product._id)"><i
-              class="fas fa-times"></i></button> -->
-
-
               <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                 <button class="btn btn-link px-2" (click)="decreaseQuantity(product._id)">
                   <i class="fas fa-minus" aria-hidden="true"></i>
                 </button>
 
-                <input id="form1" min="1" name="quantity" value="{{product.quantity}}" type="number"
+                <input id="form1" min="1" readonly name="quantity" value="{{product.quantity}}" type="number"
                   class="form-control form-control-sm" />
 
                 <button class="btn btn-link px-2" (click)="increaseQuantity(product._id)">

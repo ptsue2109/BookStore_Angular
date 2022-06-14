@@ -9,10 +9,15 @@ export class BookCoverComponent implements OnInit {
 @Input() data :any
 @Input() cateName:any;
 @Input () authorInfo :any
+@Input() searchResult:any
+@Input ()keyword:any
   constructor() { }
 
   ngOnInit(): void {
 
   }
-
+  filter_bookName(){
+    console.log('filter book name');
+    
+  }
 }

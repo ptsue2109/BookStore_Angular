@@ -50,7 +50,6 @@ import { SlidersEditComponent } from './pages/admin/sliders/sliders-edit/sliders
 import { SlidersBannerComponent } from './comps/web-comps/sliders-banner/sliders-banner.component';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SlidersBooksComponent } from './comps/web-comps/sliders-books/sliders-books.component';
-import { BreadcrumbComponent } from './comps/web-comps/breadcrumb/breadcrumb.component';
 import { CarouselModule } from 'primeng/carousel';
 import { CardDetailComponent } from './comps/web-comps/card-detail/card-detail.component';
 import { DetailProductsComponent } from './pages/website/products/detail-products/detail-products.component';
@@ -70,6 +69,10 @@ import { SearchbarComponent } from './comps/web-comps/searchbar/searchbar.compon
 import { CartOrdersComponent } from './pages/website/cart/cart-orders/cart-orders.component';
 import { BookCoverComponent } from './comps/web-comps/book-cover/book-cover.component';
 import { TargetBookComponent } from './pages/website/products/target-book/target-book.component';
+import { AdminOrdersListComponent } from './pages/admin/orders/admin-orders-list/admin-orders-list.component';
+import { AdminOrdersAddComponent } from './pages/admin/orders/admin-orders-add/admin-orders-add.component';
+import { OrderDataComponent } from './comps/web-comps/order-data/order-data.component';
+import { OrderDetailComponent } from './pages/website/cart/order-detail/order-detail.component';
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -98,7 +101,6 @@ registerLocaleData(localeFr);
     SlidersEditComponent,
     SlidersBannerComponent,
     SlidersBooksComponent,
-    BreadcrumbComponent,
     CardDetailComponent,
     DetailProductsComponent,
     CartComponent,
@@ -116,7 +118,11 @@ registerLocaleData(localeFr);
     SearchbarComponent,
     CartOrdersComponent,
     BookCoverComponent,
-    TargetBookComponent
+    TargetBookComponent,
+    AdminOrdersListComponent,
+    AdminOrdersAddComponent,
+    OrderDataComponent,
+    OrderDetailComponent,
   ],
   imports: [
   BrowserModule,

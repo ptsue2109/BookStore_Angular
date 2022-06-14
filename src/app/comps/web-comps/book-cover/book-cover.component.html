@@ -20,15 +20,21 @@
         </div>
       </div>
     </div> 
-    <div class="sort__panel__top">
-      <h4>{{ cateName | uppercase }}</h4>
 
+    <div class=" mb-5" *ngIf="searchResult && keyword"> 
+      <p>Từ khóa : {{keyword}}</p>
+      <span> Có {{searchResult}} kết quả tìm kiếm</span>
+    </div>
+
+
+    <div class="sort__panel__top">
+      <h4>{{ cateName  }}</h4>
+     
       <div class="form-horizontal text-right">
         <label for="SortBy">Sắp xếp</label>
         <select name="SortBy" id="SortBy">
-          <option value="manual">Tùy chọn</option>
-          <option value="best-selling">Bán chạy nhất</option>
-          <option value="title-ascending">Tên A-Z</option>
+          <option value="manual" >Tùy chọn</option>
+          <option value="title-ascending" >Tên A-Z</option>
           <option value="title-descending">Tên Z-A</option>
           <option value="price-ascending">Giá tăng dần</option>
           <option value="price-descending">Giá giảm dần</option>

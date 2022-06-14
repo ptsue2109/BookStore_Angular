@@ -29,7 +29,7 @@ import {PanelModule} from 'primeng/panel';
 import {DataViewModule} from 'primeng/dataview';
 import {FieldsetModule} from 'primeng/fieldset';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
-import {MenuItem} from 'primeng/api'; 
+import {StepsModule} from 'primeng/steps';
 const PrimeComponent = [
   PasswordModule,
   DividerModule,
@@ -60,7 +60,8 @@ const PrimeComponent = [
   OrderListModule,
   DataViewModule,
   FieldsetModule,
-  ConfirmPopupModule
+  ConfirmPopupModule,
+  StepsModule,
 ];
 
 @NgModule({

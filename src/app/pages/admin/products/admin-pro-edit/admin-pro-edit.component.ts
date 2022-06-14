@@ -96,7 +96,7 @@ export class AdminProEditComponent implements OnInit {
   saveDetailImg(event: any) {
     this.files = event.target.files;
     this.uploadImg.uploadListImg(this.files);
-    this.newList = JSON.parse(localStorage.getItem('imgList') || "{}");
+    this.newList = JSON.parse(localStorage.getItem('imgList')!);
   }
   
   changeTarget(event: any) {
@@ -118,7 +118,7 @@ export class AdminProEditComponent implements OnInit {
       detail: 'Loading...',
     });
     let upload:any = {
-      image: this.newThumb ? this.newThumb : this.OldImage,
+      image: this.newThumb ? this.OldImage: this.newThumb,
       imageMutiple: this.newList ? this.newList : this.listImgDetail,
       name: this.AddForm.value.name,
       cost: this.AddForm.value.cost,

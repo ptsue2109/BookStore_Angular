@@ -58,16 +58,18 @@ export class DetailProductsComponent implements OnInit {
   }
 
   onAddToCart() {
-    const { name, cost, _id, image } = this.bookDetail;
-    const carts = { name, cost, _id, image };
-    const newCart = [];
+    const carts = this.bookDetail;
 
     const addItem = {
-      ...carts,
-      userId: this.currentUser,
-      price: cost * this.cartValue,
-      quantity: +this.cartValue,
+     
+         ...carts ,
+          price: carts.cost * this.cartValue,
+          quantity: +this.cartValue,
+
     };
+
+    console.log('carts Detal bôk', addItem);
+
     this.lcService.setItem(addItem);
     this.MessageService.add({
       severity: 'success',
@@ -75,8 +77,5 @@ export class DetailProductsComponent implements OnInit {
       detail: 'Add item in your cart',
     });
     this.cartValue = 1;
-  }
-  onAddToCart22() {
-    const cartItem = [];
   }
 }

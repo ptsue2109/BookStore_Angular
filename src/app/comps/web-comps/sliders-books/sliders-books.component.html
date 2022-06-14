@@ -1,11 +1,11 @@
 <p-carousel [value]="books" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1" [circular]="true"
-    [showIndicators]="false"  [autoplayInterval]="4000">
+    [showIndicators]="false" [autoplayInterval]="4000">
     <ng-template let-product pTemplate="item">
         <div class="product-item">
             <p-card [style]="{ width: '220px', height: '360px', margin: '20px 0px' }" styleClass="p-card-shadow">
                 <ng-template pTemplate="header">
                     <a routerLink="products/{{ product.slug }}">
-                        <p-image src="{{ product?.image }}" alt="Image" width="190" height="263" ></p-image>
+                        <p-image src="{{ product?.image }}" alt="Image" width="190" height="263"></p-image>
                     </a>
                     <div class="product-info">
                         <a routerLink="products/{{ product?.slug }}" class="product-info--name">

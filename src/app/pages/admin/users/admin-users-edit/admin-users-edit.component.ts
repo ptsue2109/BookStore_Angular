@@ -72,7 +72,7 @@ export class AdminUsersEditComponent implements OnInit {
         phoneNumber: this.userForm.value.phoneNumber,
         address: this.userForm.value.address,
         desc: this.userForm.value.desc,
-        image: this.newThumb ? this.newThumb : this.OldImage,
+        image: this.newThumb ?this.OldImage : this.newThumb ,
         role: this.selected,
       };
       console.log(userData);

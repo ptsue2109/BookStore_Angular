@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/sevices/local-storage.service';
 import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
@@ -12,12 +12,14 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
   cartData: any[] = [];
   cartTotal: any;
+
   constructor(
     private lsService: LocalStorageService,
     private router: Router,
     private title: Title,
     private MessageService: MessageService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.onGetCart();
@@ -31,6 +33,7 @@ export class CartComponent implements OnInit {
     this.cartData = this.lsService.getItem();
     this.cartTotal = this.cartData.reduce((a: any, b: any) => a + b.price, 0);
   }
+
   decreaseQuantity(_id: any) {
     const existItem = this.cartData.find((item: any) => item._id === _id);
     console.log(existItem);
@@ -66,10 +69,11 @@ export class CartComponent implements OnInit {
   thanhToan() {
     this.MessageService.add({
       severity: 'success',
-      detail: 'Add item in your cart',
+      detail: 'next step',
     });
+    
     setTimeout(() => {
       this.router.navigate(['/orders']);
-    }, 3000);
+    }, 2000);
   }
 }

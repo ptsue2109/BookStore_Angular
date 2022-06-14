@@ -15,4 +15,13 @@ export class OrderService {
   getCartData(id:any):Observable<any>{
     return this.http.get<any>(`${environment.orderApi}/list-cart/${id}`);
   }
+  getUserOrder(id:any):Observable<any>{
+    return this.http.get<any>(`${environment.orderApi}/get-user-order/${id}`);
+  }
+  getOrderByOrderCode(orderCode:any):Observable<any>{
+    return this.http.get<any>(`${environment.orderApi}/get-order-by-orderCode/${orderCode}`);
+  }
+  getAll():Observable<any>{
+    return this.http.get<any>(`${environment.orderApi}`);
+  }
 }

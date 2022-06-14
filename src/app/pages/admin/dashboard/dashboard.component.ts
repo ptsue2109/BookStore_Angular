@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
       this.books = data.books; this.cardData.push({ name: 'products', quantity: this.books.length, view: '/admin/products' });
       this.sliders = data.sliders; this.cardData.push({ name: 'sliders', quantity: this.sliders.length, view: '/admin/sliders' });
       this.users = data.user; this.cardData.push({ name: 'Users', quantity: this.users.length, view: '/admin/users' });
+      this.orders =data.orders;this.cardData.push({ name: 'Orders', quantity: this.orders.length, view: '/admin/orders' });
     });
     this.cate.getAll().subscribe(data => {
       this.categories = data.categories; this.cardData.push({ name: 'categories', quantity: this.categories.length, view: '/admin/categories' });

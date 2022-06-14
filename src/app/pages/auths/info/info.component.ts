@@ -6,7 +6,7 @@ import { UserService } from '../../../shared/sevices/userService.service';
 import { UploadService } from '../../../shared/sevices/upload.service';
 import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
-
+import { OrderService } from 'src/app/shared/sevices/order.service';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -19,13 +19,15 @@ export class InfoComponent implements OnInit {
   newThumb: any;
   OldImage: any;
   userForm: FormGroup;
+  order:any;
   constructor(
     private UserService: UserService,
     private ActivatedRouter: ActivatedRoute,
     private router: Router,
     private uploadFile: UploadService,
     private title: Title,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private OrderService: OrderService
   ) {
     this.title.setTitle('Infomation');
     this.userForm = new FormGroup({
@@ -44,6 +46,12 @@ export class InfoComponent implements OnInit {
     this.id = this.dataUser._id;
     this.OldImage = this.dataUser.image;
     console.log(this.dataUser);
+    
+    //orders
+    this.OrderService.getUserOrder(this.id).subscribe((data)=>{
+      console.log('data',data);
+      this.order = data
+    })
     
   }
   saveFileThumail(event: any) {
