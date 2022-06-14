@@ -1,0 +1,9 @@
+.cate-content__main{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.item--price{
+    p{
+        color: crimson;
+    }
+}

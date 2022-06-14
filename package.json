@@ -25,6 +25,7 @@
     "@types/quill": "^2.0.9",
     "firebase": "^9.8.2",
     "mdb-angular-ui-kit": "^2.2.0",
+    "ngx-quill": "^17.0.0",
     "ngx-toastr": "^14.3.0",
     "primeicons": "^5.0.0",
     "primeng": "^13.4.1",

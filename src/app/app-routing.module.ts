@@ -32,6 +32,7 @@ import { DetailProductsComponent } from './pages/website/products/detail-product
 import { ProductByCateComponent } from './pages/website/products/product-by-cate/product-by-cate.component';
 import { AuthGuard } from './shared/helpers/guard/auth.guard';
 import { LoginGuardGuard } from './shared/helpers/guard/login-guard.guard';
+import { TargetBookComponent } from './pages/website/products/target-book/target-book.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -62,8 +63,8 @@ const routes: Routes = [
         component: ProductByCateComponent,
       },
       {
-        path: 'categories/by-target/:id',
-        component: ProductByCateComponent,
+        path: 'by-target/:slug',
+        component: TargetBookComponent,
       },
       {
         path: 'carts',

@@ -1,0 +1,35 @@
+.cover-main {
+  display: flex;
+  grid-template-columns: 1fr 4fr;
+  gap: 30px;
+}
+
+.sort__panel {
+  flex: 1;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__content {
+    .cate-content__main {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.author_info {
+  display: flex;
+  gap: 30px;
+  &--left {
+    max-width: 200px;
+    margin-top: 5px;
+    .author__image {
+      max-width: 100%;
+      object-fit: cover;
+    }
+  }
+}

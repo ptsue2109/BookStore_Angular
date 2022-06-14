@@ -24,7 +24,7 @@
                 <div class="col">
                     <ul>
                         <li>Mã sách: {{bookDetail._id}}</li>
-                        <li>Tác giả : <a
+                        <li>Tác giả: <a
                                 routerLink="/collections/authors/{{bookDetail.authorId.slug}}">{{bookDetail.authorId.authorName}}</a>
                         </li>
                         <li>Đối Tượng : <a [routerLink]="'/'" class="text-danger">{{bookDetail.targetId.targetName}}</a>
@@ -59,9 +59,7 @@
             <div class="books-descprition__wrapper tab">
                 <mdb-tabs [justified]="false">
                     <mdb-tab title="MÔ TẢ - ĐÁNH GIÁ">
-                        <div class="editor__show" [innerHTML]="bookDetail?.desc"></div>
-                        <!-- <p-editor [(ngModel)]="bookDetail.desc" [readonly]="true" [style]="{'height':'320px'}"> -->
-                        <!-- </p-editor> -->
+                        <div class="editor__show px-2" [innerHTML]="bookDetail?.desc"></div>
                     </mdb-tab>
                     <mdb-tab title="BÌNH LUẬN">BÌNH LUẬN</mdb-tab>
                 </mdb-tabs>

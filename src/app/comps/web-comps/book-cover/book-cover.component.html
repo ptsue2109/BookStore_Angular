@@ -1,0 +1,56 @@
+<div class="cover-main container">
+  <div class="categories-detail">
+    <div class="cate-aside">
+      <app-aside-panel></app-aside-panel>
+    </div>
+  </div>
+  <div class="sort__panel">
+    <div *ngIf="authorInfo && authorInfo!== null" class="author_info mb-5">
+      <div class="author_info--left">
+        <img src="{{authorInfo.image ? 'https://file.hstatic.net/200000343865/file/upload_0d0e0732cc2f439383fd01025a2167a8.jpg' : authorInfo.image}}  " alt=""
+          class="author__image">
+      </div>
+      <div class="author_info--right">
+        <div class="author_name">
+          {{authorInfo.authorName}}
+        </div>
+        <p-divider></p-divider>
+        <div class="author_content">
+          <p [innerHTML]="authorInfo.desc ? 'chưa có thông tin': authorInfo.desc"></p>
+        </div>
+      </div>
+    </div> 
+    <div class="sort__panel__top">
+      <h4>{{ cateName | uppercase }}</h4>
+
+      <div class="form-horizontal text-right">
+        <label for="SortBy">Sắp xếp</label>
+        <select name="SortBy" id="SortBy">
+          <option value="manual">Tùy chọn</option>
+          <option value="best-selling">Bán chạy nhất</option>
+          <option value="title-ascending">Tên A-Z</option>
+          <option value="title-descending">Tên Z-A</option>
+          <option value="price-ascending">Giá tăng dần</option>
+          <option value="price-descending">Giá giảm dần</option>
+          <option value="created-descending">Mới nhất</option>
+          <option value="created-ascending">Cũ nhất</option>
+        </select>
+      </div>
+    </div>
+    <div class="sort__panel__content">
+      <div class="cate-content__main gap-5">
+        <div class="item" *ngFor="let item of data">
+          <a routerLink="/products/{{ item.slug }}">
+            <img [src]="item.image" [alt]="item.name" width="190" height="263" /></a>
+
+          <div class="item--price">
+            <a routerLink="/products/{{ item.slug }}">{{ item.name }}</a>
+            <p>{{ item.cost | currency }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="data && data.length <= 0" class="">No record</div>
+  </div>
+</div>

@@ -1,102 +1,24 @@
- <div class="mb-5" *ngIf="slug">
+<div class="mb-5">
     <div class="cate-content__breacrumb-overlay">
-        <img src="{{ categoriesImg }}" class="imgCategory" />
+        <img *ngIf="categoriesImg && categoriesImg !== null" src="{{ categoriesImg }}" class="imgCategory" />
+        <img *ngIf="categoriesImg == null"
+            src="https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg"
+            class="imgCategory" />
+
         <div class="cate-content__breacrumb-overlay--inner inner">
             {{ cateName | uppercase }}
         </div>
     </div>
-
-    <div class="container categories-detail">
-        <div class="cate-aside">
-            <app-aside-panel></app-aside-panel>
-        </div>
+    <div class="">
         <div class="cate-content">
             <div class="cate-content__header">
-                <div class="">
-                    <div class="cate-content__header--top d-flex justify-content-between">
-                        <h4>{{ cateName | uppercase }}</h4>
-                        <div class="sort__panel d-flex">
-                            <div class="form-horizontal text-right">
-                                <label for="SortBy">Sắp xếp</label>
-                                <select name="SortBy" id="SortBy">
-                                    <option value="manual">Tùy chọn</option>
-                                    <option value="best-selling">Bán chạy nhất</option>
-                                    <option value="title-ascending">Tên A-Z</option>
-                                    <option value="title-descending">Tên Z-A</option>
-                                    <option value="price-ascending">Giá tăng dần</option>
-                                    <option value="price-descending">Giá giảm dần</option>
-                                    <option value="created-descending">Mới nhất</option>
-                                    <option value="created-ascending">Cũ nhất</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-5">
-                        <div class="d-grid container cate-content__main gap-5">
-                            <div class="item" *ngFor="let item of products">
-                                <a routerLink="/products/{{item.slug}}"> <img [src]="item.image" [alt]="item.name" width="190" height="263" /></a> 
-                                <div class="item--price">
-                                <a routerLink="/products/{{item.slug}}">{{ item.name }}</a> 
-                                    <p>{{ item.cost | currency }}</p>
-                                </div>
-                            </div>
-                            <div class="text-center" *ngIf="products.length == 0">
-                                <p>No result found</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="" *ngIf="cateSlug == undefined || cateSlug == null">
+                    <app-book-cover [data]="allProducts" [cateName]="'all products'"></app-book-cover>
+                </div>
+                <div class="" *ngIf="cateSlug">
+                    <app-book-cover [data]="productsByCate" [cateName]="cateName"></app-book-cover>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
- 
-<!-- <div *ngIf="slug == null" class="mb-5">
-    <div class="cate-content__breacrumb-overlay">
-        <img src="https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg" class="imgCategory" />
-        <div class="cate-content__breacrumb-overlay--inner inner">
-            ALL PRODUCTS
-        </div>
-    </div>
-    <div class="container categories-detail">
-        <div class="cate-aside">
-            <app-aside-panel></app-aside-panel>
-        </div>
-        <div class="cate-content">
-            <div class="cate-content__header">
-                <div class="">
-                    <div class="cate-content__header--top px-3 d-flex justify-content-between">
-                        <h4>  ALL PRODUCTS</h4>
-                        <div class="sort__panel d-flex">
-                            <div class="form-horizontal text-right">
-                                <label for="SortBy">Sắp xếp</label>
-                                <select name="SortBy" id="SortBy">
-                                    <option value="manual">Tùy chọn</option>
-                                    <option value="best-selling">Bán chạy nhất</option>
-                                    <option value="title-ascending">Tên A-Z</option>
-                                    <option value="title-descending">Tên Z-A</option>
-                                    <option value="price-ascending">Giá tăng dần</option>
-                                    <option value="price-descending">Giá giảm dần</option>
-                                    <option value="created-descending">Mới nhất</option>
-                                    <option value="created-ascending">Cũ nhất</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-5">
-                        <div class="d-grid cate-content__main container gap-5">
-                            <div class="item" *ngFor="let item of allProducts">
-                               <a [routerLink]="item.slug"> <img [src]="item.image" [alt]="item.name" width="190" height="263" /></a>
-                                <div class="item--price">
-                                    <a [routerLink]="item.slug">{{ item.name }}</a><h6></h6>
-                                    <p>{{ item.cost | currency }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>  -->

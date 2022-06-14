@@ -1,9 +1,5 @@
 <div class="panel">
   <p-panel header="DANH MỤC SẢN PHẨM" [toggleable]="true">
-    <ng-template pTemplate="icons">
-      <p-menu id="config_menu" [popup]="true"></p-menu>
-    </ng-template>
-
     <div mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
       <div *ngFor="let item of categories" class="d-flex align-items-center">
         <a class="dropdown-item" routerLink="/categories/{{ item.slug }}"><i class="pi pi-book mx-3"></i>{{
@@ -39,23 +35,19 @@
     </div>
   </p-panel>
 
-  <p-panel header="TÁC GIẢ" [toggleable]="true">
-    <div class="form-check">
-      <input mdbCheckbox class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-      <label class="form-check-label" for="flexCheckChecked">
-        Tất cả
-      </label>
+  <p-panel header="TAc gia" [toggleable]="true">
+    <div mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+      <div *ngFor="let item of authors" class="d-flex align-items-center">
+        <a class="dropdown-item" routerLink="/collections/authors/{{ item.slug }}"><i class="pi pi-book mx-3"></i>{{
+          item.authorName }}</a>
+      </div>
     </div>
   </p-panel>
 
   <p-panel header="TARGET" [toggleable]="true">
-    <ng-template pTemplate="icons">
-      <p-menu id="config_menu" [popup]="true"></p-menu>
-    </ng-template>
-
     <div mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
       <div *ngFor="let item of targets" class="d-flex align-items-center">
-        <a class="dropdown-item" routerLink="/categories/by-target/{{ item._id }}"><i class="pi pi-book mx-3"></i>{{
+        <a class="dropdown-item" routerLink="/by-target/{{ item.slug }}"><i class="pi pi-book mx-3"></i>{{
           item.targetName }}</a>
       </div>
     </div>

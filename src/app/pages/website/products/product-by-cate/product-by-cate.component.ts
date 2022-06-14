@@ -1,49 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/shared/sevices/category.service';
 import { ActivatedRoute } from '@angular/router';
-import {MenuItem} from 'primeng/api';
 import { Title } from '@angular/platform-browser';
 import { ProductsService } from 'src/app/shared/sevices/products.service';
+import { TargetsService } from 'src/app/shared/sevices/targets.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-by-cate',
   templateUrl: './product-by-cate.component.html',
   styleUrls: ['./product-by-cate.component.scss'],
 })
 export class ProductByCateComponent implements OnInit {
-  products: any[] = [];
+  productsByCate: any[] = [];
   allProducts: any[] = [];
   categoriesImg: any;
-  slug: string;
+  cateSlug: string;
   cateName: string;
-  items: MenuItem[] = [];
+  authorBook: any;
+
   constructor(
     private cateS: CategoryService,
     private ActivatedRouter: ActivatedRoute,
+    private TargetsService: TargetsService,
+    private ProductsService: ProductsService,
     private title: Title,
-    private ProductsService:ProductsService
+    private router:Router
   ) {
-    this.slug = '';
+    this.cateSlug = '';
     this.cateName = '';
-
   }
 
   ngOnInit(): void {
-    this.slug = this.ActivatedRouter.snapshot.params['slug'];
-    this.cateS.getCateBySlug(this.slug).subscribe((data) => {
-      // console.log("data",data);
-      
-      this.categoriesImg = data.category.image
+    this.getAllProduct();
+    this.getProductByCate();
+  }
+
+  getAllProduct() {
+    this.ProductsService.getAll().subscribe((data) => {
+      this.allProducts = data.items;
+      this.cateName = 'All Products';
+    });
+  }
+
+  getProductByCate() {
+    this.cateSlug = this.ActivatedRouter.snapshot.params['slug'];
+    this.cateS.getCateBySlug(this.cateSlug).subscribe((data) => {
+      this.categoriesImg = data.category.image;
       this.cateName = data.category!.cateName;
-      this.products = data.books;
+      this.productsByCate = data.books;
       this.title.setTitle('Category: ' + this.cateName);
     });
-    this.ProductsService.getAll().subscribe(data =>{
-         this.allProducts = data.items;
-        //  console.log('this.allProducts', this.allProducts);
-         
-    })
-
-
-
   }
 }

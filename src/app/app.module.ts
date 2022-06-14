@@ -1,5 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ɵDEFAULT_LOCALE_ID } from '@angular/core';
-
+import {
+  RouterModule,
+  Routes,
+  ActivatedRoute
+} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { PrimeModule } from './shared/uiHelpers/prime/Prime.module';
 import { MdbModule } from './shared/uiHelpers/mdb/Mdb.module';
@@ -27,6 +31,7 @@ import { AdminProEditComponent } from './pages/admin/products/admin-pro-edit/adm
 import { AdminUsersListComponent } from './pages/admin/users/admin-users-list/admin-users-list.component';
 import { AdminUsersAddComponent } from './pages/admin/users/admin-users-add/admin-users-add.component';
 import { AdminUsersEditComponent } from './pages/admin/users/admin-users-edit/admin-users-edit.component';
+import { CommonModule } from '@angular/common';  
 
 import { LoginComponent } from './pages/auths/login/login.component';
 import { RegisterComponent } from './pages/auths/register/register.component';
@@ -63,7 +68,8 @@ import { AdminAuthorEditComponent } from './pages/admin/author/admin-author-edit
 import { AuthorBookComponent } from './pages/website/products/author-book/author-book.component';
 import { SearchbarComponent } from './comps/web-comps/searchbar/searchbar.component';
 import { CartOrdersComponent } from './pages/website/cart/cart-orders/cart-orders.component';
-
+import { BookCoverComponent } from './comps/web-comps/book-cover/book-cover.component';
+import { TargetBookComponent } from './pages/website/products/target-book/target-book.component';
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -109,9 +115,12 @@ registerLocaleData(localeFr);
     AuthorBookComponent,
     SearchbarComponent,
     CartOrdersComponent,
+    BookCoverComponent,
+    TargetBookComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -127,7 +136,7 @@ registerLocaleData(localeFr);
     GalleriaModule,
     CarouselModule,
   ],
-  providers: [PrimeModule, MessageService, CarouselModule,ConfirmationService],
+  providers: [PrimeModule, MessageService, CarouselModule,ConfirmationService,RouterModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

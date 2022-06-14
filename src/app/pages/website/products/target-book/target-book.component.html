@@ -1,0 +1,9 @@
+<div class="cate-content__breacrumb-overlay">
+    <img src="https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg"
+        class="imgCategory" />
+
+    <div class="cate-content__breacrumb-overlay--inner inner">
+        {{ targetName | uppercase }}
+    </div>
+</div>
+<app-book-cover [data]="targetProducts" [cateName]="targetName"></app-book-cover>

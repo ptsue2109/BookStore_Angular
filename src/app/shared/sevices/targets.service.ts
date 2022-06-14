@@ -13,7 +13,7 @@ export class TargetsService {
   getAll():Observable<any>{
     return this.http.get<any>(`${environment.targetApi}`,);
   }
-  getBookByTarget(id: string):Observable<any>{
-    return this.http.get<any>(`${environment.targetApi}/find-book-by-id/${id}`);
+  getBookByTarget(slug: string):Observable<any>{
+    return this.http.get<any>(`${environment.targetApi}/find-book-by-slug/${slug}`);
   }
 }

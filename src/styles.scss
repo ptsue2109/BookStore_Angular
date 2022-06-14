@@ -142,3 +142,10 @@ $tabColor: #bc3030;
      font-weight: bolder;
   }
 }
+.editor__show{
+  & img{
+    max-width: 250px;
+    height: 250px;
+    text-align: center !important;
+  }
+}
