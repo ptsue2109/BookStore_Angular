@@ -19,7 +19,7 @@ export class InfoComponent implements OnInit {
   newThumb: any;
   OldImage: any;
   userForm: FormGroup;
-  order:any;
+  orders:any;
   constructor(
     private UserService: UserService,
     private ActivatedRouter: ActivatedRoute,
@@ -49,8 +49,9 @@ export class InfoComponent implements OnInit {
     
     //orders
     this.OrderService.getUserOrder(this.id).subscribe((data)=>{
-      console.log('data',data);
-      this.order = data
+      console.log('data',data.orders);
+       this.orders = data.orders
+       
     })
     
   }
@@ -60,6 +61,7 @@ export class InfoComponent implements OnInit {
     this.newThumb = localStorage.getItem('imgThum');
   }
   editUser() {
+    
     this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Loading...' })
     let userData: any = {
       email: this.userForm.value.email,
@@ -67,7 +69,7 @@ export class InfoComponent implements OnInit {
       phoneNumber: this.userForm.value.phoneNumber,
       address: this.userForm.value.address,
       desc: this.userForm.value.desc,
-      image: this.newThumb ? this.newThumb : this.OldImage,
+      image: this.newThumb ?  this.OldImage : this.newThumb ,
     };
     console.log('userData', userData);
     setTimeout(() => {

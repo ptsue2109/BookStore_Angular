@@ -20,7 +20,9 @@ orderCode:any
     console.log('orderCode', this.orderCode);
     
     this.OrderService.getOrderByOrderCode(this.orderCode).subscribe(data =>{
-      this.orders = data
+      this.orders = data;
+      console.log('this.orders',this.orders);
+      
       
     })
   }

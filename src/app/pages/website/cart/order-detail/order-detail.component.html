@@ -1,1 +1,88 @@
-<app-order-data [data]="orders"></app-order-data>
+<div class="cate-content__breacrumb-overlay">
+    <img src="https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg"
+        class="imgCategory" />
+
+    <div class="cate-content__breacrumb-overlay--inner inner">
+        Your Order / {{ orders?.orderCode }}
+    </div>
+</div>
+<div class="container">
+    <div class="order-detail__header">
+        <h5 class="text-uppercase">Tài khoản của bạn</h5>
+        <p-divider></p-divider>
+        <p-divider></p-divider>
+    </div>
+    <a href="/infomation" class="text-danger">Trở về tài khoản </a>
+    <div class="order-detail__content mt-4" *ngIf="orders && orderCode !== null">
+        <div class="row">
+            <div class="col-8">
+                <div class="detail__left">
+                    <div class="detail__left__header">
+                        <h5 class="text-uppercase">Đơn hàng: {{ orders?.orderCode }}</h5>
+                        <p>Ngày: {{ orders.createdAt | date: "dd-mm-yyy" }}</p>
+                    </div>
+                    <div class="detail__left__content">
+                        <div class="table-wrap">
+                            <table class="table table-bordered fw-bolder">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Mã</th>
+                                        <th>Đơn giá</th>
+                                        <th class="text-right">Số lượng</th>
+                                        <th class="text-right">Tổng tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let order of orders.products">
+                                        <td>
+                                            <a routerLink="/products/{{order?.slug}}"
+                                                class="text-danger fw-bolder">{{order?.name}} </a>
+                                        </td>
+                                        <td class="text-break">{{ order?._id }}</td>
+                                        <td>{{order?.stock | currency}}</td>
+                                        <td class="text-right">{{order?.quantity}}</td>
+                                        <td class="text-right">{{order?.price | currency}}</td>
+                                    </tr>
+                                </tbody>
+
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4">Tổng tiền</td>
+                                        <td class="text-right">{{orders?.totalPrice | currency}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            Vận chuyển: (Vận chuyển đến các tỉnh thành phố khác Hà Nội
+                                            và TP.HCM)
+                                        </td>
+                                        <td class="text-right">{{0 | currency}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><strong>Tổng tiền</strong></td>
+                                        <td class="text-right"><strong>{{orders?.totalPrice | currency}} </strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="detail__right">
+                    <div class="detail__header">
+                        <h5 class="text-uppercase">Địa chỉ nhận hàng: {{ orders?.address }}</h5>
+                        <p>Người nhận : {{orders?.username}}</p>
+                        <p>Số điện thoại : {{orders?.phoneNumber}}</p>
+                        <p>Ghi chú : {{orders?.note }}</p>
+                        <small><b>Tình trạng thanh toán : </b> {{orders?.orderStatus}} </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="" *ngIf="!orders">
+    Không tìm thấy đơn của bạn
+</div>

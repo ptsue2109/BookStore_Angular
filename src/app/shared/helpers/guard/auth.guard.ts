@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const loggedInUsers = JSON.parse(localStorage.getItem('userInfo') || '[]');
+      const loggedInUsers = JSON.parse(localStorage.getItem('userInfo')!);
       if (loggedInUsers.role === 'user') {
           this.toastr.error('Không có quyền truy cập');
           this.router.navigate(['/']);

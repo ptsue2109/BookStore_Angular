@@ -22,8 +22,8 @@
 
 .infomation-grid {
     display: grid;
-    grid-template-columns: 2fr 4fr;
-    gap: 8px;
+    grid-template-columns: 2fr 1.5fr;
+    gap: 28px;
 
 }
 
@@ -54,4 +54,7 @@
         width: 450px;
         height: 450px;
     }
+}
+.info__orders-count{
+    line-height: 40px;
 }

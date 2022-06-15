@@ -49,7 +49,7 @@
         <span class="rounded-pill">{{cartTotal | currency}}</span>
       </li>
     </ul>
-    <button class="btn btn-primary mt-3 w-100" (click)="thanhToan()">Thanh toán</button>
+    <button class="btn btn-primary mt-3 w-100" [disabled]="!cartTotal" (click)="thanhToan()">Thanh toán</button>
     <a [routerLink]="'/'" class="btn p-button-raised mt-3 w-100 back_btn">Tiếp tục mua hàng</a>
   </div>
 </div>

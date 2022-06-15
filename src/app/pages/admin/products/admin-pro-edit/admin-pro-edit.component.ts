@@ -25,14 +25,15 @@ export class AdminProEditComponent implements OnInit {
   authors:any;
   dataPro: any = [];
   listImgDetail: any;
-  OldImage:any;
+  OldImage: any;
   bookTypesSelected: string = '';
   cateSelected: string = '';
   targetSelected : string = '';
   bookSizeSelected : string = '';
   newThumb : any;
   newList:any;
-  authorSelected:any
+  authorSelected:any;
+  imgThumb:any
   constructor(
     private productService: ProductsService,
     private homeService: HomeService,
@@ -75,6 +76,8 @@ export class AdminProEditComponent implements OnInit {
       this.targetSelected = data.targetId._id;
       this.bookSizeSelected = data.bookSizeId._id
       this.OldImage = data.image;
+      console.log( this.OldImage);
+      
       this.authorSelected = data.authorId._id
     });
 
@@ -117,8 +120,9 @@ export class AdminProEditComponent implements OnInit {
       summary: 'Loading',
       detail: 'Loading...',
     });
+   
     let upload:any = {
-      image: this.newThumb ? this.OldImage: this.newThumb,
+      image: this.newThumb ? this.newThumb : this.OldImage ,
       imageMutiple: this.newList ? this.newList : this.listImgDetail,
       name: this.AddForm.value.name,
       cost: this.AddForm.value.cost,
@@ -132,6 +136,10 @@ export class AdminProEditComponent implements OnInit {
       bookTypeId: this.bookTypesSelected,
       bookSizeId: this.bookSizeSelected,
     }
+    console.log('this.OldImage',this.OldImage);
+    
+    console.log('userUpload',upload);
+    
     setTimeout(() => {
       this.productService.editProduct(upload, this.id).subscribe({
         next : (data) =>{
@@ -139,6 +147,7 @@ export class AdminProEditComponent implements OnInit {
           setTimeout(() => {
             this.router.navigate(['/admin/products']);
             localStorage.removeItem('imgThum');
+            localStorage.removeItem('imgList');
           }, 2000);
         },
         error:(error) =>{

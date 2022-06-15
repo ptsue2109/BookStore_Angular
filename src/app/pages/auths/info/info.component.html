@@ -12,20 +12,40 @@
     <p-divider></p-divider>
     <div class="infomation-grid">
         <div class="info__orders">
+
             <div class="info__orders-count">
                 <h5>Lịch sử giao dịch</h5>
-                <p *ngIf="order && order.products.length==null">Bạn chưa có giao dịch nào</p>
-                <p *ngIf="order && order.products.length!==null">ban dang co {{ order.products.length}} don hanh</p>
+                <p *ngIf="!orders || orders.length == 0 ">Bạn chưa có giao dịch nào</p>
+                <p *ngIf="orders && orders.length !== 0">Bạn đang có {{ orders.length}} đơn hàng</p>
+
             </div>
-            <div class="info__order--order" *ngIf="order && order.products.length!==null">
-              <p> Mã đơn hàng:  <a routerLink="/orders/get-by-ordercode/{{order.orderCode}}"> {{order.orderCode}}</a></p>
-                <p>Ngày tạo : {{order.createdAt | date: 'dd/mm/yyyy'}}</p>
-                <p>Trạng thái :{{order.orderStatus}} </p>
+
+            <div class="info__orders-preview" *ngIf="orders && orders.length !== 0">
+                <p-table [value]="orders" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Đơn hàng</th>
+                            <th>Ngày</th>
+                            <th>Trạng thái</th>
+                            <th>Tổng</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td><a routerLink="/orders/get-by-ordercode/{{product.orderCode}}"
+                                    class="text-danger">{{product.orderCode}}</a></td>
+                            <td>{{product.createdAt | date:'dd-mm-yyyy'}}</td>
+                            <td>{{product.orderStatus}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
+
+
         </div>
         <div class="info__info">
             <h5>Thông tin tài khoản</h5>
-            <b>{{dataUser.username}}</b><br>
+            <b>Khách hàng : {{dataUser.username}}</b><br>
             <p-panel header="Chỉnh Sửa Thông Tin" [toggleable]="true">
                 <form action="" [formGroup]="userForm" (ngSubmit)="editUser()">
                     <div class="info__info userInfo_image">

@@ -1,1 +1,30 @@
 {{orders | json}}
+<p-toast></p-toast>
+<div class="card">
+    <p-toolbar styleClass="mb-4">
+        <a [routerLink]="'/admin/sliders/add'" class="btn p-button-icon">Tạo mới đơn hàng</a>
+    </p-toolbar>
+    <p-table #dt [value]="orders" [rows]="5" [paginator]="true" [globalFilterFields]="['slideName']"
+        responsiveLayout="scroll" [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th> OrderCode</th>
+                <th>UserId</th>
+                <th>User Image</th>
+                <th>Số lượng</th>
+                <th>Tổng giá trị</th>
+                <th>Trạng Thái Đơn Hàng</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{ orders ? orders.length : 0 }}
+            </div>
+        </ng-template>
+    </p-table>
+</div>
