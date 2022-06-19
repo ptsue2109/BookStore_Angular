@@ -172,6 +172,10 @@ registerLocaleData(localeFr);
           console.error(err);
         }
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: 'fr-FR' // 'de' for Germany, 'fr' for France ...
     }
   
 

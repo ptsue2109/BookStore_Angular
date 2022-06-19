@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from './../../../shared/sevices/homeService.service';
 import { CategoryService } from './../../../shared/sevices/category.service';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { TargetsService } from 'src/app/shared/sevices/targets.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-website',
   templateUrl: './website.component.html',
@@ -14,19 +13,23 @@ export class WebsiteComponent implements OnInit {
   categories: any;
   targets:any
   constructor(
-    private HomeService: HomeService,
     private CategoryService: CategoryService,
     private title:Title,
     private router: Router,
-    private TargetsService:TargetsService
+    private ToastrService: ToastrService
   ) {
     this.title.setTitle("All collection")
   }
 
   ngOnInit(): void {
     this.userInfo = JSON.parse(localStorage.getItem('userInfo')!);
-    if (this.userInfo) {
+    if(this.userInfo === null || this.userInfo === undefined){
+      this.ToastrService.error("Đăng nhập để tiếp tục");
+      setTimeout(() => {
+        this.router.navigate(['/'])
+      }, 3000);
     }
+
     this.CategoryService.getAllActive().subscribe((data) => {
       this.categories = data.categories;
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;

@@ -1,7 +1,7 @@
 <p-toast></p-toast>
 <div class="card text-break">
     <p-toolbar styleClass="mb-4">
-        <a [routerLink]="'/admin/sliders/add'" class="btn p-button-icon">Tạo mới đơn hàng</a>
+        <a [routerLink]="'/admin/orders/create-new'" class="btn p-button-icon">Tạo mới đơn hàng</a>
     </p-toolbar>
     <p-table #dt [value]="orders" [rows]="5" [paginator]="true" [globalFilterFields]="['slideName']"
         responsiveLayout="scroll" [rowHover]="true"

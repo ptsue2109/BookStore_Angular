@@ -29,7 +29,7 @@ export class CartOrdersComponent implements OnInit {
     private mess: MessageService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('userInfo')!);
-    this.titleS.setTitle('Orders - ' + this.currentUser.username);
+    this.titleS.setTitle('Orders - ' + this.currentUser?.username);
     this.onGetCart();
     this.localS.watchStorage().subscribe((data) => {
       this.onGetCart();
@@ -38,6 +38,8 @@ export class CartOrdersComponent implements OnInit {
 
   onGetCart() {
     this.orderData = this.localS.getItem();
+    console.log('  this.orderData ',  this.orderData );
+    
     this.cartTotal = this.orderData.reduce((a: any, b: any) => a + b.orderPrice, 0);
   }
   userForm: FormGroup = new FormGroup({
@@ -55,11 +57,11 @@ export class CartOrdersComponent implements OnInit {
   addOrder() {
     let orderFinal: any = {
       ...this.userForm.value,
-      products: this.orderData,
-      orderQuantity: this.orderData.length,
-      orderPrice: this.orderData.price,
-      totalPrice: this.cartTotal,
-      userInfo: this.currentUser,
+      products: this?.orderData,
+      orderQuantity: this?.orderData.length,
+      orderPrice: this?.orderData.price,
+      totalPrice: this?.cartTotal,
+      userInfo: this?.currentUser,
     };
     swalMessage('Hoàn thành đơn hàng?', 'OK', 'Cancel').then((result) => {
       if (result.isConfirmed) {

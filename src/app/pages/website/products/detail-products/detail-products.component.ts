@@ -55,18 +55,27 @@ export class DetailProductsComponent implements OnInit {
   }
 
   onAddToCart() {
-  if(this.cartValue >= this.bookDetail.stock){
-    this.MessageService.add({severity: 'info',summary: 'Đặt lại',detail: `Hàng trong kho không đủ, tối đa ${this.bookDetail.stock} quyển `});
-    this.cartValue = 1;
-  }else{
-    const carts = this.bookDetail;
-    const addItem = {
-      products:{...carts},
-      orderPrice: carts.cost * this.cartValue,
-      orderQuantity: +this.cartValue,
-    };
-    this.lcService.setItem(addItem);
-    this.MessageService.add({severity: 'success',summary: 'Cart Item',detail: 'Add item in your cart',});
-    this.cartValue = 1;
-  }  }
+    if (this.cartValue >= this.bookDetail.stock) {
+      this.MessageService.add({
+        severity: 'info',
+        summary: 'Đặt lại',
+        detail: `Hàng trong kho không đủ, tối đa ${this.bookDetail.stock} quyển `,
+      });
+      this.cartValue = 1;
+    } else {
+      const carts = this.bookDetail;
+      const addItem = {
+        products: { ...carts },
+        orderPrice: carts.cost * this.cartValue,
+        orderQuantity: +this.cartValue,
+      };
+      this.lcService.setItem(addItem);
+      this.MessageService.add({
+        severity: 'success',
+        summary: 'Cart Item',
+        detail: 'Add item in your cart',
+      });
+      this.cartValue = 1;
+    }
+  }
 }

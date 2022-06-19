@@ -1,1 +1,58 @@
-<p>admin-orders-add works!</p>
+<p-fieldset legend="Thêm người nhận" [toggleable]="true">
+    <div class="add-user">
+        <div class="mb-4">
+            <div class="form-group">
+                <label for="">Chọn người nhận</label><br />
+                <select (change)="addNewUser($event)" class="form-select">
+                    <option [value]="user?._id" *ngFor="let user of homeData?.user">
+                        {{ user?.username }} - {{ user?._id }} - Phone:
+                        {{ user?.phoneNumber }} - Address: {{ user?.address }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</p-fieldset>
+
+<p-fieldset legend="Chọn sản phẩm" [toggleable]="true">
+    <div class="cart_page container">
+        <p-orderList [value]="homeData?.books">
+            <ng-template let-product pTemplate="item" class="d-flex">
+                <div class="product-item">
+                    <div class="image-container">
+                        <img src="{{ product?.image }}" [alt]="product?.name" width="50px" class="product-image" />
+                    </div>
+                    <div class="product-list-detail">
+                        <p class="mb-2">{{ product.name }}</p>
+                        <div class="form-outline d-flex">
+                            <div class="">
+                                <input type="number" min="1" max="{{product?.stock}}" class="form-control cart-value mt-3" [value]="cartValue"
+                                    (input)="onChangeCartValue($event)" />
+                                 <button class="btn btn-danger mt-3 w-50 p-2"  (click)="onAddToCart(product?._id)">Thêm vào giỏ hàng</button>
+                            </div>
+                            <p>Giá gốc : {{ product.cost | currency }}</p>
+                        </div>
+                        <div class="product-list-action"></div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-orderList>
+    </div>
+</p-fieldset>
+<p-fieldset legend="Xem hóa đơn" [toggleable]="true">
+    <div class="cart-total-price">
+        <ul class="list-group cart__order">
+            <li class="list-group-item d-flex justify-content-between align-items-center list__total">
+                Thành tiền
+                <span class="rounded-pill">{{cartTotal }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center list__total">
+               Mã Khách hàng: 
+                <span class="rounded-pill">{{cartTotal }}</span>
+            </li>
+        </ul>
+        <button class="btn btn-primary mt-3 w-100" (click)="thanhToan()">
+            Thanh toán
+        </button>
+    </div>
+</p-fieldset>

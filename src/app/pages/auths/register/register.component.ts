@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { MessageService } from 'primeng/api';
 import { AuthService } from './../../../shared/sevices/auth.service';
+import {
+  GoogleLoginProvider,
+  SocialAuthService,
+} from '@abacritt/angularx-social-login';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,7 +22,9 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private title: Title,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private socialService: SocialAuthService,
+    private toastr: ToastrService
   ) {
     this.password = '';
 
@@ -27,15 +34,15 @@ export class RegisterComponent implements OnInit {
         Validators.pattern(/\S+@\S+\.\S+/),
       ]),
       password: new FormControl('', [
-        Validators.required,
+        // Validators.required,
         Validators.minLength(6),
         Validators.maxLength(32),
       ]),
       username: new FormControl('', [
-        Validators.required,
+        // Validators.required,
         Validators.minLength(4),
       ]),
-      phoneNumber: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl(''),
     });
   }
 
@@ -67,6 +74,44 @@ export class RegisterComponent implements OnInit {
         });
         console.log(`${error.message}`);
       },
+    });
+  }
+
+  googleLogin() {
+    this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID).then((resp) => {
+      console.log('resp res', resp);
+      let { lastName, email, photoUrl, provider } = resp;
+      let upload: any = {
+        username: lastName,
+        email: email,
+        image: photoUrl,
+        provider: provider,
+      };
+      console.log('upload',upload);
+      
+      this.authService.authRegister(upload).subscribe({
+        next: (data) => {
+          const res = { data: data.user };
+          if (res) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Register success',
+            });
+            setTimeout(() => {
+              this.router.navigate(['/login']);
+            }, 3000);
+          }
+        },
+        error: ({ error }) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `${error.message}`,
+          });
+          console.log(`${error.message}`);
+        },
+      });
     });
   }
 }

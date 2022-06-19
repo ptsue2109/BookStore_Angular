@@ -4,6 +4,8 @@
         <h1>FORM LOGIN</h1>
         <form action="" [formGroup]="authLoginForm" (ngSubmit)="onSubmit()">
           <p-toast position="top-right"></p-toast>
+          <input type="hidden" name="csrftoken"
+              value="ea49375f43c7e6a59c77df1e4de562b3f1350124eeb70e5d5124e4ce3b5251c2b4d12e9aaf2a3ddc618c178c8dc4620b">
           <div class="mb-4">
             <mdb-form-control>
               <input mdbInput type="email" formControlName="email" class="form-control" />
@@ -31,7 +33,7 @@
           <div class="auth__form--item__social">
             <p class="text-muted my-3">Or Register With</p>
             <div class="auth__form--item__social--icon">
-              <a href="#" className="btn">
+              <a  className="btn cursor-pointer" (click)="googleLogin()">
                 <i class="fa-brands fa-google"></i>
               </a>
               <a href="#" className="btn"><i class="fa-brands fa-facebook"></i></a>

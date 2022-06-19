@@ -68,16 +68,21 @@
         <div class="navbar__content--button-group">
             <div class="navbar__content--button-group account-button">
               <div  mdbDropdown class="dropdown">
-                <p-avatar *ngIf="userInfo && !userInfo?.image" image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton" aria-expanded="false" mdbDropdownToggle ></p-avatar>
+                <p-avatar *ngIf="userInfo && !userInfo?.image || userInfo=== null" image="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton" aria-expanded="false" mdbDropdownToggle ></p-avatar>
                 <p-avatar *ngIf="userInfo && userInfo?.image" image="{{userInfo.image}}" styleClass="mr-2" shape="circle" class="dropdown-toggle" id="dropdownMenuButton" aria-expanded="false" mdbDropdownToggle ></p-avatar>
 
-                <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                  <li *ngIf="userInfo.username"><a class="dropdown-item" [routerLink]="'/infomation'">Infomation</a></li>
-                  <li *ngIf="userInfo.role === 'admin'"><a class="dropdown-item" [routerLink]="'/admin'">Dashboard</a></li>
-                  <li *ngIf="userInfo.username" ><a class="dropdown-item" (click)="logoutUser()">Logout</a></li>
-                  <li *ngIf="!userInfo.username"><a class="dropdown-item" [routerLink]="'/register'">Register</a></li>
-                  <li *ngIf="!userInfo.username"><a class="dropdown-item" [routerLink]="'/login'">Login</a></li>
+                <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset" *ngIf="userInfo && userInfo!== null">
+                  <li *ngIf="userInfo?.email"><a class="dropdown-item" [routerLink]="'/infomation'">Infomation</a></li>
+                  <li *ngIf="userInfo &&userInfo?.role === 'admin'"><a class="dropdown-item" [routerLink]="'/admin'">Dashboard</a></li>
+                  <li *ngIf="userInfo &&userInfo?.email" ><a class="dropdown-item" (click)="logoutUser()">Logout</a></li>
+                  
                 </ul>
+              
+                  <ul *ngIf="userInfo === null" mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                  <li><a class="dropdown-item" [routerLink]="'/register'">Register</a></li>
+                  <li><a class="dropdown-item" [routerLink]="'/login'">Login</a></li>
+                </ul>
+
               </div>
             </div>
             <div class="navbar__content--button-group right-button">

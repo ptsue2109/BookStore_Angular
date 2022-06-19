@@ -14,6 +14,10 @@ export class LocalStorageService {
   getItem() {
     return JSON.parse(localStorage.getItem('cart') || '[]');
   }
+  getItemAdmin(){
+    return JSON.parse(localStorage.getItem('cartAdmin') || '[]');
+  }
+
   setItem(addItem: any) {
     const cartItems = this.getItem();
     console.log(cartItems);
@@ -27,8 +31,26 @@ export class LocalStorageService {
     }
     this.setCart(cartItems);
   }
+
+  setItemAdmin(addItem: any) {
+    const cartItems = this.getItemAdmin();
+
+    const existItem = cartItems.find((item: any) => item.products._id === addItem.products._id);
+    if (existItem) {
+      existItem.orderQuantity += addItem.orderQuantity;
+      existItem.orderPrice = existItem.orderQuantity * existItem.orderPrice;
+    } else {
+      cartItems.push(addItem);
+    }
+    this.setCartAdmin(cartItems);
+  }
+
   setCart(cartData: any) {
     localStorage.setItem('cart', JSON.stringify(cartData));
+    this.storageSubject.next('');
+  }
+  setCartAdmin(cartData: any) {
+    localStorage.setItem('cartAdmin', JSON.stringify(cartData));
     this.storageSubject.next('');
   }
 }
