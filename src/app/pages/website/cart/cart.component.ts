@@ -18,8 +18,7 @@ export class CartComponent implements OnInit {
     private router: Router,
     private title: Title,
     private MessageService: MessageService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.onGetCart();
@@ -31,28 +30,48 @@ export class CartComponent implements OnInit {
 
   onGetCart() {
     this.cartData = this.lsService.getItem();
-    this.cartTotal = this.cartData.reduce((a: any, b: any) => a + b.price, 0);
+    this.cartTotal = this.cartData.reduce(
+      (a: any, b: any) => a + b.orderPrice,
+      0
+    );
   }
 
   decreaseQuantity(_id: any) {
-    const existItem = this.cartData.find((item: any) => item._id === _id);
-    console.log(existItem);
+    const existItem = this.cartData.find(
+      (item: any) => item.products._id === _id
+    );
+    console.log('hehe', existItem);
+
     if (existItem) {
-      existItem.quantity -= 1;
-      if (existItem.quantity <= 1) {
-        existItem.quantity = 1;
-        existItem.price = existItem.cost * existItem.quantity;
+      existItem.orderQuantity -= 1;
+      if (existItem.orderQuantity <= 1) {
+        existItem.orderQuantity = 1;
+        existItem.orderPrice = existItem.products.cost * existItem.orderQuantity;
       }
     }
     this.lsService.setCart(this.cartData);
   }
 
   increaseQuantity(_id: any) {
-    const existItem = this.cartData.find((item: any) => item._id === _id);
-    console.log(existItem);
+    const existItem = this.cartData.find(
+      (item: any) => item.products._id === _id
+    );
     if (existItem) {
-      existItem.quantity += 1;
-      existItem.price = existItem.cost * existItem.quantity;
+      console.log('quantity', existItem.products.stock);
+      if (existItem.orderQuantity >= existItem.products.stock) {
+        console.log(existItem.orderQuantity, existItem.products.stock);
+        this.MessageService.add({
+          severity: 'info',
+          summary: 'Đặt lại',
+          detail: `Hàng trong kho không đủ, tối đa ${existItem.products.stock} quyển `,
+        });
+        existItem.orderQuantity = existItem.orderQuantity;
+      }
+      else{
+        existItem.orderQuantity += 1;
+        existItem.orderPrice = existItem.products.cost * existItem.orderQuantity;
+      }
+     
     }
     this.lsService.setCart(this.cartData);
   }
@@ -60,7 +79,9 @@ export class CartComponent implements OnInit {
   removeCartItem(_id: string) {
     swalMessage('Do you want delete?', 'OK', 'Cancel').then((result) => {
       if (result.isConfirmed) {
-        this.cartData = this.cartData.filter((item: any) => item._id !== _id);
+        this.cartData = this.cartData.filter(
+          (item: any) => item.products._id !== _id
+        );
         this.lsService.setCart(this.cartData);
       }
       swal('delete', 'You delete successfully !', 'success');
@@ -71,7 +92,7 @@ export class CartComponent implements OnInit {
       severity: 'success',
       detail: 'next step',
     });
-    
+
     setTimeout(() => {
       this.router.navigate(['/orders']);
     }, 2000);

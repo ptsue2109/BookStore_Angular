@@ -51,8 +51,8 @@
           <div class="form-group">
             <label for="">Choose Category</label>
             <select class="form-select" formControlName="categoryId" [(ngModel)]="cateSelected">
-              <option value="{{ item._id }}" *ngFor="let item of categories">
-                {{ item.cateName }}
+              <option value="{{ item?._id }}" *ngFor="let item of categories">
+                {{ item?.cateName }}
               </option>
             </select>
           </div>
@@ -64,8 +64,8 @@
             <label for="">Choose Target</label>
             <select class="form-control" (change)="changeTarget($event)" [(ngModel)]="targetSelected"
               [ngModelOptions]="{standalone: true}">
-              <option value="{{ item._id }}" *ngFor="let item of targets">
-                {{ item.targetName }}
+              <option value="{{ item?._id }}" *ngFor="let item of targets">
+                {{ item?.targetName }}
               </option>
             </select>
           </div>
@@ -80,8 +80,8 @@
             <label for="">Choose Book Size</label>
             <select class="form-control" (change)="changeSize($event)" [(ngModel)]="bookSizeSelected"
               [ngModelOptions]="{standalone: true}">
-              <option value="{{ item._id }}" *ngFor="let item of bookSizes">
-                {{ item.bookSizeName }}
+              <option value="{{ item?._id }}" *ngFor="let item of bookSizes">
+                {{ item?.bookSizeName }}
               </option>
             </select>
           </div>
@@ -93,8 +93,8 @@
             <label for="">Choose Book Type</label>
             <select class="form-control" (change)="changeType($event)" [(ngModel)]="bookTypesSelected"
               [ngModelOptions]="{standalone: true}">
-              <option value="{{ item._id }}" *ngFor="let item of bookTypes">
-                {{ item.bookTypeName }}
+              <option value="{{ item?._id }}" *ngFor="let item of bookTypes">
+                {{ item?.bookTypeName }}
               </option>
             </select>
           </div>
@@ -125,8 +125,8 @@
             <label for="">Choose Author</label>
             <select class="form-control" (change)="changeAuthor($event)" [(ngModel)]="authorSelected"
               [ngModelOptions]="{standalone: true}">
-              <option value="{{ item._id }}" *ngFor="let item of authors">
-                {{ item.authorName }}
+              <option value="{{ item?._id }}" *ngFor="let item of authors">
+                {{ item?.authorName }}
               </option>
             </select>
             <app-validate-mess [field]="AddForm.get('authorId')"></app-validate-mess>

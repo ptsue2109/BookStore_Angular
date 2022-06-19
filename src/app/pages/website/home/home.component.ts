@@ -12,6 +12,9 @@ export class HomeComponent implements OnInit {
   categories: any;
   sliders: any;
   books:any;
+  newProducts:any;
+  mangaProducts:any
+  doraemon:any
   constructor(
     private HomeService: HomeService,
     private CategoryService: CategoryService,
@@ -22,8 +25,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.HomeService.getAllData().subscribe((data) => {
+      console.log('data',data);
       this.sliders = data.sliders;
-      this.books = data.books
+      this.books = data.books;
+      this.newProducts = data.productsNew;
+      this.mangaProducts = data.mangaBooks;
+      this.doraemon = data.doraemon
     });
     this.CategoryService.getAll().subscribe((data) => {
       this.categories = data.categories;

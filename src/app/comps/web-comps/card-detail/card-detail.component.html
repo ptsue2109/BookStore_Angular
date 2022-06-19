@@ -1,4 +1,4 @@
-<div class="" *ngIf="imageMutiple">
+<div class="" *ngIf="imageMutiple && imageMutiple !==null ||  imageMutiple!==undefined">
   <p-galleria
   [value]="imageMutiple"
   [responsiveOptions]="responsiveOptions"
@@ -19,7 +19,7 @@
 </p-galleria>
 </div>
 
-<div class="" *ngIf="imageMutiple == null"> 
+<div class="" *ngIf="imageMutiple == null || imageMutiple.length == 0"> 
   <img src="{{ imageThumb }}"  style="width: 100%; display: block" />
 
 

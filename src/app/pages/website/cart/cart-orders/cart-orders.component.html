@@ -46,14 +46,14 @@
     <div class="order__page--products">
         <div class="product_info">
             <div class="card_products" *ngFor="let cartItem of orderData">
-                <p-avatar image="{{cartItem.image}}" pBadge value="{{cartItem.quantity}}" severity="danger"
+                <p-avatar image="{{cartItem.products.image}}" pBadge value="{{cartItem.orderQuantity}}" severity="danger"
                     styleClass="mr-2" size="xlarge"></p-avatar>
 
                 <div class="product_name">
                     {{cartItem.name}}
                 </div>
                 <div class="product_price">
-                    {{cartItem.price | currency}}
+                    {{cartItem.orderPrice | currency}}
                 </div>
             </div>
         </div>

@@ -43,7 +43,7 @@ export class AdminProAddComponent implements OnInit {
       pageNumber: new FormControl('', [Validators.required]),
       bookWeight: new FormControl('', [Validators.required]),
       bookTypeId: new FormControl('', [Validators.required]),
-      bookSizeId: new FormControl('', [Validators.required]),
+      type: new FormControl(''),
     });
 
     this.title.setTitle('Products - Add ');
@@ -51,17 +51,19 @@ export class AdminProAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.homeService.getAllData().subscribe((data) => {
-      this.targets = data.target;
-      this.bookSizes = data.bookSize;
-      this.bookTypes = data.bookType;
-      this.authors = data.author
+      console.log('data',data);
+      
+      this.targets = data?.target;
+      this.bookSizes = data?.bookSize;
+      this.bookTypes = data?.bookType;
+      this.authors = data?.author
     });
     this.CategoryService.getAllActive().subscribe((data) => {
-      this.categories = data.categories;
+      this.categories = data?.categories;
     });
   }
   saveFileThumail(event: any) {
-    this.file = event.target.files[0];
+    this.file = event?.target?.files[0];
     this.uploadImg.uploadImg(this.file);
   }
 
@@ -81,17 +83,17 @@ export class AdminProAddComponent implements OnInit {
     let upload: any = {
       image: url,
       imageMutiple: urlDetail,
-      name: this.AddForm.value.name,
-      cost: this.AddForm.value.cost,
+      name: this.AddForm.value?.name,
+      cost: this.AddForm.value?.cost,
       stock: this.AddForm.value.stock,
-      categoryId: this.AddForm.value.categoryId,
-      targetId: this.AddForm.value.targetId,
-      desc: this.AddForm.value.desc,
-      authorId: this.AddForm.value.authorId,
-      pageNumber: this.AddForm.value.pageNumber,
-      bookWeight: this.AddForm.value.bookWeight,
-      bookTypeId: this.AddForm.value.bookTypeId,
-      bookSizeId: this.AddForm.value.bookSizeId,
+      categoryId: this.AddForm.value?.categoryId,
+      targetId: this.AddForm.value?.targetId,
+      desc: this.AddForm.value?.desc,
+      authorId: this.AddForm.value?.authorId,
+      pageNumber: this.AddForm.value?.pageNumber,
+      bookWeight: this.AddForm.value?.bookWeight,
+      bookTypeId: this.AddForm.value?.bookTypeId,
+      bookSizeId: this.AddForm.value?.bookSizeId,
     };
     setTimeout(() => {
       this.productService.addNew(upload).subscribe({

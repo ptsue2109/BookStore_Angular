@@ -34,8 +34,9 @@
                         <tr>
                             <td><a routerLink="/orders/get-by-ordercode/{{product.orderCode}}"
                                     class="text-danger">{{product.orderCode}}</a></td>
-                            <td>{{product.createdAt | date:'dd-mm-yyyy'}}</td>
+                            <td>{{product.createdAt | date:'dd/MM/yyyy h:mm a'}}</td>
                             <td>{{product.orderStatus}}</td>
+                            <td>{{product.totalPrice | currency}}</td>
                         </tr>
                     </ng-template>
                 </p-table>

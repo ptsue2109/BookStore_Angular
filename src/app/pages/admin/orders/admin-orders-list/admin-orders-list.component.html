@@ -1,6 +1,5 @@
-{{orders | json}}
 <p-toast></p-toast>
-<div class="card">
+<div class="card text-break">
     <p-toolbar styleClass="mb-4">
         <a [routerLink]="'/admin/sliders/add'" class="btn p-button-icon">Tạo mới đơn hàng</a>
     </p-toolbar>
@@ -9,17 +8,37 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="header">
             <tr>
-                <th> OrderCode</th>
-                <th>UserId</th>
-                <th>User Image</th>
-                <th>Số lượng</th>
-                <th>Tổng giá trị</th>
-                <th>Trạng Thái Đơn Hàng</th>
-                <th>Action</th>
+                <th>Mã đơn hàng</th>
+                <th>Id User</th>
+                <th>Model</th>
+                <th>Giá trị đơn hàng</th>
+                <th>Trạng thái đơn hàng</th>
+                <th>Actions</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-item>
-            
+            <tr>
+                <td><a class="text-danger"
+                        routerLink="/admin/orders/edit-orders/{{item.orderCode}}">{{item.orderCode}}</a></td>
+                <td><a class="text-danger text-break" routerLink="">{{item.userInfo._id}}</a> </td>
+                <td>{{item.products.length}}</td>
+                <td>{{item.totalPrice | currency}}</td>
+                <td>
+                    <div class="form-group">
+                        <select (change)="changeStatus($event,item?.orderCode)" class="form-select"
+                            [(ngModel)]="item.orderStatus" [ngModelOptions]="{standalone: true}">
+                            <option value="{{status.value}}" *ngFor="let status of orderStatus">
+                                {{status.name}}
+                            </option>
+                        </select>
+                    </div>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        routerLink="edit-orders/{{item?.orderCode}}"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteItem(item._id)"></button>
+                </td>
+            </tr>
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">

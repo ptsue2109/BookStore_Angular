@@ -15,7 +15,7 @@
             <hr>
         </div>
         <div class="detail-pro pro-price">
-            <h3 class="text-danger">{{bookDetail.cost | currency }}</h3>
+            <h3 class="text-danger">{{bookDetail?.cost | currency }}</h3>
             <hr>
         </div>
 
@@ -23,35 +23,33 @@
             <div class="d-flex justify-content-between gap-8">
                 <div class="col">
                     <ul>
-                        <li>Mã sách: {{bookDetail._id}}</li>
+                        <li>Mã sách: {{bookDetail?._id}}</li>
                         <li>Tác giả: <a
-                                routerLink="/collections/authors/{{bookDetail.authorId.slug}}">{{bookDetail.authorId.authorName}}</a>
+                                routerLink="/collections/authors/{{bookDetail?.authorId?.slug}}">{{bookDetail?.authorId?.authorName}}</a>
                         </li>
-                        <li>Đối Tượng : <a [routerLink]="'/'" class="text-danger">{{bookDetail.targetId.targetName}}</a>
+                        <li>Đối Tượng : <a routerLink="/by-target/{{bookDetail?.targetId?.slug}}" class="text-danger">{{bookDetail?.targetId?.targetName}}</a>
                         </li>
-                        <li>Khuôn khổ: {{bookDetail.bookSizeId.bookSizeName}}</li>
-                        <li>Số Trang :{{bookDetail.pageNumber}}</li>
-                        <li>Định dạng: {{bookDetail.bookTypeId.bookTypeName}}</li>
-                        <li>Trọng lượng: {{bookDetail.bookWeight}} gram</li>
+                        <li>Khuôn khổ: {{bookDetail?.bookSizeId?.bookSizeName}}</li>
+                        <li>Số Trang :{{bookDetail?.pageNumber}}</li>
+                        <li>Định dạng: {{bookDetail?.bookTypeId?.bookTypeName}}</li>
+                        <li>Trọng lượng: {{bookDetail?.bookWeight}} gram</li>
                         <li>Danh mục: <a
-                                routerLink="/categories/{{bookDetail.categoryId.slug}}">{{bookDetail.categoryId.cateName}}</a>
+                                routerLink="/categories/{{bookDetail?.categoryId?.slug}}">{{bookDetail?.categoryId?.cateName}}</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col">
                     <div class="form-outline">
                         <label class="mb-2"><b>Số lượng</b></label>
-                        <input type="number" min="1" class="form-control cart-value mt-3" [value]="cartValue"
+                        <input type="number" min="1" max="{{bookDetail?.stock}}" class="form-control cart-value mt-3" [value]="cartValue"
                             (input)="onChangeCartValue($event)" />
-                        <button class="btn btn-danger mt-3 w-50 p-2" (click)="onAddToCart()">Thêm vào giỏ hàng</button>
+                        <button class="btn btn-danger mt-3 w-50 p-2"  (click)="onAddToCart()">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <p-divider></p-divider>
 <div class="container books-end ">
     <div class="books-descprition">

@@ -39,7 +39,6 @@ export class ProductByCateComponent implements OnInit {
     this.ProductsService.getAll().subscribe((data) => {
       this.allProducts = data.items;
       this.cateName = 'All Products';
-      localStorage.setItem('test', data)
     });
   }
 

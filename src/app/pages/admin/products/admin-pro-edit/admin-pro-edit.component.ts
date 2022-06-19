@@ -70,49 +70,47 @@ export class AdminProEditComponent implements OnInit {
       this.dataPro = data;
       console.log(data);
       
-      this.listImgDetail = data.imageMutiple;
-      this.cateSelected = data.categoryId._id;
-      this.bookTypesSelected = data.bookTypeId._id;
-      this.targetSelected = data.targetId._id;
-      this.bookSizeSelected = data.bookSizeId._id
-      this.OldImage = data.image;
-      console.log( this.OldImage);
+      this.listImgDetail = data?.imageMutiple;
+      this.cateSelected = data?.categoryId._id;
+      this.bookTypesSelected = data?.bookTypeId?._id;
+      this.targetSelected = data?.targetId?._id;
+      this.bookSizeSelected = data?.bookSizeId?._id
+      this.OldImage = data?.image;
+      console.log( this?.OldImage);
       
-      this.authorSelected = data.authorId._id
+      this.authorSelected = data?.authorId?._id
     });
 
     this.homeService.getAllData().subscribe(homedata => {
-      this.bookTypes = homedata.bookType;
-      this.targets = homedata.target;
-      this.bookSizes = homedata.bookSize;
-      this.authors = homedata.author
+      this.bookTypes = homedata?.bookType;
+      this.targets = homedata?.target;
+      this.bookSizes = homedata?.bookSize;
+      this.authors = homedata?.author
     })
     this.CategoryService.getAllActive().subscribe(data => {
-      this.categories = data.categories;
+      this.categories = data?.categories;
     })
   }
   saveFileThumail(event: any) {
     this.file = event.target.files[0];
     this.uploadImg.uploadImg(this.file);
-    this.newThumb = localStorage.getItem('imgThum');
   }
   saveDetailImg(event: any) {
     this.files = event.target.files;
     this.uploadImg.uploadListImg(this.files);
-    this.newList = JSON.parse(localStorage.getItem('imgList')!);
   }
   
   changeTarget(event: any) {
-    this.targetSelected = event.target.value
+    this.targetSelected = event.target?.value
   }
   changeSize(event: any) {
-    this.bookSizeSelected = event.target.value
+    this.bookSizeSelected = event.target?.value
   }
   changeType(event: any) {
-    this.bookTypesSelected = event.target.value
+    this.bookTypesSelected = event.target?.value
   }
   changeAuthor(event: any) {
-    this.bookTypesSelected = event.target.value
+    this.bookTypesSelected = event.target?.value
   }
   onsubmit() {
     this.messageService.add({
@@ -122,33 +120,32 @@ export class AdminProEditComponent implements OnInit {
     });
    
     let upload:any = {
-      image: this.newThumb ? this.newThumb : this.OldImage ,
-      imageMutiple: this.newList ? this.newList : this.listImgDetail,
-      name: this.AddForm.value.name,
-      cost: this.AddForm.value.cost,
-      stock: this.AddForm.value.stock,
-      categoryId: this.AddForm.value.categoryId,
-      targetId: this.targetSelected,
-      desc: this.AddForm.value.desc,
-      authorId: this.authorSelected,
-      pageNumber: this.AddForm.value.pageNumber,
-      bookWeight: this.AddForm.value.bookWeight,
-      bookTypeId: this.bookTypesSelected,
-      bookSizeId: this.bookSizeSelected,
+      image: localStorage.getItem("imgThum") || this.OldImage ,
+      imageMutiple:  JSON.parse(localStorage.getItem('imgList')!) || this.listImgDetail ,
+      name: this.AddForm.value?.name,
+      cost: this.AddForm.value?.cost,
+      stock: this.AddForm.value?.stock,
+      categoryId: this.AddForm.value?.categoryId,
+      targetId: this?.targetSelected,
+      desc: this.AddForm.value?.desc,
+      authorId: this?.authorSelected,
+      pageNumber: this.AddForm.value?.pageNumber,
+      bookWeight: this.AddForm.value?.bookWeight,
+      bookTypeId: this?.bookTypesSelected,
+      bookSizeId: this?.bookSizeSelected,
     }
-    console.log('this.OldImage',this.OldImage);
-    
-    console.log('userUpload',upload);
-    
     setTimeout(() => {
+      
+   
       this.productService.editProduct(upload, this.id).subscribe({
         next : (data) =>{
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'UPdate success' })
           setTimeout(() => {
-            this.router.navigate(['/admin/products']);
+             this.router.navigate(['/admin/products']);
             localStorage.removeItem('imgThum');
             localStorage.removeItem('imgList');
           }, 2000);
+           
         },
         error:(error) =>{
           console.log(error);

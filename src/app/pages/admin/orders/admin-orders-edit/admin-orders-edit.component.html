@@ -1,0 +1,115 @@
+<p-toast></p-toast>
+<a routerLink="/admin/orders" class="btn p-button-raised">Back to Order list</a>
+<p-divider></p-divider>
+<p-fieldset legend="Thông tin nhận hàng" [toggleable]="true">
+    <div id="userInfo">
+        <h5 class="mb-3">Thay đổi thông tin nhận hàng</h5>
+        <div class="userInfo__form">
+            <div class="userForm_afterChange">
+                <form class="row row-cols-lg-auto g-3 align-items-center" [formGroup]="userForm" *ngIf="order">
+                    <div class="col-12">
+                        <input type="text" class="form-control" placeholder="Địa chỉ nhận hàng" [(ngModel)]="order!.address"  formControlName="address"/>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control" placeholder="Tên người nhận" [(ngModel)]="order.username"  formControlName="username"/>
+                    </div>
+                    <div class="col-12">
+                        <input type="number" class="form-control" placeholder="Số điện thoại nhận hàng" [(ngModel)]="order.phoneNumber" formControlName="phoneNumber"/>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="form-control" placeholder="Email nhận hàng" [(ngModel)]="order!.email"  formControlName="email"/>
+                    </div>
+                    <div class="col-12">
+                        <textarea name="" placeholder="Note của khách" class="form-control" [(ngModel)]="order.note"  formControlName="note"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <textarea name="" placeholder="Ghi chú của cửa hàng" class="form-control" [(ngModel)]="order.storeNote" formControlName="storeNote"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</p-fieldset>
+
+<div class="clear-fix my-3"></div>
+
+<p-fieldset legend="Chi tiết đơn hàng" [toggleable]="true">
+    <div class="orders_detail">
+        <h5>Mã đơn : {{ order?.orderCode }}</h5>
+        <div class="order-detail__content mt-4" *ngIf="order">
+            <div class="row">
+                <div class="col-12">
+                    <div class="detail__left">
+                        <div class="detail__left__content">
+                            <div class="table-wrap">
+                                <table class="table table-bordered fw-bolder">
+                                    <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Mã sản phẩm</th>
+                                            <th>Đơn giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Sửa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let order of order.products">
+                                            <td>
+                                                <a routerLink="/products/{{ order?.products?.slug }}"
+                                                    class="text-danger fw-bolder">{{ order?.products?.name }}
+                                                </a>
+                                            </td>
+                                            <td class="text-break">{{ order?.products?._id }}</td>
+                                            <td>{{ order?.products.cost | currency }}</td>
+                                            <td class="mx-width sm">
+                                                <div class="d-flex gap-3">
+                                                    <button class="btn btn-link"
+                                                        (click)="decreaseQuantity(order?.products?._id)">
+                                                        <i class="fas fa-minus" aria-hidden="true"></i>
+                                                    </button>
+
+                                                    <input id="form1" min="1" readonly name="quantity"
+                                                        value="{{ order?.orderQuantity }}" type="number"
+                                                        class="form-control form-control-sm" />
+
+                                                    <button class="btn btn-link"
+                                                        (click)="increaseQuantity(order?.products?._id)">
+                                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td>{{ order?.orderPrice | currency }}</td>
+                                            <td>
+                                                <div class="form-outline d-flex">
+                                                    <div class="px-3">
+                                                        <button class="btn p-button-raised"
+                                                            (click)="deleteProducts(order?.products?._id)">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5">Tổng tiền</td>
+                                            <td class="text-right">
+                                                {{ totalPrice | currency }}
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <button type="submit" class="btn btn-primary" (click)="changeUserOrderInfo()">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-fieldset>

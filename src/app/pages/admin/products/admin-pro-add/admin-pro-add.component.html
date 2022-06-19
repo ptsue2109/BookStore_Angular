@@ -28,7 +28,6 @@
           </mdb-form-control>
         </div>
         <app-validate-mess [field]="AddForm.get('name')"></app-validate-mess>
-
         <div class="mb-3">
           <mdb-form-control>
             <input mdbInput type="number" formControlName="cost" class="form-control" />
@@ -49,7 +48,7 @@
           <div class="form-group">
             <label for="">Choose Category</label>
             <select class="form-control" formControlName="categoryId">
-              <option value="{{ item._id }}" *ngFor="let item of categories">
+              <option value="{{ item?._id }}" *ngFor="let item of categories">
                 {{ item.cateName }}
               </option>
             </select>
@@ -59,7 +58,7 @@
           <div class="form-group">
             <label for="">Choose Target</label>
             <select class="form-control" formControlName="targetId" id="">
-              <option value="{{ item._id }}" *ngFor="let item of targets">
+              <option value="{{ item?._id }}" *ngFor="let item of targets">
                 {{ item.targetName }}
               </option>
             </select>
@@ -72,7 +71,7 @@
           <div class="form-group">
             <label for="">Choose Book Size</label>
             <select class="form-control" formControlName="bookSizeId" id="">
-              <option value="{{ item._id }}" *ngFor="let item of bookSizes">
+              <option value="{{ item?._id }}" *ngFor="let item of bookSizes">
                 {{ item.bookSizeName }}
               </option>
             </select>
@@ -82,7 +81,7 @@
           <div class="form-group">
             <label for="">Choose Book Type</label>
             <select class="form-control" formControlName="bookTypeId" id="">
-              <option value="{{ item._id }}" *ngFor="let item of bookTypes">
+              <option value="{{ item?._id }}" *ngFor="let item of bookTypes">
                 {{ item.bookTypeName }}
               </option>
             </select>
@@ -91,7 +90,7 @@
         <div class="mb-3">
           <label  class="form-label">author Names</label>
           <select class="form-control" formControlName="authorId" id="">
-            <option value="{{ item._id }}" *ngFor="let item of authors">
+            <option value="{{ item?._id }}" *ngFor="let item of authors">
               {{ item.authorName }}
             </option>
           </select>

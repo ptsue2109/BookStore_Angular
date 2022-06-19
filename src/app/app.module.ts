@@ -1,9 +1,9 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, ɵDEFAULT_LOCALE_ID } from '@angular/core';
 import {
-  RouterModule,
-  Routes,
-  ActivatedRoute
-} from '@angular/router';
+  NgModule,
+  CUSTOM_ELEMENTS_SCHEMA,
+  ɵDEFAULT_LOCALE_ID,
+} from '@angular/core';
+import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { PrimeModule } from './shared/uiHelpers/prime/Prime.module';
 import { MdbModule } from './shared/uiHelpers/mdb/Mdb.module';
@@ -31,7 +31,7 @@ import { AdminProEditComponent } from './pages/admin/products/admin-pro-edit/adm
 import { AdminUsersListComponent } from './pages/admin/users/admin-users-list/admin-users-list.component';
 import { AdminUsersAddComponent } from './pages/admin/users/admin-users-add/admin-users-add.component';
 import { AdminUsersEditComponent } from './pages/admin/users/admin-users-edit/admin-users-edit.component';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 
 import { LoginComponent } from './pages/auths/login/login.component';
 import { RegisterComponent } from './pages/auths/register/register.component';
@@ -73,6 +73,12 @@ import { AdminOrdersListComponent } from './pages/admin/orders/admin-orders-list
 import { AdminOrdersAddComponent } from './pages/admin/orders/admin-orders-add/admin-orders-add.component';
 import { OrderDataComponent } from './comps/web-comps/order-data/order-data.component';
 import { OrderDetailComponent } from './pages/website/cart/order-detail/order-detail.component';
+import { AdminOrdersEditComponent } from './pages/admin/orders/admin-orders-edit/admin-orders-edit.component';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -123,9 +129,10 @@ registerLocaleData(localeFr);
     AdminOrdersAddComponent,
     OrderDataComponent,
     OrderDetailComponent,
+    AdminOrdersEditComponent,
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     CommonModule,
     AppRoutingModule,
     FormsModule,
@@ -141,8 +148,34 @@ registerLocaleData(localeFr);
     ScrollTopModule,
     GalleriaModule,
     CarouselModule,
+    SocialLoginModule
   ],
-  providers: [PrimeModule, MessageService, CarouselModule,ConfirmationService,RouterModule],
+  providers: [
+    PrimeModule,
+    MessageService,
+    CarouselModule,
+    ConfirmationService,
+    RouterModule,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.GOOGLE_CLIENT_ID
+            )
+          },
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
+  
+
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

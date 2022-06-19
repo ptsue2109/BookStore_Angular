@@ -36,13 +36,13 @@
                                 <tbody>
                                     <tr *ngFor="let order of orders.products">
                                         <td>
-                                            <a routerLink="/products/{{order?.slug}}"
-                                                class="text-danger fw-bolder">{{order?.name}} </a>
+                                            <a routerLink="/products/{{order?.products.slug}}"
+                                                class="text-danger fw-bolder">{{ order?.products.name }} </a>
                                         </td>
-                                        <td class="text-break">{{ order?._id }}</td>
-                                        <td>{{order?.stock | currency}}</td>
-                                        <td class="text-right">{{order?.quantity}}</td>
-                                        <td class="text-right">{{order?.price | currency}}</td>
+                                        <td class="text-break">{{ order?.products._id }}</td>
+                                        <td>{{order?.products.cost | currency}}</td>
+                                        <td class="text-right">{{order?.orderQuantity}}</td>
+                                        <td class="text-right">{{order?.orderPrice | currency}}</td>
                                     </tr>
                                 </tbody>
 

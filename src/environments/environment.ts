@@ -15,6 +15,7 @@ export const environment = {
   orderApi:  `${BASE_API}/orders`,
   searchApi:  `${BASE_API}/search`,
   targetApi:  `${BASE_API}/targets`,
+  GOOGLE_CLIENT_ID: '',
   firebase: {
     apiKey: 'AIzaSyCUdof8BHr8LfDIZIYDCvDv1e8mjmIpgGY',
     authDomain: 'my-app-7bb3f.firebaseapp.com',

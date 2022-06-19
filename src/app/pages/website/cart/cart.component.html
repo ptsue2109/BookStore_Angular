@@ -3,31 +3,31 @@
     <ng-template let-product pTemplate="item">
       <div class="product-item">
         <div class="image-container">
-          <img src="{{ product.image }}" [alt]="product.name" width="" class="product-image" />
+          <img src="{{ product.products.image }}" [alt]="product.name" width="" class="product-image" />
         </div>
         <div class="product-list-detail">
-          <h5 class="mb-2">{{ product.name }}</h5>
+          <h5 class="mb-2">{{ product.products.name }}</h5>
           <div class="form-outline d-flex">
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2" (click)="decreaseQuantity(product._id)">
-                  <i class="fas fa-minus" aria-hidden="true"></i>
-                </button>
+            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+              <button class="btn btn-link px-2" (click)="decreaseQuantity(product.products._id)">
+                <i class="fas fa-minus" aria-hidden="true"></i>
+              </button>
 
-                <input id="form1" min="1" readonly name="quantity" value="{{product.quantity}}" type="number"
-                  class="form-control form-control-sm" />
+              <input id="form1" min="1"  max="{{product.products.stock}}" readonly name="quantity" value="{{product.orderQuantity}}" type="number"
+                class="form-control form-control-sm" />
 
-                <button class="btn btn-link px-2" (click)="increaseQuantity(product._id)">
-                  <i class="fas fa-plus" aria-hidden="true"></i>
-                </button>
-              </div>
-              <button class="btn p-button-raised" (click)="removeCartItem(product._id)"><i
-                class="fas fa-times"></i></button> 
-  
+              <button class="btn btn-link px-2" (click)="increaseQuantity(product.products._id)">
+                <i class="fas fa-plus" aria-hidden="true"></i>
+              </button>
+            </div>
+            <button class="btn p-button-raised" (click)="removeCartItem(product.products._id)"><i
+                class="fas fa-times"></i></button>
+
           </div>
-          <p>Giá gốc : {{ product.cost | currency }}</p>
+          <p>Giá gốc : {{ product.products.cost | currency }}</p>
         </div>
         <div class="product-list-action">
-          <h6 class="mb-2" id="cart_price">{{ product.price | currency}}</h6>
+          <h6 class="mb-2" id="cart_price">{{ product?.orderPrice | currency}}</h6>
         </div>
       </div>
     </ng-template>

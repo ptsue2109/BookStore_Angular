@@ -35,6 +35,8 @@ import { LoginGuardGuard } from './shared/helpers/guard/login-guard.guard';
 import { TargetBookComponent } from './pages/website/products/target-book/target-book.component';
 import { AdminOrdersListComponent } from './pages/admin/orders/admin-orders-list/admin-orders-list.component';
 import { OrderDetailComponent } from './pages/website/cart/order-detail/order-detail.component';
+import { AdminOrdersAddComponent } from './pages/admin/orders/admin-orders-add/admin-orders-add.component';
+import { AdminOrdersEditComponent } from './pages/admin/orders/admin-orders-edit/admin-orders-edit.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -75,17 +77,16 @@ const routes: Routes = [
       },
       {
         path: 'orders',
-        children:[
+        children: [
           {
-            path : "",
+            path: '',
             component: CartOrdersComponent,
           },
           {
-            path: "get-by-ordercode/:orderCode",
-            component: OrderDetailComponent
-          }
-        ]
-        
+            path: 'get-by-ordercode/:orderCode',
+            component: OrderDetailComponent,
+          },
+        ],
       },
       {
         path: 'products',
@@ -203,9 +204,22 @@ const routes: Routes = [
         ],
       },
       {
-        path: "orders",
-        component: AdminOrdersListComponent
-      }
+        path: 'orders',
+        children:[
+          {
+            path: "",
+            component: AdminOrdersListComponent,
+          },
+          {
+            path: "create-new",
+            component: AdminOrdersAddComponent
+          },
+          {
+            path: "edit-orders/:orderCode",
+            component: AdminOrdersEditComponent
+          }
+        ]
+      },
     ],
   },
   {

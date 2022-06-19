@@ -23,30 +23,30 @@
         </ng-template>
         <ng-template pTemplate="body" let-product>
             <tr>
-                <td>{{product.name}}</td>
-                <td><img [src]="product.image" [alt]="product.name" width="50" height="50" class="shadow-4" /></td>
-                <td>{{product.cost | currency : "VND"}}</td>
-                <td>{{product.authorId.authorName}}</td>
-                <td>{{product.bookTypeId.bookTypeName}}</td>
-                <td>{{product.categoryId.cateName}}</td>
+                <td>{{product?.name}}</td>
+                <td><img [src]="product?.image" [alt]="product?.name" width="50" height="50" class="shadow-4" /></td>
+                <td>{{product?.cost | currency : "VND"}}</td>
+                <td>{{product?.authorId?.authorName}}</td>
+                <td>{{product?.bookTypeId?.bookTypeName}}</td>
+                <td>{{product?.categoryId?.cateName}}</td>
                 <td>
-                    <span  *ngIf="product.stock >5">{{product.stock}}</span>
-                    <p-tag severity="warning" icon="pi pi-exclamation-triangle"  value="{{product.stock}}" [rounded]="true" *ngIf="product.stock <=5" ></p-tag>
+                    <span  *ngIf="product?.stock >5">{{product?.stock}}</span>
+                    <p-tag severity="warning" icon="pi pi-exclamation-triangle"  value="{{product?.stock}}" [rounded]="true" *ngIf="product?.stock <=5" ></p-tag>
                 </td>
                 <td>
-                    <p-tag *ngIf="product.stock > 5">In out</p-tag>
-                    <p-tag *ngIf="product.stock < 5 && product.stock > 0" severity="warning">Ssp het</p-tag>
-                    <p-tag *ngIf="product.stock == 0 " severity="danger" >Sold out</p-tag>
+                    <p-tag *ngIf="product?.stock > 5">In out</p-tag>
+                    <p-tag *ngIf="product?.stock <= 5 && product.stock > 0" severity="warning">Ssp het</p-tag>
+                    <p-tag *ngIf="product?.stock == 0 " severity="danger" >Sold out</p-tag>
                 </td>
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="[product._id]"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product._id)"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="[product?._id]"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product?._id)"></button>
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                In total there are {{products ? products.length : 0 }} 
+                In total there are {{products ? products?.length : 0 }} 
             </div>
         </ng-template>
     </p-table>

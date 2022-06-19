@@ -18,10 +18,10 @@ export class LocalStorageService {
     const cartItems = this.getItem();
     console.log(cartItems);
 
-    const existItem = cartItems.find((item: any) => item._id === addItem._id);
+    const existItem = cartItems.find((item: any) => item.products._id === addItem.products._id);
     if (existItem) {
-      existItem.quantity += addItem.quantity;
-      existItem.price = existItem.quantity * existItem.price;
+      existItem.orderQuantity += addItem.orderQuantity;
+      existItem.orderPrice = existItem.orderQuantity * existItem.orderPrice;
     } else {
       cartItems.push(addItem);
     }

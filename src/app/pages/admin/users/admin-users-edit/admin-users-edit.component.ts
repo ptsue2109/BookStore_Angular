@@ -17,8 +17,8 @@ export class AdminUsersEditComponent implements OnInit {
   id: string;
   file: any = [];
   selected: string = '';
-  OldImage:any;
-  newThumb : any;
+  OldImage: any;
+  newThumb: any;
   userForm: FormGroup;
   roles: any[] = [
     { name: 'USER', value: 'user' },
@@ -33,25 +33,25 @@ export class AdminUsersEditComponent implements OnInit {
     private messageService: MessageService
   ) {
     this.id = '';
-    this.title.setTitle('Admin | Users - Edit'); 
+    this.title.setTitle('Admin | Users - Edit');
     this.userForm = new FormGroup({
-    email: new FormControl(),
-    desc: new FormControl(),
-    username: new FormControl(),
-    phoneNumber: new FormControl(),
-    address: new FormControl(),
-    role: new FormControl(),
-    image: new FormControl(),
-  });
+      email: new FormControl(),
+      desc: new FormControl(),
+      username: new FormControl(),
+      phoneNumber: new FormControl(),
+      address: new FormControl(),
+      role: new FormControl(),
+      image: new FormControl(),
+    });
   }
 
   ngOnInit(): void {
     this.id = this.ActivatedRouter.snapshot.params['id'];
     this.UserService.getOneUser(this.id).subscribe((dataUser) => {
-      console.log('detail User',dataUser);
-      
+      console.log('detail User', dataUser);
+
       this.dataUser = dataUser;
-      this.selected=  dataUser.role
+      this.selected = dataUser.role;
       this.OldImage = dataUser.image;
     });
   }
@@ -65,34 +65,44 @@ export class AdminUsersEditComponent implements OnInit {
     this.newThumb = localStorage.getItem('imgThum');
   }
   editUser() {
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Loading...'})
-      let userData: any = {
-        email: this.userForm.value.email,
-        username: this.userForm.value.username,
-        phoneNumber: this.userForm.value.phoneNumber,
-        address: this.userForm.value.address,
-        desc: this.userForm.value.desc,
-        image: this.newThumb ?this.OldImage : this.newThumb ,
-        role: this.selected,
-      };
-      console.log(userData);
-      
-      setTimeout(() => {
-         this.UserService.editUser(userData, this.id).subscribe({
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Success',
+      detail: 'Loading...',
+    });
+    let userData: any = {
+      email: this.userForm.value.email,
+      username: this.userForm.value.username,
+      phoneNumber: this.userForm.value.phoneNumber,
+      address: this.userForm.value.address,
+      desc: this.userForm.value.desc,
+      image: this.newThumb ? this.OldImage : this.newThumb,
+      role: this.selected,
+    };
+    console.log(userData);
+
+    setTimeout(() => {
+      this.UserService.editUser(userData, this.id).subscribe({
         next: (data: any) => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Edit success' })
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Edit success',
+          });
           setTimeout(() => {
             this.router.navigate(['/admin/users']);
             localStorage.removeItem('imgThum');
-          },2000)
-         
+          }, 2000);
         },
         error: ({ error }) => {
-          this.messageService.add({ severity: 'error', summary: 'Success', detail: `${error}`})
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Success',
+            detail: `${error}`,
+          });
           localStorage.removeItem('imgThum');
         },
       });
-      }, 5000);
-     
+    }, 5000);
   }
 }

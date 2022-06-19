@@ -12,6 +12,7 @@ import { OrderService } from './../../../../shared/sevices/order.service';
   styleUrls: ['./detail-products.component.scss'],
 })
 export class DetailProductsComponent implements OnInit {
+  [x: string]: any;
   slug: string;
   bookDetail: any;
   namePro: string;
@@ -23,9 +24,6 @@ export class DetailProductsComponent implements OnInit {
   price: number;
   orderCount: string = 'loading..';
   currentUser: any;
-
-  cart!: any;
-  book!: any;
   constructor(
     private ProductsService: ProductsService,
     private ActivatedRouter: ActivatedRoute,
@@ -51,31 +49,24 @@ export class DetailProductsComponent implements OnInit {
       this.title.setTitle(this.namePro);
     });
     this.currentUser = JSON.parse(localStorage.getItem('userInfo')!);
-    console.log('this.currentUser', this.currentUser);
   }
   onChangeCartValue(event: any) {
     this.cartValue = event.target.value;
   }
 
   onAddToCart() {
-    const carts = this.bookDetail;
-
-    const addItem = {
-     
-         ...carts ,
-          price: carts.cost * this.cartValue,
-          quantity: +this.cartValue,
-
-    };
-
-    console.log('carts Detal bôk', addItem);
-
-    this.lcService.setItem(addItem);
-    this.MessageService.add({
-      severity: 'success',
-      summary: 'Cart Item',
-      detail: 'Add item in your cart',
-    });
+  if(this.cartValue >= this.bookDetail.stock){
+    this.MessageService.add({severity: 'info',summary: 'Đặt lại',detail: `Hàng trong kho không đủ, tối đa ${this.bookDetail.stock} quyển `});
     this.cartValue = 1;
-  }
+  }else{
+    const carts = this.bookDetail;
+    const addItem = {
+      products:{...carts},
+      orderPrice: carts.cost * this.cartValue,
+      orderQuantity: +this.cartValue,
+    };
+    this.lcService.setItem(addItem);
+    this.MessageService.add({severity: 'success',summary: 'Cart Item',detail: 'Add item in your cart',});
+    this.cartValue = 1;
+  }  }
 }

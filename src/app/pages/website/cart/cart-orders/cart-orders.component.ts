@@ -38,7 +38,7 @@ export class CartOrdersComponent implements OnInit {
 
   onGetCart() {
     this.orderData = this.localS.getItem();
-    this.cartTotal = this.orderData.reduce((a: any, b: any) => a + b.price, 0);
+    this.cartTotal = this.orderData.reduce((a: any, b: any) => a + b.orderPrice, 0);
   }
   userForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -54,18 +54,13 @@ export class CartOrdersComponent implements OnInit {
 
   addOrder() {
     let orderFinal: any = {
-      username: this.userForm.value.username,
-      phoneNumber: this.userForm.value.phoneNumber,
-      address: this.userForm.value.address,
+      ...this.userForm.value,
       products: this.orderData,
-      quantity: this.orderData.length,
-      price: this.orderData.price,
+      orderQuantity: this.orderData.length,
+      orderPrice: this.orderData.price,
       totalPrice: this.cartTotal,
-      note: this.userForm.value.note,
       userInfo: this.currentUser,
     };
-    console.log('orderFinal', orderFinal);
-
     swalMessage('Hoàn thành đơn hàng?', 'OK', 'Cancel').then((result) => {
       if (result.isConfirmed) {
         this.orderS.createOrderByUser(orderFinal).subscribe({
@@ -78,7 +73,7 @@ export class CartOrdersComponent implements OnInit {
               localStorage.removeItem('cart');
               this.router.navigate(['/']);
             }, 2000);
-          },
+          }
         });
       }
     });

@@ -3,15 +3,15 @@
   <div class="container">
     <div class="new-books">
       <p-divider align="center" type="solid">
-        <h3 class="comp-title">Sách MỚI</h3>
+        <h3 class="comp-title text-uppercase">Sách MỚI</h3>
       </p-divider>
-      <app-sliders-books [books]="books" link="/prododucts"></app-sliders-books>
+      <app-sliders-books [books]="newProducts" link="/prododucts"></app-sliders-books>
     </div>
   </div>
 
   <div class="">
     <div class="children-books">
-      <div class="children-books background">
+      <!-- <div class="children-books background">
         <img
           src="https://theme.hstatic.net/200000343865/1000796725/14/banner_home_pro_3.jpg?v=418"
           alt=""
@@ -25,8 +25,8 @@
           </p-divider>
           <app-sliders-books [books]="books" slug=""></app-sliders-books>
         </div>
-      </div>
-      <div class="manga-books">
+      </div> -->
+      <div class="manga-books"> 
         <div class="manga-books background">
           <img
             src="https://theme.hstatic.net/200000343865/1000796725/14/banner_home_pro_4.jpg?v=418"
@@ -40,7 +40,7 @@
               <h3 class="comp-title">MANGA - COMIC</h3>
             </p-divider>
             <app-sliders-books
-              [books]="books"
+              [books]="mangaProducts"
               slug="manga-comic"
             ></app-sliders-books>
           </div>
@@ -50,7 +50,7 @@
       <div class="wings-books">
         <div class="wings-books background">
           <img
-            src="https://theme.hstatic.net/200000343865/1000796725/14/banner_home_pro_6.jpg?v=418"
+            src="https://theme.hstatic.net/200000343865/1000796725/14/banner_home_pro_5.jpg?v=430"
             alt=""
             style="width: 100%"
           />
@@ -58,10 +58,10 @@
         <div class="container">
           <div class="wings-books content">
             <p-divider align="center" type="solid">
-              <h3 class="comp-title">WINGS BOOKS</h3>
+              <h3 class="comp-title text-uppercase">doraemon</h3>
             </p-divider>
             <app-sliders-books
-              [books]="books"
+              [books]="doraemon"
               slug="wings-books"
             ></app-sliders-books>
           </div>
