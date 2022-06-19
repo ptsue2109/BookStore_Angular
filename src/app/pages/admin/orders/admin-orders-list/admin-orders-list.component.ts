@@ -20,6 +20,8 @@ export class AdminOrdersListComponent implements OnInit {
   ngOnInit(): void {
     this.$ordeS.getAll().subscribe((data) => {
       this.orders = data?.order;
+      console.log('data',data);
+      
       console.log('orderList', this?.orders);
     });
   }

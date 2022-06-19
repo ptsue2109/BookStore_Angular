@@ -19,10 +19,10 @@
         <ng-template pTemplate="body" let-item>
             <tr>
                 <td><a class="text-danger"
-                        routerLink="/admin/orders/edit-orders/{{item.orderCode}}">{{item.orderCode}}</a></td>
-                <td><a class="text-danger text-break" routerLink="">{{item.userInfo._id}}</a> </td>
-                <td>{{item.products.length}}</td>
-                <td>{{item.totalPrice | currency}}</td>
+                        routerLink="/admin/orders/edit-orders/{{item.orderCode}}">{{item?.orderCode}}</a></td>
+                <td><a class="text-danger text-break" routerLink="">{{item?.userInfo?._id}}</a> </td>
+                <td>{{item?.products?.length}}</td>
+                <td>{{item?.totalPrice | currency}}</td>
                 <td>
                     <div class="form-group">
                         <select (change)="changeStatus($event,item?.orderCode)" class="form-select"
