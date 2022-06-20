@@ -70,7 +70,14 @@ export class LoginComponent implements OnInit {
       },
     });
   }
+  showResponse(event: any) {
+    this.messageService.add({severity:'info', summary:'Succees', detail: 'User Responded', sticky: true});
+    if(event){
+      this.googleLogin()
+    }
+}
   googleLogin() {
+   
     this.socialService.signIn(GoogleLoginProvider.PROVIDER_ID)
       .then(resp => {
          console.log('resp login',resp);

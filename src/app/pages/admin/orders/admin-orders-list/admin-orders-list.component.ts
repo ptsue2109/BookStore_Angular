@@ -10,48 +10,39 @@ import { MessageService } from 'primeng/api';
 export class AdminOrdersListComponent implements OnInit {
   orders: any;
   orderStatus = [
-    { name: 'pending', value: 'pending' },
-    { name: 'delivered', value: 'delivered' },
-    { name: 'done', value: 'done' },
-    { name: 'close', value: 'close' },
-    { name: 'confirm', value: 'confirm' },
+    { name: 'Đang chuẩn bị', value: 'pending' },
+    { name: 'Đã xác nhận', value: 'confirm' },
+    { name: 'Đang vận chuyển', value: 'delivered' },
+    { name: 'Hoàn thành', value: 'done' },
+    { name: 'Hủy đơn', value: 'close' },
+  
   ];
   constructor(private $ordeS: OrderService, private $mess: MessageService) {}
   ngOnInit(): void {
     this.$ordeS.getAll().subscribe((data) => {
       this.orders = data?.order;
-      console.log('data',data);
-      
-      console.log('orderList', this?.orders);
     });
   }
-  deleteItem(_id: string) {
-    swalMessage('Do you want delete?', 'OK', 'Cancel').then((result) => {
-      if (result.isConfirmed) {
-        this.$ordeS.deleteOrder(_id).subscribe((data) => {
-          swal('delete skill', 'You add skill successfully !', 'success');
-          this.orders = this.orders.filter((item: any) => item._id !== _id);
-        });
-      }
-    });
-  }
+
   changeStatus(event: any, orderCode: string) {
     let upload = event.target.value;
     console.log('orderCode', orderCode);
-
-    const cf = window.confirm('you sure');
-    if (cf) {
-      console.log(upload, orderCode);
-      this.$ordeS
-        .updateOrder({ orderStatus: upload }, orderCode)
-        .subscribe((data) => {
-          this.$mess.add({
-            severity: 'success',
-            summary: 'success',
-            detail: 'update status success',
-          });
-          this.ngOnInit();
-        });
-    }
+    swalMessage('Bạn chắc chắn muốn cập nhật trạng thái cho đơn này?','OK','Cancel').then((result) =>{
+      if(result.isConfirmed){
+          this.$ordeS
+            .updateOrder({ orderStatus: upload }, orderCode)
+            .subscribe((data) => {
+              this.$mess.add({
+                severity: 'success',
+                summary: 'success',
+                detail: 'update status success',
+              });
+              this.ngOnInit();
+            });
+        }
+     
+    })
+   
+   
   }
 }
