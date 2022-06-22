@@ -45,7 +45,7 @@ export class DetailProductsComponent implements OnInit {
       this.bookDetail = data;
       this.namePro = data.name;
       this.imageThumb = Array.of(data.image);
-      this.imageMutiple = JSON.parse(JSON.stringify(data.imageMutiple));
+      this.imageMutiple = JSON.parse(JSON.stringify(data.imageMutiple) || '[]');
       this.title.setTitle(this.namePro);
     });
     this.currentUser = JSON.parse(localStorage.getItem('userInfo')!);

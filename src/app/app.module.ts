@@ -51,10 +51,10 @@ import { SlidersBannerComponent } from './comps/web-comps/sliders-banner/sliders
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SlidersBooksComponent } from './comps/web-comps/sliders-books/sliders-books.component';
 import { CarouselModule } from 'primeng/carousel';
+import { ValidateMessComponent } from './comps/web-comps/validate-mess/validate-mess.component';
 import { CardDetailComponent } from './comps/web-comps/card-detail/card-detail.component';
 import { DetailProductsComponent } from './pages/website/products/detail-products/detail-products.component';
 import { CartComponent } from './pages/website/cart/cart.component';
-import { ValidateMessComponent } from './comps/web-comps/card-detail/validate-mess/validate-mess.component';
 import { ProductByCateComponent } from './pages/website/products/product-by-cate/product-by-cate.component';
 import { AsidePanelComponent } from './comps/web-comps/aside-panel/aside-panel.component';
 import { InfoComponent } from './pages/auths/info/info.component';
@@ -71,7 +71,6 @@ import { BookCoverComponent } from './comps/web-comps/book-cover/book-cover.comp
 import { TargetBookComponent } from './pages/website/products/target-book/target-book.component';
 import { AdminOrdersListComponent } from './pages/admin/orders/admin-orders-list/admin-orders-list.component';
 import { AdminOrdersAddComponent } from './pages/admin/orders/admin-orders-add/admin-orders-add.component';
-import { OrderDataComponent } from './comps/web-comps/order-data/order-data.component';
 import { OrderDetailComponent } from './pages/website/cart/order-detail/order-detail.component';
 import { AdminOrdersEditComponent } from './pages/admin/orders/admin-orders-edit/admin-orders-edit.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
@@ -110,7 +109,6 @@ registerLocaleData(localeFr);
     CardDetailComponent,
     DetailProductsComponent,
     CartComponent,
-    ValidateMessComponent,
     ProductByCateComponent,
     AsidePanelComponent,
     InfoComponent,
@@ -127,9 +125,9 @@ registerLocaleData(localeFr);
     TargetBookComponent,
     AdminOrdersListComponent,
     AdminOrdersAddComponent,
-    OrderDataComponent,
     OrderDetailComponent,
     AdminOrdersEditComponent,
+    ValidateMessComponent
   ],
   imports: [
     BrowserModule,
